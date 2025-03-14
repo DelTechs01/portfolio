@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { CssBaseline } from '@mui/material';
 import Home from './Home';
-import Projects from './Projects';
+import Projects from './projects';
 import About from './About';
 import Contact from './Contact';
 import Skills from './Skills';
