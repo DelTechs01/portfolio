@@ -20,25 +20,25 @@ function Projects() {
     {
       title: 'E-Learning Platform',
       description: 'A comprehensive platform for online education...',
-      image: '../public/e-learning.jpg',
+      image: '../e-learning.jpg',
       githubLink: 'https://github.com/DelTechs01/elearning-platform', // Replace with real URL
     },
     {
       title: 'WiFi Management System',
       description: 'A system to configure, monitor, and optimize WiFi networks...',
-      image: '../public/wifisys.jpg',
+      image: '/wifisys.jpg',
       githubLink: 'https://github.com/DelTechs01/wifi-management-system', // Replace with real URL
     },
     {
       title: 'Task Tracker',
       description: 'Contribute to the development of a productivity tool to organize tasks...',
-      image: '../public/task-tracker.jpg',
+      image: '/task-tracker.jpg',
       githubLink: 'https://github.com/Ann-Karuku/task-tracker', // Replace with real URL
     },
     {
       title: 'Space Exploration',
       description: 'An interactive app exploring space data...',
-      image: '../public/space-exploration.jpg',
+      image: '/space-exploration.jpg',
       githubLink: 'https://github.com/DelTechs01/space-_exploration', // Fixed typo, replace with real URL
     },
   ];
