@@ -4,7 +4,7 @@ import { CssBaseline } from '@mui/material';
 import Home from './Home';
 import Projects from './projects';
 import About from './About';
-import Contact from './Contact';
+import Contact from './contact';
 import Skills from './Skills';
 import Footer from './Footer';
 import Resume from './Resume';
