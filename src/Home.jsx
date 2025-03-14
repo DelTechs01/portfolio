@@ -34,7 +34,7 @@ export default function Home() {
                   <FaNodeJs className="text-green-400 text-2xl absolute bottom-20 right-20" />
                 </motion.div>
                 <motion.img
-                  src="../src/assets/bleah.jpg"
+                  src="../public/bleah.jpg"
                   alt="Kweyu Delron"
                   className="rounded-full w-64 h-64 object-cover border-4 border-white shadow-lg"
                   initial={{ scale: 0.9 }}
