@@ -115,7 +115,6 @@ function About() {
                         boxShadow: '0 6px 16px rgba(0, 0, 0, 0.3)',
                       },
                     }}
-                    component={motion.div}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
