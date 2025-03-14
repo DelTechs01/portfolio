@@ -54,6 +54,9 @@ export default function Home() {
                 <Typography variant="body1" sx={{ color: 'gray.200', mb: 6, maxWidth: '600px' }}>
                   I’m a dedicated Software and Network Engineer with a strong enthusiasm for cybersecurity, designing robust, scalable, and secure solutions that empower users and protect systems. I leverage cutting-edge technologies to build efficient software, optimize network performance, and safeguard against evolving threats.
                 </Typography>
+                <Typography variant="h5" sx={{ color: 'gray.300', mb: 4 }}>
+                  Call Me Now: +254 708 821 843
+                </Typography>
                 <Button
                   component={RouterLink}
                   to="/projects"
