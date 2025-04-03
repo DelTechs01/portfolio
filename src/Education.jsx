@@ -146,7 +146,7 @@ export default function Education() {
                       Joined: January 2025 Feb-Cohort.
                     </Typography>
                     <Typography variant="body2" sx={{ color: 'gray.500' }}>
-                      Advancing skills in Python, Django, and mobile development through a competitive scholarship program.
+                      Advancing skills in Python, Django, and Web development through a competitive scholarship program.
                     </Typography>
                   </CardContent>
                 </Card>
