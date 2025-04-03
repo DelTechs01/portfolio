@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { AppBar, Toolbar, Typography, Button, IconButton, Drawer, List, ListItem, ListItemButton, ListItemText, Box } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Link as RouterLink } from 'react-router-dom'; // Renamed to avoid confusion
-import { motion } from 'framer-motion'; // For animations
+import { Link as RouterLink } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 function Navbar() {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -14,42 +14,56 @@ function Navbar() {
     setDrawerOpen(open);
   };
 
-  // Menu items
-  const menuItems = ['Home', 'About', 'Skills', 'Projects', 'Contact', 'Resume'];
+  // Updated menu items with Education
+  const menuItems = ['Home', 'About', 'Skills', 'Projects', 'Education', 'Contact', 'Resume'];
 
   // Animation variants for drawer
   const drawerVariants = {
     hidden: { x: '100%', opacity: 0 },
-    visible: { x: 0, opacity: 1, transition: { duration: 0.3 } },
+    visible: { x: 0, opacity: 1, transition: { duration: 0.3, ease: 'easeInOut' } },
+  };
+
+  // Animation for buttons
+  const buttonVariants = {
+    hover: { scale: 1.05, color: '#1E90FF' },
+    tap: { scale: 0.95 },
   };
 
   return (
     <>
-      {/* Fixed Navbar */}
+      {/* Enhanced Fixed Navbar */}
       <AppBar
         position="fixed"
         sx={{
           bgcolor: 'gray.900',
           background: 'linear-gradient(to right, #111827, #1E3A8A)',
-          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)',
+          boxShadow: '0 6px 20px rgba(0, 0, 0, 0.3)', // Deeper shadow for depth
           zIndex: 1300,
+          borderBottom: '1px solid rgba(255, 255, 255, 0.1)', // Subtle border
         }}
       >
-        <Toolbar sx={{ minHeight: { xs: 56, sm: 64 } }}>
-          {/* Logo/Name */}
+        <Toolbar sx={{ minHeight: { xs: 56, sm: 64 }, px: { xs: 2, md: 4 } }}>
+          {/* Logo/Name with Animation */}
           <Typography
             variant="h6"
             sx={{
               flexGrow: 1,
               color: '#1E90FF',
-              fontSize: { xs: '1.25rem', sm: '1.5rem' },
+              fontSize: { xs: '1.25rem', sm: '1.75rem' },
               fontWeight: 'bold',
+              letterSpacing: '0.5px',
             }}
             component={RouterLink}
             to="/"
             style={{ textDecoration: 'none' }}
           >
-            Kweyu Delron Muyale
+            <motion.span
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              Kweyu Delron Muyale
+            </motion.span>
           </Typography>
 
           {/* Hamburger Menu for Small Screens */}
@@ -58,23 +72,28 @@ function Navbar() {
             color="inherit"
             aria-label="menu"
             onClick={toggleDrawer(true)}
-            sx={{ display: { xs: 'block', sm: 'none' } }}
+            sx={{
+              display: { xs: 'block', sm: 'none' },
+              '&:hover': { bgcolor: 'rgba(255, 255, 255, 0.1)' },
+            }}
           >
-            <MenuIcon />
+            <MenuIcon sx={{ fontSize: '2rem' }} />
           </IconButton>
 
-          {/* Horizontal Menu for Larger Screens */}
+          {/* Enhanced Horizontal Menu for Larger Screens */}
           <Box
             sx={{
               display: { xs: 'none', sm: 'flex' },
-              gap: { sm: 1, md: 2 },
+              gap: { sm: 1.5, md: 3 },
+              alignItems: 'center',
             }}
           >
             {menuItems.map((item) => (
               <motion.div
                 key={item}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                variants={buttonVariants}
+                whileHover="hover"
+                whileTap="tap"
               >
                 <Button
                   color="inherit"
@@ -83,12 +102,30 @@ function Navbar() {
                   sx={{
                     color: 'white',
                     fontSize: { sm: '0.9rem', md: '1rem' },
-                    px: { sm: 1.5, md: 2 },
+                    px: { sm: 2, md: 2.5 },
                     py: 1,
                     textTransform: 'none',
+                    borderRadius: '8px',
+                    fontWeight: 'medium',
+                    letterSpacing: '0.5px',
+                    position: 'relative',
+                    overflow: 'hidden',
                     '&:hover': {
-                      color: '#1E90FF',
                       bgcolor: 'rgba(255, 255, 255, 0.1)',
+                      color: '#1E90FF',
+                    },
+                    '&::after': {
+                      content: '""',
+                      position: 'absolute',
+                      bottom: 0,
+                      left: 0,
+                      width: '0%',
+                      height: '2px',
+                      bgcolor: '#1E90FF',
+                      transition: 'width 0.3s ease-in-out',
+                    },
+                    '&:hover::after': {
+                      width: '100%',
                     },
                   }}
                 >
@@ -103,7 +140,7 @@ function Navbar() {
       {/* Spacer to prevent content overlap */}
       <Box sx={{ height: { xs: 56, sm: 64 } }} />
 
-      {/* Drawer for Small Screens */}
+      {/* Enhanced Drawer for Small Screens */}
       <Drawer
         anchor="right"
         open={drawerOpen}
@@ -111,9 +148,11 @@ function Navbar() {
         sx={{
           '& .MuiDrawer-paper': {
             bgcolor: 'gray.900',
-            color: 'blue',
-            width: { xs: '40vw', sm: '50vw', md: '40vw' },
-            maxWidth: 200,
+            background: 'linear-gradient(to bottom, #111827, #1E3A8A)', // Gradient for drawer
+            color: 'white',
+            width: { xs: '60vw', sm: '40vw' },
+            maxWidth: 250,
+            borderLeft: '1px solid rgba(255, 255, 255, 0.1)',
           },
         }}
       >
@@ -122,7 +161,7 @@ function Navbar() {
           initial="hidden"
           animate={drawerOpen ? 'visible' : 'hidden'}
         >
-          <List sx={{ pt: 2 }}>
+          <List sx={{ pt: 4, px: 2 }}>
             {menuItems.map((item) => (
               <ListItem key={item} disablePadding>
                 <ListItemButton
@@ -130,16 +169,25 @@ function Navbar() {
                   to={item === 'Home' ? '/' : `/${item.toLowerCase().replace(' ', '-')}`}
                   onClick={toggleDrawer(false)}
                   sx={{
-                    py: 1.5,
+                    py: 2,
+                    px: 3,
+                    borderRadius: '8px',
+                    my: 0.5,
                     '&:hover': {
                       bgcolor: 'rgba(255, 255, 255, 0.1)',
                       color: '#1E90FF',
+                      transform: 'translateX(5px)',
+                      transition: 'all 0.3s ease',
                     },
                   }}
                 >
                   <ListItemText
                     primary={item}
-                    primaryTypographyProps={{ fontSize: { xs: '1rem', sm: '1.125rem' } }}
+                    primaryTypographyProps={{
+                      fontSize: { xs: '1.1rem', sm: '1.2rem' },
+                      fontWeight: 'medium',
+                      letterSpacing: '0.5px',
+                    }}
                   />
                 </ListItemButton>
               </ListItem>
