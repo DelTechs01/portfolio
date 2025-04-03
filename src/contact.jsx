@@ -136,7 +136,7 @@ function Contact() {
                 fullWidth
                 value={formData.name}
                 onChange={handleChange}
-                placeholder="John Doe"
+                placeholder="Enter your name..."
                 required
                 sx={{
                   '& .MuiOutlinedInput-root': {
@@ -157,7 +157,7 @@ function Contact() {
                 fullWidth
                 value={formData.email}
                 onChange={handleChange}
-                placeholder="john.doe@example.com"
+                placeholder="Enter your email..."
                 required
                 sx={{
                   '& .MuiOutlinedInput-root': {
