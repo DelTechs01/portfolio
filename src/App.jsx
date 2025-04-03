@@ -9,6 +9,7 @@ import Skills from './Skills';
 import Footer from './Footer';
 import Resume from './Resume';
 import Navbar from './Navbar';
+import Education from './Education'; // Added Education import
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/skills" element={<Skills/>} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/resume" element={<Resume />} />
+          <Route path="/education" element={<Education />} /> // Added Education route
         </Routes>
         <Footer />
       </div>
