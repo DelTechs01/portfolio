@@ -75,7 +75,7 @@ LinkedIn: linkedin.com/in/kweyudelron`,
    Description: Connects Kenyan university students, supports verified communities, and social features
 
 2. AI-Powered Learning Platform
-   Tech: Python, Flask, AI Integration
+   Tech: Python, Flask,PHP, AI Integration
    Description: Personalized AI tutor delivering daily learning content
 
 3. M-Pesa Integrated E-Commerce System
