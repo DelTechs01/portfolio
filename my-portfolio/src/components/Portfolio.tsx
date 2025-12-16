@@ -1,6 +1,11 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Moon, Sun, ChevronDown, Github, Linkedin, Mail, Phone, Twitter, MapPin, Send, Download, ExternalLink, Code2, Sparkles, Award, Briefcase, GraduationCap, Star, Calendar, Shield, Zap, TrendingUp, Users, CheckCircle2, Clock } from 'lucide-react';
+import { 
+  Moon, Sun, ChevronDown, Github, Linkedin, Mail, Phone, Twitter, 
+  MapPin, Send, Download, ExternalLink, Code2, Sparkles, Award, 
+  Briefcase, GraduationCap, Star, Calendar, Shield, Zap, TrendingUp, 
+  Users, CheckCircle2, Clock 
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -21,9 +26,17 @@ interface PortfolioProps {
   onSelectProject: (id: string) => void;
 }
 
+interface FormData {
+  name: string;
+  email: string;
+  budget: string;
+  timeline: string;
+  message: string;
+}
+
 const Portfolio = ({ onSelectProject }: PortfolioProps) => {
   const [darkMode, setDarkMode] = useState(false);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     budget: '',
@@ -41,15 +54,30 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
   }, []);
 
   const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
+    const newMode = !darkMode;
+    setDarkMode(newMode);
     document.documentElement.classList.toggle('dark');
-    localStorage.setItem('darkMode', (!darkMode).toString());
+    localStorage.setItem('darkMode', newMode.toString());
   };
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     element?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  const handleContactSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!formData.name || !formData.email || !formData.message) {
+      toast.error('Please fill in all required fields');
+      return;
+    }
+
+    toast.success('Message sent! I\'ll respond within 24 hours.');
+    setFormData({ name: '', email: '', budget: '', timeline: '', message: '' });
+  };
+
+  const navItems = ['About', 'Skills', 'Case Studies', 'Services', 'Experience', 'Contact'];
 
   const skills = {
     Frontend: [
@@ -81,11 +109,11 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
   const services = [
     {
       title: 'Custom Web Development',
-      description: 'Full-stack development from wireframing to deployment with ongoing maintenance and performance optimization.',
+      description: 'Full-stack development from wireframing to deployment with ongoing maintenance.',
       features: [
         'Responsive Design (Mobile-first)',
         'SEO Optimization & Core Web Vitals',
-        'Performance Tuning (95+ Lighthouse Score)',
+        'Performance Tuning (95+ Lighthouse)',
         'Cloud Deployment (AWS/Azure/GCP)',
         'CI/CD Pipeline Setup',
         '3 Months Free Maintenance'
@@ -95,7 +123,7 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
     },
     {
       title: 'AI Integration & Consulting',
-      description: 'Implement cutting-edge AI solutions to automate workflows, enhance user experiences, and unlock data insights.',
+      description: 'Implement AI solutions to automate workflows and enhance user experiences.',
       features: [
         'ChatGPT/GPT-4 Integration',
         'Custom ML Model Development',
@@ -109,7 +137,7 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
     },
     {
       title: 'Cybersecurity Audits',
-      description: 'Comprehensive security assessments to protect your digital assets and ensure compliance with industry standards.',
+      description: 'Comprehensive security assessments to protect your digital assets.',
       features: [
         'OWASP Top 10 Vulnerability Scanning',
         'Penetration Testing',
@@ -128,36 +156,36 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
       role: 'Senior Full-Stack Developer',
       company: 'TechCorp Inc.',
       period: '2022 - Present',
-      description: 'Led AI-driven projects resulting in 30% efficiency gains. Architected microservices handling 10M+ daily requests.',
+      description: 'Led AI-driven projects resulting in 30% efficiency gains.',
       achievements: [
-        'Reduced infrastructure costs by 40% through optimization',
-        'Implemented CI/CD pipeline reducing deployment time by 85%',
+        'Reduced infrastructure costs by 40%',
+        'Implemented CI/CD reducing deployment time by 85%',
         'Mentored 5 junior developers to senior level',
-        'Led migration to microservices architecture serving 2M+ users'
+        'Led migration to microservices for 2M+ users'
       ]
     },
     {
       role: 'Full-Stack Developer',
       company: 'Digital Solutions Ltd.',
       period: '2020 - 2022',
-      description: 'Developed responsive web applications serving 100K+ users with 99.9% uptime.',
+      description: 'Developed web applications serving 100K+ users with 99.9% uptime.',
       achievements: [
-        'Built real-time chat system handling 50K concurrent users',
-        'Optimized database queries reducing load time by 60%',
-        'Launched 12 successful client projects on time and budget',
-        'Implemented automated testing increasing code coverage to 90%'
+        'Built real-time chat for 50K concurrent users',
+        'Optimized queries reducing load time by 60%',
+        'Launched 12 successful projects on time',
+        'Increased test coverage to 90%'
       ]
     },
     {
       role: 'Junior Developer',
       company: 'StartUp Ventures',
       period: '2018 - 2020',
-      description: 'Contributed to multiple client projects using modern web technologies.',
+      description: 'Contributed to multiple projects using modern technologies.',
       achievements: [
         'Mastered React, Node.js, and cloud deployment',
-        'Deployed 8 production websites with perfect uptime',
+        'Deployed 8 production websites',
         'Improved code quality metrics by 45%',
-        'Received "Rising Star" award in first year'
+        'Received "Rising Star" award'
       ]
     },
   ];
@@ -173,44 +201,25 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
     {
       name: 'Sarah Johnson',
       role: 'CEO, TechStart',
-      content: 'Exceptional developer who delivered our project ahead of schedule. The AI integration exceeded our expectations and increased our revenue by 50% in Q1.',
+      content: 'Exceptional developer who delivered ahead of schedule. The AI integration increased our revenue by 50% in Q1.',
       rating: 5,
       project: 'AI-Powered E-Commerce Platform'
     },
     {
       name: 'Michael Chen',
       role: 'CTO, DataFlow',
-      content: 'Professional, knowledgeable, and great to work with. Solved complex real-time data problems with elegant solutions. Our system now handles 150x more traffic.',
+      content: 'Professional and knowledgeable. Solved complex real-time data problems. Our system now handles 150x more traffic.',
       rating: 5,
       project: 'Real-Time Analytics Dashboard'
     },
     {
       name: 'Emily Rodriguez',
       role: 'CISO, SecureBank',
-      content: 'This tool has become essential to our security operations. We\'ve prevented multiple major breaches and significantly improved our security posture.',
+      content: 'Essential to our security operations. We\'ve prevented multiple major breaches and improved our security posture.',
       rating: 5,
       project: 'Cybersecurity Audit Tool'
     },
   ];
-
-  const handleContactSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!formData.name || !formData.email || !formData.message) {
-      toast.error('Please fill in all required fields');
-      return;
-    }
-
-    toast.success('Message sent successfully! I\'ll get back to you within 24 hours.');
-    
-    setFormData({
-      name: '',
-      email: '',
-      budget: '',
-      timeline: '',
-      message: ''
-    });
-  };
 
   return (
     <div className="min-h-screen">
@@ -235,7 +244,7 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
             </motion.div>
             
             <div className="hidden md:flex space-x-8">
-              {['About', 'Skills', 'Case Studies', 'Services', 'Experience', 'Contact'].map((item) => (
+              {navItems.map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase().replace(' ', '-'))}
@@ -246,12 +255,7 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
               ))}
             </div>
 
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleDarkMode}
-              className="rounded-full"
-            >
+            <Button variant="ghost" size="icon" onClick={toggleDarkMode} className="rounded-full">
               {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </Button>
           </div>
@@ -286,7 +290,7 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
             </p>
             
             <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-              Transforming complex ideas into scalable, AI-driven solutions that drive business growth and innovation
+              Transforming complex ideas into scalable, AI-driven solutions that drive business growth
             </p>
 
             <div className="flex flex-wrap justify-center gap-6 mb-8">
@@ -305,20 +309,11 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Button 
-                size="lg" 
-                className="text-lg px-8 group"
-                onClick={() => scrollToSection('case-studies')}
-              >
+              <Button size="lg" className="text-lg px-8 group" onClick={() => scrollToSection('case-studies')}>
                 View Case Studies
                 <Code2 className="ml-2 h-5 w-5 group-hover:rotate-12 transition-transform" />
               </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="text-lg px-8 group"
-                onClick={() => scrollToSection('contact')}
-              >
+              <Button size="lg" variant="outline" className="text-lg px-8 group" onClick={() => scrollToSection('contact')}>
                 Get in Touch
                 <Send className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
@@ -339,22 +334,15 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
       {/* About Section */}
       <section id="about" className="py-24 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center">
-              About Me
-            </h2>
+          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
+            <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center">About Me</h2>
             
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="relative">
                 <div className="aspect-square rounded-2xl overflow-hidden glass p-1">
                   <img
                     src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80"
-                    alt="Alex Thompson - Full Stack Developer"
+                    alt="Alex Thompson"
                     className="w-full h-full object-cover rounded-xl"
                   />
                 </div>
@@ -366,38 +354,27 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
               
               <div className="space-y-6">
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  I'm a passionate full-stack developer with over 5 years of experience crafting innovative digital solutions. My journey in tech began with a fascination for how code can solve real-world problems, and it's evolved into a career dedicated to building scalable, user-centric applications that deliver measurable business value.
+                  I'm a passionate full-stack developer with over 5 years of experience crafting innovative digital solutions. My journey began with a fascination for how code solves real-world problems.
                 </p>
                 
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  Specializing in AI integration and modern web technologies, I help businesses transform their digital presence. My philosophy centers on <strong>ethical AI development</strong> and creating technology that genuinely improves people's lives.
+                  Specializing in AI integration and modern web technologies, I help businesses transform their digital presence through <strong>ethical AI development</strong> and user-centric design.
                 </p>
                 
                 <div className="grid grid-cols-2 gap-4 pt-4">
-                  <Card className="hover:shadow-lg transition-shadow">
-                    <CardContent className="p-4 text-center">
-                      <p className="text-3xl font-bold text-primary mb-1">50+</p>
-                      <p className="text-sm text-muted-foreground">Projects Completed</p>
-                    </CardContent>
-                  </Card>
-                  <Card className="hover:shadow-lg transition-shadow">
-                    <CardContent className="p-4 text-center">
-                      <p className="text-3xl font-bold text-primary mb-1">30+</p>
-                      <p className="text-sm text-muted-foreground">Happy Clients</p>
-                    </CardContent>
-                  </Card>
-                  <Card className="hover:shadow-lg transition-shadow">
-                    <CardContent className="p-4 text-center">
-                      <p className="text-3xl font-bold text-primary mb-1">99.9%</p>
-                      <p className="text-sm text-muted-foreground">Uptime Record</p>
-                    </CardContent>
-                  </Card>
-                  <Card className="hover:shadow-lg transition-shadow">
-                    <CardContent className="p-4 text-center">
-                      <p className="text-3xl font-bold text-primary mb-1">40%</p>
-                      <p className="text-sm text-muted-foreground">Avg. Performance Gain</p>
-                    </CardContent>
-                  </Card>
+                  {[
+                    { value: '50+', label: 'Projects Completed' },
+                    { value: '30+', label: 'Happy Clients' },
+                    { value: '99.9%', label: 'Uptime Record' },
+                    { value: '40%', label: 'Avg. Performance Gain' }
+                  ].map((stat) => (
+                    <Card key={stat.label} className="hover:shadow-lg transition-shadow">
+                      <CardContent className="p-4 text-center">
+                        <p className="text-3xl font-bold text-primary mb-1">{stat.value}</p>
+                        <p className="text-sm text-muted-foreground">{stat.label}</p>
+                      </CardContent>
+                    </Card>
+                  ))}
                 </div>
               </div>
             </div>
@@ -408,21 +385,13 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
       {/* Skills Section */}
       <section id="skills" className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center">
-              Skills & Tech Stack
-            </h2>
+          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
+            <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center">Skills & Tech Stack</h2>
             
             <Tabs defaultValue="Frontend" className="w-full">
               <TabsList className="grid w-full grid-cols-4 mb-8">
                 {Object.keys(skills).map((category) => (
-                  <TabsTrigger key={category} value={category}>
-                    {category}
-                  </TabsTrigger>
+                  <TabsTrigger key={category} value={category}>{category}</TabsTrigger>
                 ))}
               </TabsList>
               
@@ -455,20 +424,14 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
         </div>
       </section>
 
-      {/* Case Studies Section */}
+      {/* Case Studies */}
       <section id="case-studies" className="py-24 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-          >
+          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
             <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                Featured Case Studies
-              </h2>
+              <h2 className="text-4xl md:text-5xl font-bold mb-4">Featured Case Studies</h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Deep dives into real projects with measurable results, technical decisions, and lessons learned
+                Real projects with measurable results and technical insights
               </p>
             </div>
             
@@ -484,15 +447,9 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
                 >
                   <Card className="overflow-hidden h-full group cursor-pointer" onClick={() => onSelectProject(project.id)}>
                     <div className="relative overflow-hidden">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
+                      <img src={project.image} alt={project.title} className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500" />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                      <Badge className="absolute top-4 right-4 bg-primary">
-                        Case Study
-                      </Badge>
+                      <Badge className="absolute top-4 right-4 bg-primary">Case Study</Badge>
                     </div>
                     
                     <CardHeader>
@@ -529,18 +486,11 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
         </div>
       </section>
 
-      {/* Services, Experience, Testimonials, Contact sections continue... */}
-      {/* Services Section */}
+      {/* Services */}
       <section id="services" className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center">
-              Services Offered
-            </h2>
+          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
+            <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center">Services Offered</h2>
             
             <div className="grid md:grid-cols-3 gap-8">
               {services.map((service, index) => (
@@ -576,9 +526,7 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
                       
                       <div className="flex justify-between items-center">
                         <p className="text-2xl font-bold text-primary">{service.price}</p>
-                        <Button onClick={() => scrollToSection('contact')}>
-                          Get Started
-                        </Button>
+                        <Button onClick={() => scrollToSection('contact')}>Get Started</Button>
                       </div>
                     </CardContent>
                   </Card>
@@ -589,17 +537,11 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
         </div>
       </section>
 
-      {/* Experience Section */}
+      {/* Experience */}
       <section id="experience" className="py-24 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center">
-              Experience & Education
-            </h2>
+          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
+            <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center">Experience & Education</h2>
             
             <div className="space-y-8">
               {experience.map((exp, index) => (
@@ -659,7 +601,7 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
                       <h4 className="text-lg font-bold">M.S. in Computer Science</h4>
                       <p className="text-muted-foreground">Stanford University</p>
                       <p className="text-sm text-muted-foreground mt-2">GPA: 3.9/4.0</p>
-                      <p className="text-sm text-muted-foreground">Specialization: Artificial Intelligence & Machine Learning</p>
+                      <p className="text-sm text-muted-foreground">Specialization: AI & Machine Learning</p>
                     </div>
                     <Badge variant="outline">
                       <Calendar className="w-3 h-3 mr-1" />
@@ -699,14 +641,8 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
       {/* Testimonials */}
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center">
-              Client Testimonials
-            </h2>
+          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
+            <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center">Client Testimonials</h2>
             
             <div className="grid md:grid-cols-3 gap-8">
               {testimonials.map((testimonial, index) => (
@@ -729,9 +665,7 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
                       <div>
                         <p className="font-semibold">{testimonial.name}</p>
                         <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                        <Badge variant="outline" className="mt-2 text-xs">
-                          {testimonial.project}
-                        </Badge>
+                        <Badge variant="outline" className="mt-2 text-xs">{testimonial.project}</Badge>
                       </div>
                     </CardContent>
                   </Card>
@@ -742,108 +676,64 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
         </div>
       </section>
 
-      {/* Contact Section */}
+      {/* Contact */}
       <section id="contact" className="py-24 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-          >
+          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
             <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                Get in Touch
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                Let's discuss how I can help bring your project to life
-              </p>
+              <h2 className="text-4xl md:text-5xl font-bold mb-4">Get in Touch</h2>
+              <p className="text-lg text-muted-foreground">Let's discuss your project</p>
             </div>
             
             <div className="grid md:grid-cols-2 gap-12">
               <div className="space-y-6">
                 <Card>
                   <CardContent className="p-6 space-y-4">
-                    <div className="flex items-center gap-4">
-                      <div className="p-3 bg-primary/10 rounded-lg">
-                        <Mail className="w-6 h-6 text-primary" />
+                    {[
+                      { icon: Mail, label: 'Email', value: 'alex@example.com', href: 'mailto:alex@example.com' },
+                      { icon: Phone, label: 'Phone', value: '+1 (234) 567-890', href: 'tel:+1234567890' },
+                      { icon: MapPin, label: 'Location', value: 'San Francisco, CA' },
+                      { icon: Clock, label: 'Response Time', value: 'Within 24 hours' }
+                    ].map((item, i) => (
+                      <div key={i}>
+                        <div className="flex items-center gap-4">
+                          <div className="p-3 bg-primary/10 rounded-lg">
+                            <item.icon className="w-6 h-6 text-primary" />
+                          </div>
+                          <div className="flex-1">
+                            <p className="font-semibold">{item.label}</p>
+                            {item.href ? (
+                              <a href={item.href} className="text-muted-foreground hover:text-primary">{item.value}</a>
+                            ) : (
+                              <p className="text-muted-foreground">{item.value}</p>
+                            )}
+                          </div>
+                        </div>
+                        {i < 3 && <Separator className="mt-4" />}
                       </div>
-                      <div className="flex-1">
-                        <p className="font-semibold">Email</p>
-                        <a href="mailto:alex@example.com" className="text-muted-foreground hover:text-primary">
-                          alex@example.com
-                        </a>
-                      </div>
-                      <Button variant="ghost" size="icon" onClick={() => {
-                        navigator.clipboard.writeText('alex@example.com');
-                        toast.success('Email copied to clipboard');
-                      }}>
-                        <Download className="w-4 h-4" />
-                      </Button>
-                    </div>
-                    
-                    <Separator />
-                    
-                    <div className="flex items-center gap-4">
-                      <div className="p-3 bg-primary/10 rounded-lg">
-                        <Phone className="w-6 h-6 text-primary" />
-                      </div>
-                      <div>
-                        <p className="font-semibold">Phone</p>
-                        <a href="tel:+1234567890" className="text-muted-foreground hover:text-primary">
-                          +1 (234) 567-890
-                        </a>
-                      </div>
-                    </div>
-                    
-                    <Separator />
-                    
-                    <div className="flex items-center gap-4">
-                      <div className="p-3 bg-primary/10 rounded-lg">
-                        <MapPin className="w-6 h-6 text-primary" />
-                      </div>
-                      <div>
-                        <p className="font-semibold">Location</p>
-                        <p className="text-muted-foreground">San Francisco, CA</p>
-                      </div>
-                    </div>
-
-                    <Separator />
-
-                    <div className="flex items-center gap-4">
-                      <div className="p-3 bg-primary/10 rounded-lg">
-                        <Clock className="w-6 h-6 text-primary" />
-                      </div>
-                      <div>
-                        <p className="font-semibold">Response Time</p>
-                        <p className="text-muted-foreground">Within 24 hours</p>
-                      </div>
-                    </div>
+                    ))}
                   </CardContent>
                 </Card>
 
                 <div className="flex gap-4">
-                  <Button variant="outline" size="icon" asChild>
-                    <a href="https://github.com" target="_blank" rel="noopener noreferrer">
-                      <Github className="w-5 h-5" />
-                    </a>
-                  </Button>
-                  <Button variant="outline" size="icon" asChild>
-                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-                      <Linkedin className="w-5 h-5" />
-                    </a>
-                  </Button>
-                  <Button variant="outline" size="icon" asChild>
-                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-                      <Twitter className="w-5 h-5" />
-                    </a>
-                  </Button>
+                  {[
+                    { icon: Github, href: 'https://github.com' },
+                    { icon: Linkedin, href: 'https://linkedin.com' },
+                    { icon: Twitter, href: 'https://twitter.com' }
+                  ].map((social, i) => (
+                    <Button key={i} variant="outline" size="icon" asChild>
+                      <a href={social.href} target="_blank" rel="noopener noreferrer">
+                        <social.icon className="w-5 h-5" />
+                      </a>
+                    </Button>
+                  ))}
                 </div>
               </div>
 
               <Card>
                 <CardHeader>
                   <CardTitle>Send a Message</CardTitle>
-                  <CardDescription>Fill out the form and I'll get back to you within 24 hours</CardDescription>
+                  <CardDescription>I'll respond within 24 hours</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <form onSubmit={handleContactSubmit} className="space-y-4">
@@ -927,9 +817,7 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <h3 className="text-2xl font-bold gradient-text mb-4">Alex Thompson</h3>
-              <p className="text-muted-foreground text-sm">
-                Building the future, one line of code at a time.
-              </p>
+              <p className="text-muted-foreground text-sm">Building the future, one line at a time.</p>
             </div>
             
             <div>
@@ -951,20 +839,18 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
             <div>
               <h4 className="font-semibold mb-4">Legal</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-primary">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-primary">Terms of Service</a></li>
-                <li><a href="#" className="hover:text-primary">Cookie Policy</a></li>
+                {['Privacy Policy', 'Terms of Service', 'Cookie Policy'].map((item) => (
+                  <li key={item}><a href="#" className="hover:text-primary">{item}</a></li>
+                ))}
               </ul>
             </div>
 
             <div>
               <h4 className="font-semibold mb-4">Newsletter</h4>
-              <p className="text-sm text-muted-foreground mb-3">Get updates on new projects</p>
+              <p className="text-sm text-muted-foreground mb-3">Get project updates</p>
               <div className="flex gap-2">
                 <Input placeholder="Your email" type="email" className="text-sm" />
-                <Button size="icon">
-                  <Send className="w-4 h-4" />
-                </Button>
+                <Button size="icon"><Send className="w-4 h-4" /></Button>
               </div>
             </div>
           </div>
@@ -972,9 +858,7 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
           <Separator className="mb-8" />
           
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-muted-foreground text-sm">
-              © 2024 Alex Thompson. All rights reserved.
-            </p>
+            <p className="text-muted-foreground text-sm">© 2024 Alex Thompson. All rights reserved.</p>
             <div className="flex items-center gap-4">
               <Badge variant="outline" className="text-xs">
                 <Zap className="w-3 h-3 mr-1" />
@@ -982,19 +866,14 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
               </Badge>
               <Badge variant="outline" className="text-xs">
                 <Shield className="w-3 h-3 mr-1" />
-                WCAG AA Compliant
+                WCAG AA
               </Badge>
             </div>
           </div>
         </div>
       </footer>
 
-      {/* Back to Top */}
-      <Button
-        className="fixed bottom-8 right-8 rounded-full shadow-lg"
-        size="icon"
-        onClick={() => scrollToSection('hero')}
-      >
+      <Button className="fixed bottom-8 right-8 rounded-full shadow-lg" size="icon" onClick={() => scrollToSection('hero')}>
         <ChevronDown className="w-5 h-5 rotate-180" />
       </Button>
     </div>
