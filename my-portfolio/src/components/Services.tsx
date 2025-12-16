@@ -147,7 +147,7 @@ const Services = () => {
               My Services
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              From secure backend systems and robust networks to home entertainment setups — I deliver reliable, practical, and professional technical solutions.
+              From secure backend systems and robust networks to home entertainment setups I deliver reliable, practical, and professional technical solutions.
             </p>
           </motion.div>
 

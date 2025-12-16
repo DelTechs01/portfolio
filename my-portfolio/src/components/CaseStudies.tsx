@@ -62,7 +62,7 @@ const CaseStudies = ({ onSelectProject }: CaseStudiesProps) => {
               Featured Projects & Results
             </h2>
             <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-              From concept to deployment — delivering measurable improvements in performance, security, and scalability using modern technologies.
+              From concept to deployment delivering measurable improvements in performance, security, and scalability using modern technologies.
             </p>
           </motion.div>
 

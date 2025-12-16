@@ -72,9 +72,9 @@ const Contact = () => {
                 <Card>
                   <CardContent className="p-6 space-y-4">
                     {[
-                      { icon: Mail, label: 'Email', value: 'alex@example.com', href: 'mailto:alex@example.com' },
-                      { icon: Phone, label: 'Phone', value: '+1 (234) 567-890', href: 'tel:+1234567890' },
-                      { icon: MapPin, label: 'Location', value: 'San Francisco, CA' },
+                      { icon: Mail, label: 'Email', value: 'kweyudelron37@gamil.com', href: 'mailto:kweyudelron37@gmail.com' },
+                      { icon: Phone, label: 'Phone', value: '+254 (708) 821-843', href: 'tel:+254708821843' },
+                      { icon: MapPin, label: 'Location', value: 'Nairobi, KE' },
                       { icon: Clock, label: 'Response Time', value: 'Within 24 hours' }
                     ].map((item, i) => (
                       <div key={i}>
@@ -148,10 +148,10 @@ const Contact = () => {
                             <SelectValue placeholder="Select budget" />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="<5k">Under $5,000</SelectItem>
-                            <SelectItem value="5k-10k">$5,000 - $10,000</SelectItem>
-                            <SelectItem value="10k-25k">$10,000 - $25,000</SelectItem>
-                            <SelectItem value="25k+">$25,000+</SelectItem>
+                            <SelectItem value="<5k">Under Ksh5,000</SelectItem>
+                            <SelectItem value="5k-10k">Ksh5,000 - Ksh10,000</SelectItem>
+                            <SelectItem value="10k-25k">Ksh10,000 - Ksh25,000</SelectItem>
+                            <SelectItem value="25k+">Ksh25,000+</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>
