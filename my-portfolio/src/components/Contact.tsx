@@ -99,9 +99,9 @@ const Contact = () => {
 
                 <div className="flex gap-4">
                   {[
-                    { icon: Github, href: 'https://github.com' },
-                    { icon: Linkedin, href: 'https://linkedin.com' },
-                    { icon: Twitter, href: 'https://twitter.com' }
+                    { icon: Github, href: 'https://github.com/DelTechs01' },
+                    { icon: Linkedin, href: 'https://www.linkedin.com/in/kweyu-delron-3a4060244/' },
+                    { icon: Twitter, href: 'https://x.com/BTripatakah' }
                   ].map((social, i) => (
                     <Button key={i} variant="outline" size="icon" asChild>
                       <a href={social.href} target="_blank" rel="noopener noreferrer">
