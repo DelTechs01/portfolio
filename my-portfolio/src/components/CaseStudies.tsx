@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ChevronLeft, ExternalLink } from 'lucide-react';
+import { ChevronLeft, ExternalLink, Zap, Shield, TrendingUp, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -13,83 +13,175 @@ interface CaseStudiesProps {
 const CaseStudies = ({ onSelectProject }: CaseStudiesProps) => {
   const [, setLocation] = useLocation();
 
+  const metricIcons: Record<string, React.ReactNode> = {
+    Performance: <Zap className="w-5 h-5" />,
+    Security: <Shield className="w-5 h-5" />,
+    Growth: <TrendingUp className="w-5 h-5" />,
+    Time: <Clock className="w-5 h-5" />,
+  };
+
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <div className="sticky top-0 z-50 glass border-b border-border backdrop-blur-lg">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center gap-4">
+      {/* Enhanced Sticky Header */}
+      <motion.div
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        className="sticky top-0 z-50 border-b border-border/40 backdrop-blur-xl bg-background/90"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="flex items-center gap-5">
             <Button variant="ghost" size="icon" onClick={() => setLocation('/')}>
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="w-7 h-7" />
             </Button>
             <div>
-              <h1 className="text-2xl font-bold">Case Studies</h1>
-              <p className="text-sm text-muted-foreground">Real projects with measurable results</p>
+              <h1 className="text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+                Case Studies
+              </h1>
+              <p className="text-muted-foreground mt-1">Real-world impact through secure, innovative solutions</p>
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
-      {/* Content */}
-      <section className="py-24 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-            <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">Featured Case Studies</h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Real projects with measurable results and technical insights
-              </p>
-            </div>
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {caseStudiesData.map((project, index) => (
-                <motion.div
-                  key={project.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  whileHover={{ y: -8 }}
+      {/* Main Content */}
+      <section className="py-28 lg:py-40 bg-muted/30 relative overflow-hidden">
+        {/* Background Glow Effects */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-cyan-400/20 to-blue-600/20 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-32 right-20 w-80 h-80 bg-gradient-to-tr from-purple-500/30 to-pink-500/30 rounded-full blur-3xl animate-pulse delay-700" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9 }}
+            className="text-center mb-20"
+          >
+            <h2 className="text-5xl md:text-7xl font-extrabold mb-6 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+              Featured Projects & Results
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+              From concept to deployment — delivering measurable improvements in performance, security, and scalability using modern technologies.
+            </p>
+          </motion.div>
+
+          {/* Projects Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {caseStudiesData.map((project, index) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.15, duration: 0.8 }}
+                whileHover={{ y: -12 }}
+                className="group"
+              >
+                <Card
+                  className="h-full overflow-hidden border-border/50 bg-background/60 backdrop-blur shadow-xl hover:shadow-2xl transition-all duration-700 cursor-pointer"
+                  onClick={() => onSelectProject(project.id)}
                 >
-                  <Card className="overflow-hidden h-full group cursor-pointer" onClick={() => onSelectProject(project.id)}>
-                    <div className="relative overflow-hidden">
-                      <img src={project.image} alt={project.title} className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                      <Badge className="absolute top-4 right-4 bg-primary">Case Study</Badge>
+                  {/* Image Section with Overlay */}
+                  <div className="relative overflow-hidden h-64">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+
+                    {/* Title Overlay on Hover */}
+                    <div className="absolute inset-0 flex items-end p-8 translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
+                      <h3 className="text-2xl font-bold text-white drop-shadow-lg">
+                        {project.title}
+                      </h3>
                     </div>
-                    
-                    <CardHeader>
-                      <CardTitle className="group-hover:text-primary transition-colors">{project.title}</CardTitle>
-                      <CardDescription>{project.description}</CardDescription>
-                    </CardHeader>
-                    
-                    <CardContent className="space-y-4">
-                      <div className="flex flex-wrap gap-2">
-                        {project.tags.map((tag) => (
-                          <Badge key={tag} variant="secondary">{tag}</Badge>
-                        ))}
-                      </div>
-                      
-                      <div className="grid grid-cols-2 gap-2 text-center">
-                        {project.results.slice(0, 2).map((result) => (
-                          <div key={result.metric}>
-                            <p className="font-bold text-primary text-sm">{result.improvement}</p>
-                            <p className="text-xs text-muted-foreground">{result.metric}</p>
+
+                    {/* Badge */}
+                    <Badge className="absolute top-6 right-6 bg-gradient-to-r from-primary to-accent text-primary-foreground shadow-lg">
+                      Case Study
+                    </Badge>
+                  </div>
+
+                  <CardHeader className="pb-4">
+                    <CardDescription className="text-base leading-relaxed">
+                      {project.description}
+                    </CardDescription>
+                  </CardHeader>
+
+                  <CardContent className="space-y-6">
+                    {/* Tech Tags */}
+                    <div className="flex flex-wrap gap-2">
+                      {project.tags.map((tag) => (
+                        <Badge
+                          key={tag}
+                          variant="outline"
+                          className="border-primary/30 text-foreground/80 hover:bg-primary hover:text-primary-foreground transition-colors"
+                        >
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+
+                    {/* Key Results with Icons */}
+                    <div className="space-y-4">
+                      {project.results.slice(0, 3).map((result) => (
+                        <div key={result.metric} className="flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <div className="text-primary">
+                              {metricIcons[result.metric.split(' ')[0]] || <TrendingUp className="w-5 h-5" />}
+                            </div>
+                            <p className="text-sm text-muted-foreground">{result.metric}</p>
                           </div>
-                        ))}
-                      </div>
-                      
-                      <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                        Read Full Case Study
-                        <ExternalLink className="w-4 h-4 ml-2" />
-                      </Button>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
+                          <p className="font-bold text-lg text-primary">{result.improvement}</p>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* CTA Button */}
+                    <Button
+                      variant="outline"
+                      size="lg"
+                      className="w-full border-2 group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-accent group-hover:text-primary-foreground group-hover:border-transparent transition-all duration-500"
+                    >
+                      View Full Case Study
+                      <ExternalLink className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Optional: Call to Action at Bottom */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-center mt-32"
+          >
+            <p className="text-xl text-muted-foreground mb-8">
+              Want to build something impactful together?
+            </p>
+            <Button
+              size="lg"
+              className="px-10 py-7 text-lg shadow-xl bg-primary hover:bg-primary/90"
+              onClick={() => setLocation('/contact')}
+            >
+              Let's Discuss Your Project
+            </Button>
           </motion.div>
         </div>
       </section>
+
+      {/* Gradient Animation (if not already in global CSS) */}
+      <style jsx global>{`
+        @keyframes gradient-x {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+      `}</style>
     </div>
   );
 };

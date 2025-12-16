@@ -3,14 +3,14 @@ import { motion } from 'framer-motion';
 import { 
   GraduationCap, Award, Calendar, MapPin, BookOpen, 
   ChevronLeft, ExternalLink, Download, CheckCircle2, 
-  Trophy, Star, Code2, Brain, Shield, Cloud, Terminal as TerminalIcon
+  Trophy, Star, Code2, Brain, Shield, Cloud, Eye
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import Terminal from '@/components/Terminal';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { useLocation } from 'wouter';
 
 interface EducationProps {
@@ -88,7 +88,8 @@ const Education = ({ onBack }: EducationProps) => {
       verifyUrl: 'https://aws.amazon.com/verification',
       skills: ['AWS', 'Cloud Architecture', 'DevOps', 'Infrastructure'],
       description: 'Advanced certification demonstrating expertise in designing distributed systems on AWS.',
-      icon: Cloud
+      icon: Cloud,
+      imageUrl: 'https://placehold.co/800x600/png?text=AWS+Certified+Solutions+Architect&font=roboto' // Placeholder for actual certificate image
     },
     {
       id: 2,
@@ -102,7 +103,8 @@ const Education = ({ onBack }: EducationProps) => {
       verifyUrl: 'https://aws.amazon.com/verification',
       skills: ['AWS', 'Lambda', 'DynamoDB', 'API Gateway'],
       description: 'Demonstrates proficiency in developing and maintaining AWS applications.',
-      icon: Cloud
+      icon: Cloud,
+      imageUrl: 'https://placehold.co/800x600/png?text=AWS+Certified+Developer&font=roboto' // Placeholder
     },
     {
       id: 3,
@@ -116,7 +118,8 @@ const Education = ({ onBack }: EducationProps) => {
       verifyUrl: 'https://cloud.google.com/verify',
       skills: ['GCP', 'Kubernetes', 'Cloud Security', 'BigQuery'],
       description: 'Expert-level certification for designing and managing Google Cloud solutions.',
-      icon: Cloud
+      icon: Cloud,
+      imageUrl: 'https://placehold.co/800x600/png?text=Google+Cloud+Professional+Architect&font=roboto' // Placeholder
     },
     {
       id: 4,
@@ -130,7 +133,8 @@ const Education = ({ onBack }: EducationProps) => {
       verifyUrl: 'https://www.eccouncil.org/verify',
       skills: ['Penetration Testing', 'Network Security', 'Vulnerability Assessment'],
       description: 'Certified to identify and address security vulnerabilities ethically.',
-      icon: Shield
+      icon: Shield,
+      imageUrl: 'https://placehold.co/800x600/png?text=Certified+Ethical+Hacker&font=roboto' // Placeholder
     },
     {
       id: 5,
@@ -144,7 +148,8 @@ const Education = ({ onBack }: EducationProps) => {
       verifyUrl: 'https://www.tensorflow.org/certificate',
       skills: ['TensorFlow', 'Deep Learning', 'Neural Networks', 'Model Training'],
       description: 'Demonstrates proficiency in building and training ML models using TensorFlow.',
-      icon: Brain
+      icon: Brain,
+      imageUrl: 'https://placehold.co/800x600/png?text=TensorFlow+Developer+Certificate&font=roboto' // Placeholder
     },
     {
       id: 6,
@@ -158,7 +163,8 @@ const Education = ({ onBack }: EducationProps) => {
       verifyUrl: 'https://www.coursera.org/verify',
       skills: ['Machine Learning', 'Python', 'Data Science', 'Supervised Learning'],
       description: 'Comprehensive specialization covering ML fundamentals to advanced topics.',
-      icon: Brain
+      icon: Brain,
+      imageUrl: 'https://placehold.co/800x600/png?text=AI+Machine+Learning+Specialization&font=roboto' // Placeholder
     },
     {
       id: 7,
@@ -172,7 +178,8 @@ const Education = ({ onBack }: EducationProps) => {
       verifyUrl: 'https://www.scrum.org/verify',
       skills: ['Agile', 'Scrum', 'Team Leadership', 'Project Management'],
       description: 'Certified Scrum Master demonstrating mastery of Scrum framework.',
-      icon: Code2
+      icon: Code2,
+      imageUrl: 'https://placehold.co/800x600/png?text=Professional+Scrum+Master+I&font=roboto' // Placeholder
     },
     {
       id: 8,
@@ -186,7 +193,8 @@ const Education = ({ onBack }: EducationProps) => {
       verifyUrl: 'https://university.mongodb.com/verify',
       skills: ['MongoDB', 'NoSQL', 'Database Design', 'Aggregation'],
       description: 'Expert certification in MongoDB database development and administration.',
-      icon: Code2
+      icon: Code2,
+      imageUrl: 'https://placehold.co/800x600/png?text=MongoDB+Certified+Developer&font=roboto' // Placeholder
     }
   ];
 
@@ -204,40 +212,40 @@ const Education = ({ onBack }: EducationProps) => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
       {/* Header */}
-      <div className="sticky top-0 z-50 glass border-b border-border backdrop-blur-lg">
+      <div className="sticky top-0 z-50 bg-background/80 border-b border-border backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center gap-4">
             <Button variant="ghost" size="icon" onClick={onBack}>
               <ChevronLeft className="w-5 h-5" />
             </Button>
             <div>
-              <h1 className="text-2xl font-bold">Education & Certifications</h1>
-              <p className="text-sm text-muted-foreground">Academic journey and professional credentials</p>
+              <h1 className="text-2xl font-bold tracking-tight">Education & Certifications</h1>
+              <p className="text-sm text-muted-foreground">Academic background and professional qualifications</p>
             </div>
           </div>
         </div>
       </div>
 
       {/* Hero Section */}
-      <section className="relative py-16 bg-gradient-to-br from-primary/10 via-accent/10 to-background">
+      <section className="relative py-20 bg-gradient-to-br from-primary/5 to-accent/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-center"
           >
-            <Badge className="mb-4 px-4 py-1.5">
-              <Trophy className="w-4 h-4 mr-2 inline" />
-              Continuous Learner
+            <Badge variant="secondary" className="mb-4 px-4 py-1.5 text-sm font-medium">
+              <Trophy className="w-4 h-4 mr-2" />
+              Lifelong Learner
             </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Building Expertise Through
-              <span className="gradient-text"> Lifelong Learning</span>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
+              Pursuing Excellence Through
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent"> Continuous Education</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Committed to staying at the forefront of technology through continuous education and certification
+              Dedicated to maintaining cutting-edge expertise in AI, cloud computing, and software engineering through rigorous academic pursuits and industry-recognized certifications.
             </p>
           </motion.div>
 
@@ -250,11 +258,11 @@ const Education = ({ onBack }: EducationProps) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Card className="text-center hover:shadow-lg transition-shadow">
+                <Card className="text-center border-none shadow-md hover:shadow-xl transition-shadow duration-300 bg-background/80 backdrop-blur-sm">
                   <CardContent className="p-6">
-                    <stat.icon className="w-8 h-8 mx-auto mb-2 text-primary" />
-                    <p className="text-3xl font-bold gradient-text mb-1">{stat.value}</p>
-                    <p className="text-sm text-muted-foreground">{stat.label}</p>
+                    <stat.icon className="w-8 h-8 mx-auto mb-3 text-primary" />
+                    <p className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent mb-1">{stat.value}</p>
+                    <p className="text-sm text-muted-foreground uppercase tracking-wide">{stat.label}</p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -264,14 +272,14 @@ const Education = ({ onBack }: EducationProps) => {
       </section>
 
       {/* Education Section */}
-      <section className="py-16">
+      <section className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-3 mb-8">
+          <div className="flex items-center gap-3 mb-12">
             <GraduationCap className="w-8 h-8 text-primary" />
-            <h2 className="text-3xl font-bold">Academic Education</h2>
+            <h2 className="text-3xl font-bold tracking-tight">Academic Qualifications</h2>
           </div>
 
-          <div className="space-y-8">
+          <div className="space-y-12">
             {degrees.map((edu, index) => (
               <motion.div
                 key={index}
@@ -280,12 +288,12 @@ const Education = ({ onBack }: EducationProps) => {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Card className="overflow-hidden hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="flex flex-col md:flex-row gap-6">
+                <Card className="overflow-hidden border-none shadow-md hover:shadow-xl transition-shadow duration-300 bg-muted/30 backdrop-blur-sm">
+                  <CardContent className="p-6 md:p-8">
+                    <div className="flex flex-col md:flex-row gap-6 md:gap-8">
                       {/* Institution Logo */}
                       <div className="flex-shrink-0">
-                        <div className="w-24 h-24 rounded-lg overflow-hidden border-2 border-primary/20">
+                        <div className="w-24 h-24 rounded-xl overflow-hidden border border-border shadow-sm">
                           <img 
                             src={edu.logo} 
                             alt={edu.institution}
@@ -295,10 +303,10 @@ const Education = ({ onBack }: EducationProps) => {
                       </div>
 
                       {/* Main Content */}
-                      <div className="flex-1 space-y-4">
+                      <div className="flex-1 space-y-6">
                         <div>
-                          <h3 className="text-2xl font-bold mb-2">{edu.degree}</h3>
-                          <div className="flex flex-wrap gap-4 text-muted-foreground">
+                          <h3 className="text-2xl font-bold mb-3 tracking-tight">{edu.degree}</h3>
+                          <div className="flex flex-wrap gap-4 text-muted-foreground text-sm">
                             <div className="flex items-center gap-2">
                               <BookOpen className="w-4 h-4" />
                               <span>{edu.institution}</span>
@@ -315,45 +323,45 @@ const Education = ({ onBack }: EducationProps) => {
                         </div>
 
                         <div className="flex flex-wrap gap-3">
-                          <Badge variant="secondary">
-                            <Star className="w-3 h-3 mr-1" />
+                          <Badge variant="secondary" className="px-3 py-1">
+                            <Star className="w-3 h-3 mr-1.5" />
                             GPA: {edu.gpa}
                           </Badge>
-                          <Badge variant="secondary">{edu.specialization}</Badge>
+                          <Badge variant="secondary" className="px-3 py-1">{edu.specialization}</Badge>
                         </div>
 
-                        <Tabs defaultValue="achievements" className="w-full">
-                          <TabsList className="grid w-full grid-cols-3">
+                        <Tabs defaultValue="achievements" className="w-full relative mt-4">
+                          <TabsList className="grid w-full grid-cols-3 border-b">
                             <TabsTrigger value="achievements">Achievements</TabsTrigger>
                             <TabsTrigger value="coursework">Coursework</TabsTrigger>
                             {edu.thesis && <TabsTrigger value="thesis">Thesis</TabsTrigger>}
                           </TabsList>
 
-                          <TabsContent value="achievements" className="mt-4">
-                            <ul className="grid md:grid-cols-2 gap-2">
+                          <TabsContent value="achievements" className="mt-6">
+                            <ul className="grid md:grid-cols-2 gap-3">
                               {edu.achievements.map((achievement, i) => (
-                                <li key={i} className="flex items-start gap-2">
+                                <li key={i} className="flex items-start gap-2 text-sm">
                                   <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                                  <span className="text-sm">{achievement}</span>
+                                  <span>{achievement}</span>
                                 </li>
                               ))}
                             </ul>
                           </TabsContent>
 
-                          <TabsContent value="coursework" className="mt-4">
+                          <TabsContent value="coursework" className="mt-6">
                             <div className="flex flex-wrap gap-2">
                               {edu.coursework.map((course, i) => (
-                                <Badge key={i} variant="outline">{course}</Badge>
+                                <Badge key={i} variant="outline" className="px-3 py-1 text-sm">{course}</Badge>
                               ))}
                             </div>
                           </TabsContent>
 
                           {edu.thesis && (
-                            <TabsContent value="thesis" className="mt-4">
-                              <div className="space-y-2">
+                            <TabsContent value="thesis" className="mt-6">
+                              <div className="space-y-3 text-sm">
                                 <p className="font-semibold">{edu.thesis.title}</p>
-                                <p className="text-sm text-muted-foreground">Advisor: {edu.thesis.advisor}</p>
-                                <p className="text-sm text-muted-foreground">{edu.thesis.abstract}</p>
+                                <p className="text-muted-foreground">Advisor: {edu.thesis.advisor}</p>
+                                <p className="text-muted-foreground">{edu.thesis.abstract}</p>
                               </div>
                             </TabsContent>
                           )}
@@ -369,30 +377,31 @@ const Education = ({ onBack }: EducationProps) => {
       </section>
 
       {/* Certifications Section */}
-      <section className="py-16 bg-muted/30">
+      <section className="py-20 bg-muted/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center justify-between mb-12">
             <div className="flex items-center gap-3">
               <Award className="w-8 h-8 text-primary" />
-              <h2 className="text-3xl font-bold">Professional Certifications</h2>
+              <h2 className="text-3xl font-bold tracking-tight">Professional Certifications</h2>
             </div>
-            <Badge variant="outline" className="text-sm">
-              {certifications.length} Active Certifications
+            <Badge variant="outline" className="px-3 py-1 text-sm font-medium">
+              {certifications.length} Active
             </Badge>
           </div>
 
           {/* Category Filter */}
-          <div className="flex flex-wrap gap-2 mb-8">
+          <div className="flex flex-wrap gap-2 mb-12">
             {categories.map((category) => (
               <Button
                 key={category}
                 variant={selectedCategory === category ? 'default' : 'outline'}
                 size="sm"
+                className="px-4 py-2 rounded-full"
                 onClick={() => setSelectedCategory(category)}
               >
-                {category === 'all' ? 'All Certifications' : category}
+                {category === 'all' ? 'All' : category}
                 {category !== 'all' && (
-                  <Badge variant="secondary" className="ml-2">
+                  <Badge variant="secondary" className="ml-2 px-2 py-0.5 text-xs">
                     {certifications.filter(c => c.category === category).length}
                   </Badge>
                 )}
@@ -401,7 +410,7 @@ const Education = ({ onBack }: EducationProps) => {
           </div>
 
           {/* Certifications Grid */}
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredCertifications.map((cert, index) => (
               <motion.div
                 key={cert.id}
@@ -410,65 +419,94 @@ const Education = ({ onBack }: EducationProps) => {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Card className="h-full hover:shadow-lg transition-shadow">
-                  <CardHeader>
+                <Card className="h-full border-none shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden bg-background/80 backdrop-blur-sm">
+                  <CardHeader className="pb-4">
                     <div className="flex items-start justify-between gap-4 mb-4">
-                      <div className="p-3 bg-primary/10 rounded-lg">
+                      <div className="p-3 bg-primary/5 rounded-xl">
                         <cert.icon className="w-6 h-6 text-primary" />
                       </div>
-                      <Badge variant="secondary">{cert.category}</Badge>
+                      <Badge variant="secondary" className="px-3 py-1">{cert.category}</Badge>
                     </div>
-                    <CardTitle className="text-xl">{cert.name}</CardTitle>
-                    <CardDescription className="flex items-center gap-2 mt-2">
-                      <div className="w-6 h-6 rounded overflow-hidden">
+                    <CardTitle className="text-xl font-bold tracking-tight">{cert.name}</CardTitle>
+                    <CardDescription className="flex items-center gap-2 mt-2 text-sm">
+                      <div className="w-6 h-6 rounded-full overflow-hidden border border-border">
                         <img src={cert.issuerLogo} alt={cert.issuer} className="w-full h-full object-cover" />
                       </div>
                       <span>{cert.issuer}</span>
                     </CardDescription>
                   </CardHeader>
 
-                  <CardContent className="space-y-4">
-                    <p className="text-sm text-muted-foreground">{cert.description}</p>
+                  <CardContent className="space-y-6">
+                    <p className="text-sm text-muted-foreground leading-relaxed">{cert.description}</p>
 
                     <div className="grid grid-cols-2 gap-4 text-sm">
                       <div>
-                        <p className="text-muted-foreground">Issued</p>
-                        <p className="font-semibold">{cert.issueDate}</p>
+                        <p className="text-muted-foreground text-xs uppercase tracking-wide">Issued</p>
+                        <p className="font-medium">{cert.issueDate}</p>
                       </div>
                       <div>
-                        <p className="text-muted-foreground">Expires</p>
-                        <p className="font-semibold">{cert.expiryDate}</p>
+                        <p className="text-muted-foreground text-xs uppercase tracking-wide">Expires</p>
+                        <p className="font-medium">{cert.expiryDate}</p>
                       </div>
                     </div>
 
-                    <Separator />
+                    <Separator className="my-2" />
 
                     <div>
-                      <p className="text-sm font-semibold mb-2">Skills Covered</p>
+                      <p className="text-sm font-semibold mb-3">Key Skills</p>
                       <div className="flex flex-wrap gap-2">
                         {cert.skills.map((skill, i) => (
-                          <Badge key={i} variant="outline" className="text-xs">{skill}</Badge>
+                          <Badge key={i} variant="outline" className="px-3 py-1 text-xs">{skill}</Badge>
                         ))}
                       </div>
                     </div>
 
-                    <Separator />
+                    <Separator className="my-2" />
 
                     <div className="flex gap-2">
+                      <Dialog>
+                        <DialogTrigger asChild>
+                          <Button variant="outline" size="sm" className="flex-1">
+                            <Eye className="w-4 h-4 mr-2" />
+                            View
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent className="max-w-4xl">
+                          <DialogHeader>
+                            <DialogTitle>{cert.name}</DialogTitle>
+                            <DialogDescription>Issued by {cert.issuer} on {cert.issueDate}</DialogDescription>
+                          </DialogHeader>
+                          <div className="relative">
+                            <img 
+                              src={cert.imageUrl} 
+                              alt={`${cert.name} Certificate`}
+                              className="w-full h-auto rounded-lg shadow-lg"
+                            />
+                            <Button 
+                              variant="secondary" 
+                              size="sm" 
+                              className="absolute bottom-4 right-4"
+                              asChild
+                            >
+                              <a href={cert.imageUrl} download={`${cert.name.replace(/\s+/g, '_')}.png`}>
+                                <Download className="w-4 h-4 mr-2" />
+                                Download
+                              </a>
+                            </Button>
+                          </div>
+                        </DialogContent>
+                      </Dialog>
                       <Button variant="outline" size="sm" className="flex-1" asChild>
                         <a href={cert.verifyUrl} target="_blank" rel="noopener noreferrer">
                           <ExternalLink className="w-4 h-4 mr-2" />
                           Verify
                         </a>
                       </Button>
-                      <Button variant="outline" size="sm">
-                        <Download className="w-4 h-4" />
-                      </Button>
                     </div>
 
-                    <div className="bg-muted/50 rounded p-2">
+                    <div className="bg-muted/50 rounded-lg p-3 mt-4">
                       <p className="text-xs text-muted-foreground">
-                        Credential ID: <span className="font-mono">{cert.credentialId}</span>
+                        Credential ID: <span className="font-mono font-medium">{cert.credentialId}</span>
                       </p>
                     </div>
                   </CardContent>
@@ -480,14 +518,14 @@ const Education = ({ onBack }: EducationProps) => {
       </section>
 
       {/* Timeline */}
-      <section className="py-16">
+      <section className="py-20 bg-background">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold mb-12 text-center">Educational Timeline</h2>
+          <h2 className="text-3xl font-bold mb-12 text-center tracking-tight">Educational Timeline</h2>
           
           <div className="relative">
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-border" />
+            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-border/50 rounded-full" />
             
-            <div className="space-y-12">
+            <div className="space-y-16">
               {[...degrees, ...certifications.slice(0, 4)].map((item, index) => {
                 const isDegree = 'degree' in item;
                 const isLeft = index % 2 === 0;
@@ -501,24 +539,24 @@ const Education = ({ onBack }: EducationProps) => {
                     className={`flex items-center gap-8 ${isLeft ? 'flex-row' : 'flex-row-reverse'}`}
                   >
                     <div className={`flex-1 ${isLeft ? 'text-right' : 'text-left'}`}>
-                      <Card className="inline-block max-w-md">
+                      <Card className="inline-block max-w-md border-none shadow-sm hover:shadow-md transition-shadow bg-muted/30 backdrop-blur-sm">
                         <CardContent className="p-4">
-                          <Badge className="mb-2">
+                          <Badge variant="secondary" className="mb-2 px-3 py-1 text-xs">
                             {isDegree ? <GraduationCap className="w-3 h-3 mr-1" /> : <Award className="w-3 h-3 mr-1" />}
-                            {isDegree ? 'degree' in item && item.period : 'issueDate' in item && item.issueDate}
+                            {isDegree ? item.period : item.issueDate}
                           </Badge>
-                          <h4 className="font-bold mb-1">
-                            {isDegree ? 'degree' in item && item.degree : 'name' in item && item.name}
+                          <h4 className="font-bold text-lg mb-1">
+                            {isDegree ? item.degree : item.name}
                           </h4>
                           <p className="text-sm text-muted-foreground">
-                            {isDegree ? 'institution' in item && item.institution : 'issuer' in item && item.issuer}
+                            {isDegree ? item.institution : item.issuer}
                           </p>
                         </CardContent>
                       </Card>
                     </div>
                     
                     <div className="relative z-10">
-                      <div className="w-4 h-4 rounded-full bg-primary border-4 border-background" />
+                      <div className="w-5 h-5 rounded-full bg-primary border-4 border-background shadow-md" />
                     </div>
                     
                     <div className="flex-1" />
@@ -527,26 +565,6 @@ const Education = ({ onBack }: EducationProps) => {
               })}
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Interactive Terminal */}
-      <section className="py-16 bg-muted/30">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <div className="flex items-center gap-3 mb-8">
-              <TerminalIcon className="w-8 h-8 text-primary" />
-              <h2 className="text-3xl font-bold">Interactive Terminal</h2>
-            </div>
-            <p className="text-muted-foreground mb-6">
-              Explore my credentials through a command-line interface. Type "help" to get started.
-            </p>
-            <Terminal />
-          </motion.div>
         </div>
       </section>
     </div>

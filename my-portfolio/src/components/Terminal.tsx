@@ -4,16 +4,16 @@ import { Card } from '@/components/ui/card';
 
 const Terminal = () => {
   const [input, setInput] = useState('');
-  const [history, setHistory] = useState<Array<{ type: 'input' | 'output', content: string }>>([
-    { type: 'output', content: 'Welcome to Alex Thompson\'s Portfolio Terminal' },
+  const [history, setHistory] = useState<Array<{ type: 'input' | 'output'; content: string }>>([
+    { type: 'output', content: "Welcome to Kweyu Delron's Portfolio Terminal" },
     { type: 'output', content: 'Type "help" for available commands' },
-    { type: 'output', content: '' }
+    { type: 'output', content: '' },
   ]);
   const terminalEndRef = useRef<HTMLDivElement>(null);
 
   const commands: Record<string, () => string> = {
     help: () => `Available commands:
-  about       - Learn about Alex Thompson
+  about       - Learn about Kweyu Delron
   skills      - View technical skills
   education   - Display education history
   certs       - Show certifications
@@ -21,88 +21,94 @@ const Terminal = () => {
   projects    - List featured projects
   clear       - Clear terminal screen
   whoami      - Display current user`,
-    
-    about: () => `Alex Thompson - Full-Stack Developer & AI Enthusiast
+
+    about: () => `Kweyu Delron - Software Engineering Student & Backend Developer
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Experience: 5+ years
-Location: San Francisco, CA
-Specialization: AI Integration & Modern Web Technologies
-Projects Completed: 50+
-Uptime Record: 99.9%`,
+Specializations: Backend Development, Networking, Cybersecurity, Blockchain
+Location: Kenya
+Experience: IT Support & Network Engineering
+Passion: Building secure, scalable, and efficient systems`,
 
     skills: () => `Technical Skills:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Frontend:  React (95%), TypeScript (90%), Tailwind CSS (92%)
-Backend:   Node.js (90%), Python (85%), PostgreSQL (82%)
-Cloud:     AWS (88%), Docker (85%), Kubernetes (75%)
-AI/ML:     TensorFlow (80%), LangChain (85%), OpenAI API (90%)`,
+Programming & Development:
+  Python (Flask, Django), PHP, JavaScript (React, Node.js), Java, SQL, HTML, CSS
+
+Backend & Database:
+  RESTful API Development, Database Management (MySQL, PostgreSQL), Authentication & User Management
+
+Networking & IT Support:
+  Network Setup & Configuration, Troubleshooting, Server Maintenance, IT Support
+
+Cybersecurity:
+  System & Network Security, Vulnerability Assessment, Secure Coding Practices
+
+Emerging Technologies:
+  Blockchain Fundamentals & Applications, AI Integration, Automation
+
+Tools & Platforms:
+  Git/GitHub, NetBeans, VS Code, Kali Linux, Windows & Linux Administration, Figma (UI/UX Design)`,
 
     education: () => `Education:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-M.S. Computer Science - Stanford University (2016-2018)
-  GPA: 3.9/4.0 | Specialization: AI & Machine Learning
+B.Sc. Software Engineering - Kirinyaga University
+  GPA: 3.5/4.0 | Specialization: Backend Development & Networking`,
 
-B.S. Computer Engineering - MIT (2012-2016)
-  GPA: 3.8/4.0 | Summa Cum Laude`,
-
-    certs: () => `Professional Certifications:
+    certs: () => `Certifications:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-✓ AWS Certified Solutions Architect - Professional (2024)
-✓ Google Cloud Professional Cloud Architect (2023)
-✓ Certified Ethical Hacker (CEH) (2022)
-✓ TensorFlow Developer Certificate (2023)
-✓ MongoDB Certified Developer (2023)`,
+✓ Certified Mobile Apllication Tester
+✓ BlockChain Fundamentals
+✓ Injective Developer Certificate
+✓ Power Learn Project(PLP) Certificate`,
 
     contact: () => `Contact Information:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Email:    alex@example.com
-Phone:    +1 (234) 567-890
-Location: San Francisco, CA
-GitHub:   github.com/alexthompson
-LinkedIn: linkedin.com/in/alexthompson
-Response: Within 24 hours`,
+Email:    kweyudelron37@gmail.com.com
+Phone:    +254 708821843
+GitHub:   https://github.com/DelTechs01
+LinkedIn: linkedin.com/in/kweyudelron`,
 
     projects: () => `Featured Projects:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-1. AI-Powered E-Commerce Platform
-   Tech: React, Node.js, OpenAI API
-   Result: 50% revenue increase
+1. UniConnectKE - University Social Platform
+   Tech: React, Flask, PostgreSQL
+   Description: Connects Kenyan university students, supports verified communities, and social features
 
-2. Real-Time Analytics Dashboard  
-   Tech: React, WebSockets, D3.js
-   Result: 150x traffic handling
+2. AI-Powered Learning Platform
+   Tech: Python, Flask, AI Integration
+   Description: Personalized AI tutor delivering daily learning content
 
-3. Cybersecurity Audit Tool
-   Tech: Python, PostgreSQL, AWS
-   Result: 95% vulnerability reduction`,
+3. M-Pesa Integrated E-Commerce System
+   Tech: PHP, HTML, CSS, JS
+   Description: Realistic payment system integrated with M-Pesa API`,
 
     whoami: () => 'visitor@portfolio ~ guest user',
 
-    clear: () => 'CLEAR_TERMINAL'
+    clear: () => 'CLEAR_TERMINAL',
   };
 
   const handleCommand = (cmd: string) => {
     const trimmedCmd = cmd.trim().toLowerCase();
-    
     if (trimmedCmd === '') return;
 
-    setHistory(prev => [...prev, { type: 'input', content: `$ ${cmd}` }]);
+    setHistory((prev) => [...prev, { type: 'input', content: `$ ${cmd}` }]);
 
     if (commands[trimmedCmd]) {
       const output = commands[trimmedCmd]();
       if (output === 'CLEAR_TERMINAL') {
         setHistory([
           { type: 'output', content: 'Terminal cleared.' },
-          { type: 'output', content: '' }
+          { type: 'output', content: '' },
         ]);
       } else {
-        setHistory(prev => [...prev, { type: 'output', content: output }, { type: 'output', content: '' }]);
+        setHistory((prev) => [...prev, { type: 'output', content: output }, { type: 'output', content: '' }]);
       }
     } else {
-      setHistory(prev => [...prev, 
+      setHistory((prev) => [
+        ...prev,
         { type: 'output', content: `Command not found: ${cmd}` },
         { type: 'output', content: 'Type "help" for available commands' },
-        { type: 'output', content: '' }
+        { type: 'output', content: '' },
       ]);
     }
 
@@ -110,9 +116,7 @@ Response: Within 24 hours`,
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      handleCommand(input);
-    }
+    if (e.key === 'Enter') handleCommand(input);
   };
 
   useEffect(() => {
@@ -129,7 +133,7 @@ Response: Within 24 hours`,
         </div>
         <span className="text-xs text-muted-foreground ml-4">portfolio-terminal</span>
       </div>
-      
+
       <div className="p-4 font-mono text-sm h-96 overflow-y-auto">
         {history.map((item, index) => (
           <motion.div
@@ -142,7 +146,7 @@ Response: Within 24 hours`,
             {item.content}
           </motion.div>
         ))}
-        
+
         <div className="flex items-center gap-2 text-green-400">
           <span>$</span>
           <input
@@ -155,7 +159,7 @@ Response: Within 24 hours`,
             spellCheck={false}
           />
         </div>
-        
+
         <div ref={terminalEndRef} />
       </div>
     </Card>
