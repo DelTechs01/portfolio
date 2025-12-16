@@ -1,8 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Route, Router, Switch, useLocation } from 'wouter';
-import Portfolio from './components/Portfolio';
-import CaseStudy from './components/CaseStudy';
-import { caseStudiesData } from './data/caseStudies';
+import Portfolio from '@/components/Portfolio';
+import CaseStudy from '@/components/CaseStudy';
+import Education from '@/components/Education';
+import About from '@/components/About';
+import Skills from '@/components/Skills';
+import CaseStudies from '@/components/CaseStudies';
+import Services from '@/components/Services';
+import Contact from '@/components/Contact';
+import { caseStudiesData } from '@/data/caseStudies';
 
 function App() {
   const [location, setLocation] = useLocation();
@@ -36,6 +42,24 @@ function App() {
   return (
     <Router base="/">
       <Switch>
+        <Route path="/about">
+          <About />
+        </Route>
+        <Route path="/skills">
+          <Skills />
+        </Route>
+        <Route path="/case-studies">
+          <CaseStudies onSelectProject={handleSelectProject} />
+        </Route>
+        <Route path="/services">
+          <Services />
+        </Route>
+        <Route path="/contact">
+          <Contact />
+        </Route>
+        <Route path="/education">
+          <Education onBack={handleBackToPortfolio} />
+        </Route>
         <Route path="/">
           {currentProject ? (
             <CaseStudy 
