@@ -53,7 +53,7 @@ const Education = ({ onBack }: EducationProps) => {
       shortDescription: 'Certified in MERN full-stack software development through the February 2025 Cohort VII Software Development program.',
       fullDescription: 'Successfully completed a 16-week program in Software Development covering Python, Web Technologies, Database Management, Startup Building & Employability and Software Engineering Essentials, with a specialization in Full-Stack Development MERN Stack.',
       message: 'Mastery of Full Stack Development(MERN).',
-      imageUrl: '/public/delron Full-Stack Development MERN Stack certificate_page-0001.jpg'
+      imageUrl: '/delron Full-Stack Development MERN Stack certificate_page-0001.jpg'
     },
     {
       id: 2,
@@ -65,7 +65,7 @@ const Education = ({ onBack }: EducationProps) => {
       shortDescription: 'Certified in building and understanding DeFi-focused applications on the Injective Layer 1 blockchain.',
       fullDescription: "An in-depth understanding of Injective's architecture, Web3 modules, INJ token, Community BuyBack, tokenization infrastructure, and performance metrics",
       message: 'Instructor : Brandon Goss - Head of Research at Injective',
-      imageUrl: '/public/Injectictive-Layer1-Certificate_page-0001.jpg'
+      imageUrl: '/Injectictive-Layer1-Certificate_page-0001.jpg'
     },
     {
       id: 3,
@@ -77,7 +77,7 @@ const Education = ({ onBack }: EducationProps) => {
       shortDescription: 'Certified in blockchain fundamentals, including cryptocurrencies, DeFi, Web3, and investment basics.',
       fullDescription: 'The Beginner Track provided an introductory overview of the blockchain ecosystem and equiped me with the fundamental concepts needed to navigate the cryptocurrency space. This course encompassed a series of modules focusing on the basics of blockchain technology, cryptocurrencies, decentralized finance (DeFi), Web3, and trading and investing strategies.',
       message: 'Beginner-level understanding of the blockchain ecosystem.',
-      imageUrl: '/public/beginer-track-blockchain-NFT-Award.jpeg'
+      imageUrl: '/beginer-track-blockchain-NFT-Award.jpeg'
     },
     {
       id: 4,
@@ -89,7 +89,7 @@ const Education = ({ onBack }: EducationProps) => {
       shortDescription: 'Certified in Python programming and Flask framework development for building secure, scalable web applications.',
       fullDescription: 'This certificate above verifies that Kweyu Delron successfully completed the course Python And Flask Framework Complete Course on 11/08/2024 as taught by Horizon Tech on Udemy. The certificate indicates the entire course was completed as validated by the student. The course duration represents the total video hours of the course at time of most recent completion.',
       message: 'Python drives intelligent automation and data-driven software solutions.',
-      imageUrl: '/public/Udemy-Flask-Certificate.jpg'
+      imageUrl: '/Udemy-Flask-Certificate.jpg'
     },
     {
       id: 5,

@@ -54,7 +54,7 @@ const About = () => {
               <div className="relative order-2 lg:order-1">
                 <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl border border-border/50">
                   <img
-                    src="./public/Profile.jpg"
+                    src="/Profile.jpg"
                     alt="Kweyu Delron Muyale - Software Engineer & Network Specialist"
                     className="w-full h-full object-cover transition-transform duration-1000 hover:scale-110"
                   />
