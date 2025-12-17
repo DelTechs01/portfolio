@@ -2,13 +2,11 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
   GraduationCap, Award, Calendar, MapPin, BookOpen, 
-  ChevronLeft, ExternalLink, Download, CheckCircle2, 
-  Trophy, Star, Code2, Brain, Shield, Cloud, Eye
+  ChevronLeft, Trophy, Star, CheckCircle2, Eye
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { useLocation } from 'wouter';
@@ -23,13 +21,13 @@ const Education = ({ onBack }: EducationProps) => {
 
   const degrees = [
     {
-      degree: 'Master of Science in Computer Science',
+      degree: 'Certificate of Science in  Science',
       institution: 'Stanford University',
       location: 'Stanford, CA',
       period: '2016 - 2018',
       gpa: '3.9/4.0',
       specialization: 'Artificial Intelligence & Machine Learning',
-      logo: 'https://images.unsplash.com/photo-1607013251379-e6eecfffe234?w=100&q=80',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Stanford_wordmark.svg/1280px-Stanford_wordmark.svg.png',
       achievements: [
         'Graduated with Honors',
         'Research Assistant in AI Lab',
@@ -51,13 +49,13 @@ const Education = ({ onBack }: EducationProps) => {
       }
     },
     {
-      degree: 'Bachelor of Science in Computer Engineering',
-      institution: 'MIT',
-      location: 'Cambridge, MA',
-      period: '2012 - 2016',
+      degree: 'Bachelor of Science in Software Engineering',
+      institution: 'KyU',
+      location: 'kirinyaga, Kutus',
+      period: '2022 - 2026',
       gpa: '3.8/4.0',
       specialization: 'Software Engineering',
-      logo: 'https://images.unsplash.com/photo-1562774053-701939374585?w=100&q=80',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/MIT_logo.svg/1280px-MIT_logo.svg.png',
       achievements: [
         'Summa Cum Laude',
         'Student Body President',
@@ -80,125 +78,101 @@ const Education = ({ onBack }: EducationProps) => {
       id: 1,
       name: 'AWS Certified Solutions Architect - Professional',
       issuer: 'Amazon Web Services',
-      issuerLogo: 'https://images.unsplash.com/photo-1523474253046-8cd2748b5fd2?w=100&q=80',
+      issuerLogo: 'https://d0.awsstatic.com/logos/powered-by-aws.png',
       category: 'Cloud',
       issueDate: 'January 2024',
-      expiryDate: 'January 2027',
-      credentialId: 'AWS-PSA-2024-001234',
-      verifyUrl: 'https://aws.amazon.com/verification',
-      skills: ['AWS', 'Cloud Architecture', 'DevOps', 'Infrastructure'],
-      description: 'Advanced certification demonstrating expertise in designing distributed systems on AWS.',
-      icon: Cloud,
-      imageUrl: 'https://placehold.co/800x600/png?text=AWS+Certified+Solutions+Architect&font=roboto' // Placeholder for actual certificate image
+      shortDescription: 'Advanced expertise in designing scalable, secure AWS architectures.',
+      fullDescription: 'This professional-level certification validates deep knowledge of designing and deploying complex, distributed applications on AWS with a focus on cost optimization, security, and high availability.',
+      message: 'Mastery of cloud architecture enables building robust, future-proof systems that power modern enterprises.',
+      imageUrl: 'https://placehold.co/1200x800/FF9900/ffffff/png?text=AWS+Certified+Solutions+Architect+Professional&font=montserrat'
     },
     {
       id: 2,
       name: 'AWS Certified Developer - Associate',
       issuer: 'Amazon Web Services',
-      issuerLogo: 'https://images.unsplash.com/photo-1523474253046-8cd2748b5fd2?w=100&q=80',
+      issuerLogo: 'https://d0.awsstatic.com/logos/powered-by-aws.png',
       category: 'Cloud',
       issueDate: 'March 2023',
-      expiryDate: 'March 2026',
-      credentialId: 'AWS-DEV-2023-005678',
-      verifyUrl: 'https://aws.amazon.com/verification',
-      skills: ['AWS', 'Lambda', 'DynamoDB', 'API Gateway'],
-      description: 'Demonstrates proficiency in developing and maintaining AWS applications.',
-      icon: Cloud,
-      imageUrl: 'https://placehold.co/800x600/png?text=AWS+Certified+Developer&font=roboto' // Placeholder
+      shortDescription: 'Proficiency in developing and maintaining applications on AWS.',
+      fullDescription: 'Demonstrates ability to write, deploy, and debug cloud-based applications using AWS services like Lambda, DynamoDB, and API Gateway.',
+      message: 'Building serverless and scalable applications with confidence.',
+      imageUrl: 'https://placehold.co/1200x800/FF9900/ffffff/png?text=AWS+Certified+Developer+Associate&font=montserrat'
     },
     {
       id: 3,
       name: 'Google Cloud Professional Cloud Architect',
       issuer: 'Google Cloud',
-      issuerLogo: 'https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?w=100&q=80',
+      issuerLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Google_Cloud_logo.svg/1280px-Google_Cloud_logo.svg.png',
       category: 'Cloud',
       issueDate: 'June 2023',
-      expiryDate: 'June 2025',
-      credentialId: 'GCP-PCA-2023-987654',
-      verifyUrl: 'https://cloud.google.com/verify',
-      skills: ['GCP', 'Kubernetes', 'Cloud Security', 'BigQuery'],
-      description: 'Expert-level certification for designing and managing Google Cloud solutions.',
-      icon: Cloud,
-      imageUrl: 'https://placehold.co/800x600/png?text=Google+Cloud+Professional+Architect&font=roboto' // Placeholder
+      shortDescription: 'Expert in designing and managing enterprise solutions on Google Cloud.',
+      fullDescription: 'Demonstrates ability to design, develop, and manage secure, scalable, and reliable solutions on Google Cloud Platform.',
+      message: 'Cloud mastery across platforms ensures flexibility and innovation.',
+      imageUrl: 'https://placehold.co/1200x800/4285F4/ffffff/png?text=Google+Cloud+Professional+Cloud+Architect&font=montserrat'
     },
     {
       id: 4,
       name: 'Certified Ethical Hacker (CEH)',
       issuer: 'EC-Council',
-      issuerLogo: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=100&q=80',
+      issuerLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/EC-Council_Logo.svg/1200px-EC-Council_Logo.svg.png',
       category: 'Security',
       issueDate: 'September 2022',
-      expiryDate: 'September 2025',
-      credentialId: 'CEH-2022-456789',
-      verifyUrl: 'https://www.eccouncil.org/verify',
-      skills: ['Penetration Testing', 'Network Security', 'Vulnerability Assessment'],
-      description: 'Certified to identify and address security vulnerabilities ethically.',
-      icon: Shield,
-      imageUrl: 'https://placehold.co/800x600/png?text=Certified+Ethical+Hacker&font=roboto' // Placeholder
+      shortDescription: 'Certified to identify and mitigate security vulnerabilities ethically.',
+      fullDescription: 'Trained in penetration testing, vulnerability assessment, and ethical hacking techniques.',
+      message: 'Security is the foundation of trust in digital systems.',
+      imageUrl: 'https://placehold.co/1200x800/000000/ffffff/png?text=Certified+Ethical+Hacker+(CEH)&font=montserrat'
     },
     {
       id: 5,
       name: 'TensorFlow Developer Certificate',
       issuer: 'Google & TensorFlow',
-      issuerLogo: 'https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?w=100&q=80',
+      issuerLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Tensorflow_logo.svg/1280px-Tensorflow_logo.svg.png',
       category: 'AI/ML',
       issueDate: 'November 2023',
-      expiryDate: 'November 2026',
-      credentialId: 'TF-DEV-2023-112233',
-      verifyUrl: 'https://www.tensorflow.org/certificate',
-      skills: ['TensorFlow', 'Deep Learning', 'Neural Networks', 'Model Training'],
-      description: 'Demonstrates proficiency in building and training ML models using TensorFlow.',
-      icon: Brain,
-      imageUrl: 'https://placehold.co/800x600/png?text=TensorFlow+Developer+Certificate&font=roboto' // Placeholder
+      shortDescription: 'Proficient in building production-ready ML models with TensorFlow.',
+      fullDescription: 'Validates hands-on experience in image classification, NLP, time series, and model deployment.',
+      message: 'Committed to shaping the future with AI.',
+      imageUrl: 'https://placehold.co/1200x800/FF6F00/ffffff/png?text=TensorFlow+Developer+Certificate&font=montserrat'
     },
     {
       id: 6,
       name: 'AI & Machine Learning Specialization',
       issuer: 'Coursera (Stanford University)',
-      issuerLogo: 'https://images.unsplash.com/photo-1607013251379-e6eecfffe234?w=100&q=80',
+      issuerLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Coursera_logo.svg/1200px-Coursera_logo.svg.png',
       category: 'AI/ML',
       issueDate: 'August 2022',
-      expiryDate: 'Lifetime',
-      credentialId: 'COURSERA-ML-2022-445566',
-      verifyUrl: 'https://www.coursera.org/verify',
-      skills: ['Machine Learning', 'Python', 'Data Science', 'Supervised Learning'],
-      description: 'Comprehensive specialization covering ML fundamentals to advanced topics.',
-      icon: Brain,
-      imageUrl: 'https://placehold.co/800x600/png?text=AI+Machine+Learning+Specialization&font=roboto' // Placeholder
+      shortDescription: 'Comprehensive coverage of ML fundamentals to advanced topics.',
+      fullDescription: 'Andrew Ng\'s renowned specialization covering supervised/unsupervised learning, deep learning, and best practices.',
+      message: 'Strong foundational knowledge driving practical AI solutions.',
+      imageUrl: 'https://placehold.co/1200x800/0066FF/ffffff/png?text=Coursera+Machine+Learning+Specialization&font=montserrat'
     },
     {
       id: 7,
       name: 'Professional Scrum Master I (PSM I)',
       issuer: 'Scrum.org',
-      issuerLogo: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=100&q=80',
+      issuerLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Scrum_Alliance_logo.svg/1200px-Scrum_Alliance_logo.svg.png',
       category: 'Development',
       issueDate: 'April 2023',
-      expiryDate: 'Lifetime',
-      credentialId: 'PSM-I-2023-778899',
-      verifyUrl: 'https://www.scrum.org/verify',
-      skills: ['Agile', 'Scrum', 'Team Leadership', 'Project Management'],
-      description: 'Certified Scrum Master demonstrating mastery of Scrum framework.',
-      icon: Code2,
-      imageUrl: 'https://placehold.co/800x600/png?text=Professional+Scrum+Master+I&font=roboto' // Placeholder
+      shortDescription: 'Mastery of the Scrum framework and agile principles.',
+      fullDescription: 'Certified understanding of Scrum roles, events, and artifacts.',
+      message: 'Delivering value iteratively with high-performing teams.',
+      imageUrl: 'https://placehold.co/1200x800/ffffff/000000/png?text=Professional+Scrum+Master+I&font=montserrat'
     },
     {
       id: 8,
       name: 'MongoDB Certified Developer',
       issuer: 'MongoDB University',
-      issuerLogo: 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=100&q=80',
+      issuerLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/MongoDB_Logo.svg/1280px-MongoDB_Logo.svg.png',
       category: 'Development',
       issueDate: 'February 2023',
-      expiryDate: 'February 2026',
-      credentialId: 'MONGO-DEV-2023-334455',
-      verifyUrl: 'https://university.mongodb.com/verify',
-      skills: ['MongoDB', 'NoSQL', 'Database Design', 'Aggregation'],
-      description: 'Expert certification in MongoDB database development and administration.',
-      icon: Code2,
-      imageUrl: 'https://placehold.co/800x600/png?text=MongoDB+Certified+Developer&font=roboto' // Placeholder
+      shortDescription: 'Expert in MongoDB database development and design.',
+      fullDescription: 'Proficiency in NoSQL concepts, aggregation framework, and schema design.',
+      message: 'Building flexible, scalable data layers for modern applications.',
+      imageUrl: 'https://placehold.co/1200x800/47A248/ffffff/png?text=MongoDB+Certified+Developer&font=montserrat'
     }
   ];
 
-  const categories = ['all', 'Cloud', 'Security', 'AI/ML', 'Development'];
+  const categories = ['all', 'Cloud', 'Security', 'AI/ML', 'Development'] as const;
 
   const filteredCertifications = selectedCategory === 'all' 
     ? certifications 
@@ -210,6 +184,11 @@ const Education = ({ onBack }: EducationProps) => {
     { label: 'Years Learning', value: '12+', icon: BookOpen },
     { label: 'Publications', value: '2', icon: Star }
   ];
+
+  const timelineItems = [
+    ...degrees.map(d => ({ ...d, type: 'degree' as const, sortYear: parseInt(d.period.split(' - ')[1], 10) })),
+    ...certifications.map(c => ({ ...c, type: 'cert' as const, sortYear: parseInt(c.issueDate.split(' ')[1], 10) }))
+  ].sort((a, b) => b.sortYear - a.sortYear);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
@@ -271,7 +250,7 @@ const Education = ({ onBack }: EducationProps) => {
         </div>
       </section>
 
-      {/* Education Section */}
+      {/* Academic Qualifications Section */}
       <section className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-3 mb-12">
@@ -291,18 +270,16 @@ const Education = ({ onBack }: EducationProps) => {
                 <Card className="overflow-hidden border-none shadow-md hover:shadow-xl transition-shadow duration-300 bg-muted/30 backdrop-blur-sm">
                   <CardContent className="p-6 md:p-8">
                     <div className="flex flex-col md:flex-row gap-6 md:gap-8">
-                      {/* Institution Logo */}
                       <div className="flex-shrink-0">
-                        <div className="w-24 h-24 rounded-xl overflow-hidden border border-border shadow-sm">
+                        <div className="w-24 h-24 rounded-xl overflow-hidden border border-border shadow-sm bg-white p-4">
                           <img 
                             src={edu.logo} 
-                            alt={edu.institution}
-                            className="w-full h-full object-cover"
+                            alt={`${edu.institution} logo`}
+                            className="w-full h-full object-contain"
                           />
                         </div>
                       </div>
 
-                      {/* Main Content */}
                       <div className="flex-1 space-y-6">
                         <div>
                           <h3 className="text-2xl font-bold mb-3 tracking-tight">{edu.degree}</h3>
@@ -330,8 +307,8 @@ const Education = ({ onBack }: EducationProps) => {
                           <Badge variant="secondary" className="px-3 py-1">{edu.specialization}</Badge>
                         </div>
 
-                        <Tabs defaultValue="achievements" className="w-full relative mt-4">
-                          <TabsList className="grid w-full grid-cols-3 border-b">
+                        <Tabs defaultValue="achievements" className="w-full mt-4">
+                          <TabsList className="grid w-full grid-cols-3">
                             <TabsTrigger value="achievements">Achievements</TabsTrigger>
                             <TabsTrigger value="coursework">Coursework</TabsTrigger>
                             {edu.thesis && <TabsTrigger value="thesis">Thesis</TabsTrigger>}
@@ -389,14 +366,13 @@ const Education = ({ onBack }: EducationProps) => {
             </Badge>
           </div>
 
-          {/* Category Filter */}
-          <div className="flex flex-wrap gap-2 mb-12">
+          <div className="flex flex-wrap gap-3 mb-10">
             {categories.map((category) => (
               <Button
                 key={category}
                 variant={selectedCategory === category ? 'default' : 'outline'}
                 size="sm"
-                className="px-4 py-2 rounded-full"
+                className="rounded-full capitalize"
                 onClick={() => setSelectedCategory(category)}
               >
                 {category === 'all' ? 'All' : category}
@@ -409,8 +385,7 @@ const Education = ({ onBack }: EducationProps) => {
             ))}
           </div>
 
-          {/* Certifications Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredCertifications.map((cert, index) => (
               <motion.div
                 key={cert.id}
@@ -419,95 +394,68 @@ const Education = ({ onBack }: EducationProps) => {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Card className="h-full border-none shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden bg-background/80 backdrop-blur-sm">
-                  <CardHeader className="pb-4">
-                    <div className="flex items-start justify-between gap-4 mb-4">
-                      <div className="p-3 bg-primary/5 rounded-xl">
-                        <cert.icon className="w-6 h-6 text-primary" />
-                      </div>
-                      <Badge variant="secondary" className="px-3 py-1">{cert.category}</Badge>
+                <Card className="h-full flex flex-col border-none shadow-md hover:shadow-xl transition-shadow duration-300 bg-background/80 backdrop-blur-sm">
+                  <CardHeader>
+                    <div className="flex justify-between items-start mb-4">
+                      <Badge variant="secondary">{cert.category}</Badge>
                     </div>
-                    <CardTitle className="text-xl font-bold tracking-tight">{cert.name}</CardTitle>
-                    <CardDescription className="flex items-center gap-2 mt-2 text-sm">
-                      <div className="w-6 h-6 rounded-full overflow-hidden border border-border">
-                        <img src={cert.issuerLogo} alt={cert.issuer} className="w-full h-full object-cover" />
+                    <CardTitle className="text-xl leading-tight">{cert.name}</CardTitle>
+                    <CardDescription className="mt-2 flex items-center gap-2">
+                      <div className="w-6 h-6 rounded-full overflow-hidden border">
+                        <img src={cert.issuerLogo} alt={cert.issuer} className="w-full h-full object-contain" />
                       </div>
                       <span>{cert.issuer}</span>
                     </CardDescription>
                   </CardHeader>
 
-                  <CardContent className="space-y-6">
-                    <p className="text-sm text-muted-foreground leading-relaxed">{cert.description}</p>
+                  <CardContent className="flex-1 flex flex-col justify-between">
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {cert.shortDescription}
+                    </p>
 
-                    <div className="grid grid-cols-2 gap-4 text-sm">
-                      <div>
-                        <p className="text-muted-foreground text-xs uppercase tracking-wide">Issued</p>
-                        <p className="font-medium">{cert.issueDate}</p>
-                      </div>
-                      <div>
-                        <p className="text-muted-foreground text-xs uppercase tracking-wide">Expires</p>
-                        <p className="font-medium">{cert.expiryDate}</p>
-                      </div>
-                    </div>
-
-                    <Separator className="my-2" />
-
-                    <div>
-                      <p className="text-sm font-semibold mb-3">Key Skills</p>
-                      <div className="flex flex-wrap gap-2">
-                        {cert.skills.map((skill, i) => (
-                          <Badge key={i} variant="outline" className="px-3 py-1 text-xs">{skill}</Badge>
-                        ))}
-                      </div>
-                    </div>
-
-                    <Separator className="my-2" />
-
-                    <div className="flex gap-2">
+                    <div className="mt-8">
                       <Dialog>
                         <DialogTrigger asChild>
-                          <Button variant="outline" size="sm" className="flex-1">
+                          <Button variant="default" className="w-full">
                             <Eye className="w-4 h-4 mr-2" />
-                            View
+                            View Certificate
                           </Button>
                         </DialogTrigger>
-                        <DialogContent className="max-w-4xl">
-                          <DialogHeader>
-                            <DialogTitle>{cert.name}</DialogTitle>
-                            <DialogDescription>Issued by {cert.issuer} on {cert.issueDate}</DialogDescription>
-                          </DialogHeader>
+                        <DialogContent className="max-w-4xl p-0 overflow-hidden">
                           <div className="relative">
                             <img 
                               src={cert.imageUrl} 
                               alt={`${cert.name} Certificate`}
-                              className="w-full h-auto rounded-lg shadow-lg"
+                              className="w-full h-auto"
                             />
-                            <Button 
-                              variant="secondary" 
-                              size="sm" 
-                              className="absolute bottom-4 right-4"
-                              asChild
-                            >
-                              <a href={cert.imageUrl} download={`${cert.name.replace(/\s+/g, '_')}.png`}>
-                                <Download className="w-4 h-4 mr-2" />
-                                Download
-                              </a>
-                            </Button>
+                          </div>
+                          <div className="p-8 space-y-6 bg-background">
+                            <DialogHeader>
+                              <DialogTitle className="text-2xl">{cert.name}</DialogTitle>
+                              <DialogDescription className="text-base">
+                                Issued by <span className="font-semibold">{cert.issuer}</span> in {cert.issueDate}
+                              </DialogDescription>
+                            </DialogHeader>
+
+                            <div className="space-y-4">
+                              <p className="text-muted-foreground leading-relaxed">
+                                {cert.fullDescription}
+                              </p>
+                              <blockquote className="border-l-4 border-primary pl-6 italic text-foreground/80">
+                                "{cert.message}"
+                              </blockquote>
+                            </div>
+
+                            <div className="flex gap-3 pt-4">
+                              <Button variant="secondary" className="flex-1" asChild>
+                                <a href={cert.imageUrl} download={`${cert.name.replace(/\s+/g, '_')}.png`}>
+                                  Download Certificate
+                                </a>
+                              </Button>
+                            </div>
                           </div>
                         </DialogContent>
                       </Dialog>
-                      <Button variant="outline" size="sm" className="flex-1" asChild>
-                        <a href={cert.verifyUrl} target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="w-4 h-4 mr-2" />
-                          Verify
-                        </a>
-                      </Button>
-                    </div>
-
-                    <div className="bg-muted/50 rounded-lg p-3 mt-4">
-                      <p className="text-xs text-muted-foreground">
-                        Credential ID: <span className="font-mono font-medium">{cert.credentialId}</span>
-                      </p>
                     </div>
                   </CardContent>
                 </Card>
@@ -517,7 +465,7 @@ const Education = ({ onBack }: EducationProps) => {
         </div>
       </section>
 
-      {/* Timeline */}
+      {/* Educational Timeline */}
       <section className="py-20 bg-background">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold mb-12 text-center tracking-tight">Educational Timeline</h2>
@@ -526,8 +474,7 @@ const Education = ({ onBack }: EducationProps) => {
             <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-border/50 rounded-full" />
             
             <div className="space-y-16">
-              {[...degrees, ...certifications.slice(0, 4)].map((item, index) => {
-                const isDegree = 'degree' in item;
+              {timelineItems.map((item, index) => {
                 const isLeft = index % 2 === 0;
                 
                 return (
@@ -542,14 +489,14 @@ const Education = ({ onBack }: EducationProps) => {
                       <Card className="inline-block max-w-md border-none shadow-sm hover:shadow-md transition-shadow bg-muted/30 backdrop-blur-sm">
                         <CardContent className="p-4">
                           <Badge variant="secondary" className="mb-2 px-3 py-1 text-xs">
-                            {isDegree ? <GraduationCap className="w-3 h-3 mr-1" /> : <Award className="w-3 h-3 mr-1" />}
-                            {isDegree ? item.period : item.issueDate}
+                            {item.type === 'degree' ? <GraduationCap className="w-3 h-3 mr-1" /> : <Award className="w-3 h-3 mr-1" />}
+                            {item.type === 'degree' ? item.period : item.issueDate}
                           </Badge>
                           <h4 className="font-bold text-lg mb-1">
-                            {isDegree ? item.degree : item.name}
+                            {item.type === 'degree' ? item.degree : item.name}
                           </h4>
                           <p className="text-sm text-muted-foreground">
-                            {isDegree ? item.institution : item.issuer}
+                            {item.type === 'degree' ? item.institution : item.issuer}
                           </p>
                         </CardContent>
                       </Card>
