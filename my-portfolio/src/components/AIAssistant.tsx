@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, X, Send, Sparkles, User, Bot } from 'lucide-react';
@@ -11,13 +13,14 @@ interface Message {
   content: string;
 }
 
-const AIAssistant = () => {
+export default function AIAssistant() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
-      content: "Hi! I'm Kweyu's AI assistant. I can help you learn about his skills, projects, and experience. What would you like to know?"
-    }
+      content:
+        "Hi! I'm Kweyu's AI assistant. I can help you learn about his skills, projects, experience, and more. What would you like to know?",
+    },
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -33,74 +36,73 @@ const AIAssistant = () => {
 
   const quickQuestions = [
     "What are Kweyu's top skills?",
-    "Tell me about his projects",
-    "What services does he offer?",
-    "How can I contact him?"
+    'Tell me about his projects',
+    'What services does he offer?',
+    'How can I contact him?',
   ];
 
   const getAIResponse = (userMessage: string): string => {
     const lowerMessage = userMessage.toLowerCase();
 
-    // Greetings
-    if (['hi', 'hello', 'hey', 'good morning', 'good afternoon', 'good evening'].some(greet => lowerMessage.includes(greet))) {
-      return "Hello! 👋 I'm Kweyu's AI assistant. How can I assist you today?";
+    if (
+      ['hi', 'hello', 'hey', 'good morning', 'good afternoon', 'good evening'].some((greet) =>
+        lowerMessage.includes(greet)
+      )
+    ) {
+      return "Hello! 👋 I'm Kweyu's AI assistant. How can I help you today?";
     }
 
-    // Skills & tech
-    if (lowerMessage.includes('skill') || lowerMessage.includes('technology') || lowerMessage.includes('tech')) {
-      return "Kweyu specializes in Full-Stack Development with expertise in React, TypeScript, Node.js, Python, Django, Flask, AI/ML integration, cybersecurity, and M-Pesa payment solutions. He has 3+ years of experience building scalable and secure applications with modern tech stacks, including AWS, Docker, and TensorFlow.";
+    if (lowerMessage.includes('skill') || lowerMessage.includes('tech')) {
+      return 'Kweyu excels in Full-Stack Development using React, TypeScript, Node.js, Python (Django/Flask), AI/ML integration, and cybersecurity. He has 3+ years building secure, scalable apps with modern tools like AWS, Docker, TensorFlow, and M-Pesa integrations.';
     }
 
-    // Projects
-    if (lowerMessage.includes('project') || lowerMessage.includes('portfolio') || lowerMessage.includes('work')) {
-      return "Kweyu has completed multiple projects, including:\n- UniConnectKE: A university social platform for Kenyan students\n- AI-Powered Learning Platform: Personalized AI-driven training system\n- M-Pesa E-Commerce System: Secure online platform with M-Pesa payments\n- Cybersecurity Audit Tool: Automated vulnerability scanning across enterprise apps";
+    if (lowerMessage.includes('project') || lowerMessage.includes('portfolio')) {
+      return `Here are some of Kweyu's standout projects:\n\n• **UniConnectKE** – Social platform for Kenyan university students\n• **AI Learning Platform** – Personalized training with adaptive AI\n• **M-Pesa E-Commerce** – Secure online store with mobile payments\n• **Cybersecurity Audit Tool** – Automated vulnerability scanner`;
     }
 
-    // Services
-    if (lowerMessage.includes('service') || lowerMessage.includes('hire') || lowerMessage.includes('cost')) {
-      return "Kweyu offers services such as Custom Web Development (React, Node.js, Django), AI Integration & Consulting, E-Commerce Solutions with M-Pesa integration, and Cybersecurity Audits. Pricing depends on project scope, starting from Ksh3,000 for smaller tasks.";
+    if (lowerMessage.includes('service') || lowerMessage.includes('hire') || lowerMessage.includes('offer')) {
+      return 'Kweyu offers:\n• Custom Web & Mobile Development\n• AI/ML Integration & Consulting\n• E-Commerce with M-Pesa\n• Cybersecurity Audits & Hardening\n\nRates start from Ksh3,000 for small tasks. Full projects priced by scope.';
     }
 
-    // Contact
     if (lowerMessage.includes('contact') || lowerMessage.includes('email') || lowerMessage.includes('reach')) {
-      return "You can contact Kweyu at kweyudelron37@.com or call +254 (708) 821-843. LinkedIn and GitHub profiles are also available for professional networking. He usually responds within 24 hours.";
+      return 'You can reach Kweyu via:\n📧 kweyudelron37@gmail.com\n📱 +254 708 821 843\n\nHe typically responds within 24 hours.';
     }
 
-    // Experience & background
+    if (lowerMessage.includes('ai') || lowerMessage.includes('machine learning')) {
+      return 'Kweyu has deep AI/ML expertise with TensorFlow, PyTorch, LangChain, OpenAI APIs, and Hugging Face. He builds recommendation systems, NLP tools, chatbots, and predictive analytics.';
+    }
+
     if (lowerMessage.includes('experience') || lowerMessage.includes('background')) {
-      return "Kweyu has 3+ years of professional experience as a Full-Stack Developer and AI/ML specialist. He has worked on university platforms, AI-driven applications, and cybersecurity projects. He holds an M.S. in Computer Science and multiple professional certifications.";
+      return 'Kweyu has 3+ years as a Full-Stack & AI Developer. He’s pursuing a B.S. in Software Engineering at Kirinyaga University and holds multiple certifications in AWS, Google Cloud, Ethical Hacking, and TensorFlow.';
     }
 
-    // AI/ML specialization
-    if (lowerMessage.includes('ai') || lowerMessage.includes('machine learning') || lowerMessage.includes('ml')) {
-      return "Kweyu has extensive AI/ML expertise, including TensorFlow, LangChain, OpenAI API, and Hugging Face. He has built AI-powered recommendation engines, natural language processing systems, and automated analytics platforms.";
-    }
-
-    return "That's a great question! I recommend checking out the sections on this portfolio for more details. You can also contact Kweyu directly for personalized answers.";
+    return "That's an interesting question! Feel free to explore the portfolio sections or send a direct message for more personalized details. 😊";
   };
 
   const handleSend = () => {
     if (!input.trim()) return;
+
     const userMessage = input.trim();
-    setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
+    setMessages((prev) => [...prev, { role: 'user', content: userMessage }]);
     setInput('');
     setIsTyping(true);
 
     setTimeout(() => {
       const response = getAIResponse(userMessage);
-      setMessages(prev => [...prev, { role: 'assistant', content: response }]);
+      setMessages((prev) => [...prev, { role: 'assistant', content: response }]);
       setIsTyping(false);
-    }, 1000);
+    }, 1200);
   };
 
   const handleQuickQuestion = (question: string) => {
-    setMessages(prev => [...prev, { role: 'user', content: question }]);
+    setMessages((prev) => [...prev, { role: 'user', content: question }]);
     setIsTyping(true);
+
     setTimeout(() => {
       const response = getAIResponse(question);
-      setMessages(prev => [...prev, { role: 'assistant', content: response }]);
+      setMessages((prev) => [...prev, { role: 'assistant', content: response }]);
       setIsTyping(false);
-    }, 1000);
+    }, 1200);
   };
 
   return (
@@ -108,113 +110,115 @@ const AIAssistant = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="fixed bottom-24 right-8 z-50 w-96 max-w-[calc(100vw-2rem)]"
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+            className="fixed bottom-24 right-8 z-50 w-96 max-w-[calc(100vw-4rem)] rounded-2xl shadow-2xl"
           >
-            <Card className="shadow-2xl border-2">
+            <Card className="overflow-hidden border-none shadow-2xl">
               <CardHeader className="bg-gradient-to-r from-primary to-accent text-primary-foreground">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Sparkles className="w-5 h-5" />
-                    <CardTitle className="text-lg">AI Assistant</CardTitle>
+                  <div className="flex items-center gap-3">
+                    <Sparkles className="h-6 w-6" />
+                    <CardTitle className="text-xl">AI Assistant</CardTitle>
                   </div>
                   <Button
                     variant="ghost"
                     size="icon"
                     onClick={() => setIsOpen(false)}
-                    className="text-primary-foreground hover:bg-primary-foreground/20"
+                    className="hover:bg-white/20"
                   >
-                    <X className="w-5 h-5" />
+                    <X className="h-5 w-5" />
                   </Button>
                 </div>
-                <Badge variant="secondary" className="w-fit mt-2">
-                  Powered by AI
+                <Badge variant="secondary" className="mt-2 w-fit">
+                  Powered by Intelligence
                 </Badge>
               </CardHeader>
 
-              <CardContent className="p-0">
-                <div className="h-96 overflow-y-auto p-4 space-y-4">
+              <CardContent className="p-0 flex flex-col h-96">
+                <div className="flex-1 overflow-y-auto p-5 space-y-4">
                   {messages.map((message, index) => (
                     <motion.div
                       key={index}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className={`flex gap-2 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                      transition={{ delay: 0.1 }}
+                      className={`flex gap-3 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                     >
                       {message.role === 'assistant' && (
-                        <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                          <Bot className="w-5 h-5 text-primary" />
+                        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10">
+                          <Bot className="h-5 w-5 text-primary" />
                         </div>
                       )}
+
                       <div
-                        className={`px-4 py-2 rounded-2xl max-w-[80%] ${
+                        className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed whitespace-pre-wrap ${
                           message.role === 'user'
                             ? 'bg-primary text-primary-foreground'
                             : 'bg-muted'
                         }`}
                       >
-                        <p className="text-sm">{message.content}</p>
+                        {message.content}
                       </div>
+
                       {message.role === 'user' && (
-                        <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
-                          <User className="w-5 h-5 text-accent" />
+                        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent/10">
+                          <User className="h-5 w-5 text-accent-foreground" />
                         </div>
                       )}
                     </motion.div>
                   ))}
 
                   {isTyping && (
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      className="flex gap-2"
-                    >
-                      <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                        <Bot className="w-5 h-5 text-primary" />
+                    <div className="flex gap-3">
+                      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/10">
+                        <Bot className="h-5 w-5 text-primary" />
                       </div>
-                      <div className="px-4 py-2 rounded-2xl bg-muted">
-                        <div className="flex gap-1">
-                          <div className="w-2 h-2 bg-muted-foreground/50 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                          <div className="w-2 h-2 bg-muted-foreground/50 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                          <div className="w-2 h-2 bg-muted-foreground/50 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                      <div className="rounded-2xl bg-muted px-4 py-3">
+                        <div className="flex space-x-1">
+                          <span className="h-2 w-2 animate-bounce rounded-full bg-muted-foreground/60" style={{ animationDelay: '0ms' }} />
+                          <span className="h-2 w-2 animate-bounce rounded-full bg-muted-foreground/60" style={{ animationDelay: '150ms' }} />
+                          <span className="h-2 w-2 animate-bounce rounded-full bg-muted-foreground/60" style={{ animationDelay: '300ms' }} />
                         </div>
                       </div>
-                    </motion.div>
+                    </div>
                   )}
 
                   <div ref={messagesEndRef} />
                 </div>
 
                 {messages.length === 1 && (
-                  <div className="px-4 pb-4 space-y-2">
-                    <p className="text-xs text-muted-foreground mb-2">Quick questions:</p>
-                    {quickQuestions.map((question, index) => (
-                      <Button
-                        key={index}
-                        variant="outline"
-                        size="sm"
-                        className="w-full justify-start text-left h-auto py-2"
-                        onClick={() => handleQuickQuestion(question)}
-                      >
-                        {question}
-                      </Button>
-                    ))}
+                  <div className="border-t border-border px-4 py-3">
+                    <p className="mb-3 text-xs font-medium text-muted-foreground">Quick questions:</p>
+                    <div className="grid grid-cols-2 gap-2">
+                      {quickQuestions.map((q, i) => (
+                        <Button
+                          key={i}
+                          variant="outline"
+                          size="sm"
+                          className="h-auto py-2 text-left text-xs justify-start"
+                          onClick={() => handleQuickQuestion(q)}
+                        >
+                          {q}
+                        </Button>
+                      ))}
+                    </div>
                   </div>
                 )}
 
-                <div className="p-4 border-t">
+                <div className="border-t border-border p-4">
                   <div className="flex gap-2">
                     <Input
                       value={input}
                       onChange={(e) => setInput(e.target.value)}
-                      onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                      placeholder="Ask me anything..."
+                      onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && handleSend()}
+                      placeholder="Type your message..."
                       className="flex-1"
                     />
-                    <Button onClick={handleSend} size="icon">
-                      <Send className="w-4 h-4" />
+                    <Button onClick={handleSend} size="icon" disabled={!input.trim()}>
+                      <Send className="h-4 w-4" />
                     </Button>
                   </div>
                 </div>
@@ -224,21 +228,16 @@ const AIAssistant = () => {
         )}
       </AnimatePresence>
 
-      <motion.div
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        className="fixed bottom-8 right-8 z-40"
+      {/* Floating Toggle Button */}
+      <motion.button
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+        onClick={() => setIsOpen(!isOpen)}
+        className="fixed bottom-8 right-8 z-40 rounded-full bg-primary p-4 text-primary-foreground shadow-2xl transition-shadow hover:shadow-primary/50"
+        aria-label="Open AI Assistant"
       >
-        <Button
-          size="lg"
-          onClick={() => setIsOpen(!isOpen)}
-          className="rounded-full w-14 h-14 shadow-2xl"
-        >
-          {isOpen ? <X className="w-6 h-6" /> : <MessageSquare className="w-6 h-6" />}
-        </Button>
-      </motion.div>
+        {isOpen ? <X className="h-7 w-7" /> : <MessageSquare className="h-7 w-7" />}
+      </motion.button>
     </>
   );
-};
-
-export default AIAssistant;
+}
