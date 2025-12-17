@@ -21,43 +21,14 @@ const Education = ({ onBack }: EducationProps) => {
 
   const degrees = [
     {
-      degree: 'Certificate of Science in  Science',
-      institution: 'Stanford University',
-      location: 'Stanford, CA',
-      period: '2016 - 2018',
-      gpa: '3.9/4.0',
-      specialization: 'Artificial Intelligence & Machine Learning',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Stanford_wordmark.svg/1280px-Stanford_wordmark.svg.png',
-      achievements: [
-        'Graduated with Honors',
-        'Research Assistant in AI Lab',
-        'Published 2 papers on Neural Networks',
-        'Dean\'s List all semesters'
-      ],
-      coursework: [
-        'Deep Learning',
-        'Natural Language Processing',
-        'Computer Vision',
-        'Advanced Algorithms',
-        'Distributed Systems',
-        'Machine Learning Theory'
-      ],
-      thesis: {
-        title: 'Optimizing Neural Network Architectures for Real-Time Applications',
-        advisor: 'Dr. Jane Smith',
-        abstract: 'Research on efficient neural network compression techniques for edge computing.'
-      }
-    },
-    {
       degree: 'Bachelor of Science in Software Engineering',
-      institution: 'KyU',
+      institution: 'Kirinyaga University {KyU}',
       location: 'kirinyaga, Kutus',
       period: '2022 - 2026',
       gpa: '3.8/4.0',
-      specialization: 'Software Engineering',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/MIT_logo.svg/1280px-MIT_logo.svg.png',
+      specialization: 'Software Engineering - Current',
+      logo: 'https://www.kyu.ac.ke/images/kyu_logosmall2.png',
       achievements: [
-        'Summa Cum Laude',
         'Student Body President',
         'Hackathon Winner (3x)',
         'Outstanding Senior Award'
@@ -76,51 +47,51 @@ const Education = ({ onBack }: EducationProps) => {
   const certifications = [
     {
       id: 1,
-      name: 'AWS Certified Solutions Architect - Professional',
-      issuer: 'Amazon Web Services',
-      issuerLogo: 'https://d0.awsstatic.com/logos/powered-by-aws.png',
-      category: 'Cloud',
+      name: 'Software Development February 2025 - Cohort VII',
+      issuer: 'Power Learn Project',
+      issuerLogo: 'https://academy.powerlearnprojectafrica.org/assets/logo.CAPAuQa5.png',
+      category: 'Programming',
       issueDate: 'January 2024',
-      shortDescription: 'Advanced expertise in designing scalable, secure AWS architectures.',
-      fullDescription: 'This professional-level certification validates deep knowledge of designing and deploying complex, distributed applications on AWS with a focus on cost optimization, security, and high availability.',
-      message: 'Mastery of cloud architecture enables building robust, future-proof systems that power modern enterprises.',
-      imageUrl: 'https://placehold.co/1200x800/FF9900/ffffff/png?text=AWS+Certified+Solutions+Architect+Professional&font=montserrat'
+      shortDescription: 'Certified in MERN full-stack software development through the February 2025 Cohort VII Software Development program.',
+      fullDescription: 'Successfully completed a 16 -week program in Software Development covering Python, Web Technologies, Database Management, Startup Building & Employability and Software Engineering Essentials, with a specialization in Full-Stack Development MERN Stack..',
+      message: 'Mastery of Full Stack Development(MERN).',
+      imageUrl: '/public/delron Full-Stack Development MERN Stack certificate_page-0001.jpg'
     },
     {
       id: 2,
-      name: 'AWS Certified Developer - Associate',
-      issuer: 'Amazon Web Services',
-      issuerLogo: 'https://d0.awsstatic.com/logos/powered-by-aws.png',
-      category: 'Cloud',
-      issueDate: 'March 2023',
-      shortDescription: 'Proficiency in developing and maintaining applications on AWS.',
-      fullDescription: 'Demonstrates ability to write, deploy, and debug cloud-based applications using AWS services like Lambda, DynamoDB, and API Gateway.',
-      message: 'Building serverless and scalable applications with confidence.',
-      imageUrl: 'https://placehold.co/1200x800/FF9900/ffffff/png?text=AWS+Certified+Developer+Associate&font=montserrat'
+      name: 'Injective: The Layer 1 Blockchain Build For Finance',
+      issuer: 'Binance Academy',
+      issuerLogo: 'https://public.bnbstatic.com/static/academy/uploads/a3cd133a11cb4995908e34af5321be6b.png',
+      category: 'Blockchain Technology',
+      issueDate: 'December 15, 2025',
+      shortDescription: 'Certified in building and understanding DeFi-focused applications on the Injective Layer 1 blockchain.',
+      fullDescription: "An in-depth understanding of Injective's architecture, Web3 modules, INJ token, Community BuyBack, tokenization infrastructure, and performance metrics",
+      message: 'Instructor : Brandon Goss - Head of Research at Injective',
+      imageUrl: '/public/Injectictive-Layer1-Certificate_page-0001.jpg'
     },
     {
       id: 3,
-      name: 'Google Cloud Professional Cloud Architect',
-      issuer: 'Google Cloud',
-      issuerLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Google_Cloud_logo.svg/1280px-Google_Cloud_logo.svg.png',
-      category: 'Cloud',
-      issueDate: 'June 2023',
-      shortDescription: 'Expert in designing and managing enterprise solutions on Google Cloud.',
-      fullDescription: 'Demonstrates ability to design, develop, and manage secure, scalable, and reliable solutions on Google Cloud Platform.',
-      message: 'Cloud mastery across platforms ensures flexibility and innovation.',
-      imageUrl: 'https://placehold.co/1200x800/4285F4/ffffff/png?text=Google+Cloud+Professional+Cloud+Architect&font=montserrat'
+      name: 'The fundamentals of crypto & blockchain',
+      issuer: 'Binance Academy',
+      issuerLogo: 'https://public.bnbstatic.com/static/academy/uploads/a3cd133a11cb4995908e34af5321be6b.png',
+      category: 'Blockchain Technology',
+      issueDate: 'December 17, 2025',
+      shortDescription: 'Certified in blockchain fundamentals, including cryptocurrencies, DeFi, Web3, and investment basics.',
+      fullDescription: 'The Beginner Track provided an introductory overview of the blockchain ecosystem and equiped me with the fundamental concepts needed to navigate the cryptocurrency space. This course encompassed a series of modules focusing on the basics of blockchain technology, cryptocurrencies, decentralized finance (DeFi), Web3, and trading and investing strategies.',
+      message: 'Beginner-level understanding of the blockchain ecosystem.',
+      imageUrl: '/public/beginer-track-blockchain-NFT-Award.jpeg'
     },
     {
       id: 4,
-      name: 'Certified Ethical Hacker (CEH)',
-      issuer: 'EC-Council',
-      issuerLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/EC-Council_Logo.svg/1200px-EC-Council_Logo.svg.png',
-      category: 'Security',
-      issueDate: 'September 2022',
-      shortDescription: 'Certified to identify and mitigate security vulnerabilities ethically.',
-      fullDescription: 'Trained in penetration testing, vulnerability assessment, and ethical hacking techniques.',
-      message: 'Security is the foundation of trust in digital systems.',
-      imageUrl: 'https://placehold.co/1200x800/000000/ffffff/png?text=Certified+Ethical+Hacker+(CEH)&font=montserrat'
+      name: 'Python And Flask Framework Complete Course',
+      issuer: 'Udemy',
+      issuerLogo: 'https://www.udemy.com/staticx/udemy/images/v7/logo-udemy.svg',
+      category: 'Programming',
+      issueDate: 'August 2024',
+      shortDescription: 'Certified in Python programming and Flask framework development for building secure, scalable web applications.',
+      fullDescription: 'This certificate above verifies that Kweyu Delron successfully completed the course Python And Flask Framework Complete Course on 11/08/2024 as taught by Horizon Tech on Udemy. The certificate indicates the entire course was completed as validated by the student. The course duration represents the total video hours of the course at time of most recent completion.',
+      message: 'Python drives intelligent automation and data-driven software solutions.',
+      imageUrl: '/public/Udemy-Flask-Certificate.jpg'
     },
     {
       id: 5,
@@ -172,7 +143,7 @@ const Education = ({ onBack }: EducationProps) => {
     }
   ];
 
-  const categories = ['all', 'Cloud', 'Security', 'AI/ML', 'Development'] as const;
+  const categories = ['all', 'Programming','Cloud', 'Security', 'AI/ML', 'Development', 'Blockchain Technology'] as const;
 
   const filteredCertifications = selectedCategory === 'all' 
     ? certifications 
@@ -181,7 +152,7 @@ const Education = ({ onBack }: EducationProps) => {
   const stats = [
     { label: 'Degrees', value: degrees.length, icon: GraduationCap },
     { label: 'Certifications', value: certifications.length, icon: Award },
-    { label: 'Years Learning', value: '12+', icon: BookOpen },
+    { label: 'Years Learning', value: '3+', icon: BookOpen },
     { label: 'Publications', value: '2', icon: Star }
   ];
 
@@ -224,7 +195,7 @@ const Education = ({ onBack }: EducationProps) => {
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent"> Continuous Education</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Dedicated to maintaining cutting-edge expertise in AI, cloud computing, and software engineering through rigorous academic pursuits and industry-recognized certifications.
+              Grounded in Software Engineering, my academic journey spans artificial intelligence, cybersecurity, ethical hacking, blockchain technologies, and network engineering. I continuously strengthen my skills through rigorous coursework, hands-on system development, and practical network installation experience, with a strong focus on building secure, scalable, and future-ready digital solutions.
             </p>
           </motion.div>
 
