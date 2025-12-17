@@ -22,7 +22,15 @@ const CaseStudies = ({ onSelectProject }: CaseStudiesProps) => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Enhanced Sticky Header */}
+      {/* Inline global styles without jsx/global */}
+      <style>{`
+        @keyframes gradient-x {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+      `}</style>
+
+      {/* Sticky Header */}
       <motion.div
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -45,7 +53,6 @@ const CaseStudies = ({ onSelectProject }: CaseStudiesProps) => {
 
       {/* Main Content */}
       <section className="py-28 lg:py-40 bg-muted/30 relative overflow-hidden">
-        {/* Background Glow Effects */}
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-cyan-400/20 to-blue-600/20 rounded-full blur-3xl animate-pulse" />
           <div className="absolute bottom-32 right-20 w-80 h-80 bg-gradient-to-tr from-purple-500/30 to-pink-500/30 rounded-full blur-3xl animate-pulse delay-700" />
@@ -82,7 +89,6 @@ const CaseStudies = ({ onSelectProject }: CaseStudiesProps) => {
                   className="h-full overflow-hidden border-border/50 bg-background/60 backdrop-blur shadow-xl hover:shadow-2xl transition-all duration-700 cursor-pointer"
                   onClick={() => onSelectProject(project.id)}
                 >
-                  {/* Image Section with Overlay */}
                   <div className="relative overflow-hidden h-64">
                     <img
                       src={project.image}
@@ -91,14 +97,12 @@ const CaseStudies = ({ onSelectProject }: CaseStudiesProps) => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
 
-                    {/* Title Overlay on Hover */}
                     <div className="absolute inset-0 flex items-end p-8 translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
                       <h3 className="text-2xl font-bold text-white drop-shadow-lg">
                         {project.title}
                       </h3>
                     </div>
 
-                    {/* Badge */}
                     <Badge className="absolute top-6 right-6 bg-gradient-to-r from-primary to-accent text-primary-foreground shadow-lg">
                       Case Study
                     </Badge>
@@ -111,7 +115,6 @@ const CaseStudies = ({ onSelectProject }: CaseStudiesProps) => {
                   </CardHeader>
 
                   <CardContent className="space-y-6">
-                    {/* Tech Tags */}
                     <div className="flex flex-wrap gap-2">
                       {project.tags.map((tag) => (
                         <Badge
@@ -124,7 +127,6 @@ const CaseStudies = ({ onSelectProject }: CaseStudiesProps) => {
                       ))}
                     </div>
 
-                    {/* Key Results with Icons */}
                     <div className="space-y-4">
                       {project.results.slice(0, 3).map((result) => (
                         <div key={result.metric} className="flex items-center justify-between">
@@ -139,7 +141,6 @@ const CaseStudies = ({ onSelectProject }: CaseStudiesProps) => {
                       ))}
                     </div>
 
-                    {/* CTA Button */}
                     <Button
                       variant="outline"
                       size="lg"
@@ -154,7 +155,6 @@ const CaseStudies = ({ onSelectProject }: CaseStudiesProps) => {
             ))}
           </div>
 
-          {/* Optional: Call to Action at Bottom */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -174,14 +174,6 @@ const CaseStudies = ({ onSelectProject }: CaseStudiesProps) => {
           </motion.div>
         </div>
       </section>
-
-      {/* Gradient Animation (if not already in global CSS) */}
-      <style jsx global>{`
-        @keyframes gradient-x {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-        }
-      `}</style>
     </div>
   );
 };

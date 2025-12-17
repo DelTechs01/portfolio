@@ -67,7 +67,19 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
       <AIAssistant />
       <PersonalizationEngine />
 
-      {/* Enhanced Navbar with colorful logo hover */}
+      {/* Inline global styles moved to regular <style> without jsx/global */}
+      <style>{`
+        @keyframes gradient-x {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+        .animate-gradient-x {
+          background-size: 200% 200%;
+          animation: gradient-x 8s ease infinite;
+        }
+      `}</style>
+
+      {/* Enhanced Navbar */}
       <motion.nav 
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -76,7 +88,6 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
       >
         <div className="mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-14 md:h-16">
-            {/* Logo with colorful hover gradient */}
             <motion.div 
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -167,9 +178,8 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
         </div>
       </motion.nav>
 
-      {/* Enhanced Hero Section with vibrant name styling */}
+      {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-14 md:pt-16">
-        {/* Enhanced background with deeper glows */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-purple-500/5 to-pink-500/10 dark:from-primary/20 dark:via-purple-600/10 dark:to-pink-600/10" />
         <div className="absolute inset-0 opacity-40">
           <div className="absolute top-10 left-10 w-96 h-96 bg-gradient-to-br from-cyan-400/30 to-blue-600/30 rounded-full blur-3xl animate-pulse" />
@@ -188,7 +198,6 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
               Available for Freelance & Full-time Opportunities
             </Badge>
             
-            {/* Vibrant animated name */}
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-8 leading-tight">
               <span className="inline-block bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-gradient-x">
                 Kweyu Delron Muyale
@@ -281,7 +290,7 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
           <div className="grid md:grid-cols-4 gap-12 mb-12">
             <div>
               <h3 className="text-3xl font-bold mb-5 bg-gradient-to-r from-blue-500 to-pink-500 bg-clip-text text-transparent">
-          Kweyu Delron
+                Kweyu Delron
               </h3>
               <p className="text-muted-foreground">Building the future, one secure line of code at a time.</p>
             </div>
@@ -289,27 +298,27 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
             <div>
               <h4 className="font-semibold mb-5 text-lg">Navigation</h4>
               <ul className="space-y-4">
-          {navItems.map((item) => (
-            <li key={item.label}>
-              <button
-                onClick={() => navigateTo(item.path)}
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                {item.label}
-              </button>
-            </li>
-          ))}
+                {navItems.map((item) => (
+                  <li key={item.label}>
+                    <button
+                      onClick={() => navigateTo(item.path)}
+                      className="text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      {item.label}
+                    </button>
+                  </li>
+                ))}
               </ul>
             </div>
 
             <div>
               <h4 className="font-semibold mb-5 text-lg">Legal</h4>
               <ul className="space-y-4 text-muted-foreground">
-          {['Privacy Policy', 'Terms of Service', 'Cookie Policy'].map((item) => (
-            <li key={item}>
-              <a href="#" className="hover:text-primary transition-colors">{item}</a>
-            </li>
-          ))}
+                {['Privacy Policy', 'Terms of Service', 'Cookie Policy'].map((item) => (
+                  <li key={item}>
+                    <a href="#" className="hover:text-primary transition-colors">{item}</a>
+                  </li>
+                ))}
               </ul>
             </div>
 
@@ -317,10 +326,10 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
               <h4 className="font-semibold mb-5 text-lg">Stay Updated</h4>
               <p className="text-muted-foreground mb-6">Subscribe for project updates and insights.</p>
               <div className="flex gap-3">
-          <Input placeholder="Your email" type="email" />
-          <Button>
-            <ChevronDown className="w-5 h-5 rotate-[-90deg]" />
-          </Button>
+                <Input placeholder="Your email" type="email" />
+                <Button>
+                  <ChevronDown className="w-5 h-5 rotate-[-90deg]" />
+                </Button>
               </div>
             </div>
           </div>
@@ -329,28 +338,28 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
           <div className="mb-8 p-6 bg-background/50 rounded-lg border border-border/50 backdrop-blur-sm">
             <div className="grid md:grid-cols-3 gap-6 mb-6">
               <div className="flex items-center gap-4">
-          <div>
-            <p className="text-sm text-muted-foreground">Email</p>
-            <a href="mailto:your.email@example.com" className="font-semibold hover:text-primary transition-colors">
-              kweyudelron37@gmail.com
-            </a>
-          </div>
+                <div>
+                  <p className="text-sm text-muted-foreground">Email</p>
+                  <a href="mailto:kweyudelron37@gmail.com" className="font-semibold hover:text-primary transition-colors">
+                    kweyudelron37@gmail.com
+                  </a>
+                </div>
               </div>
               
               <div className="flex items-center gap-4">
-          <div>
-            <p className="text-sm text-muted-foreground">Phone</p>
-            <a href="tel:+1234567890" className="font-semibold hover:text-primary transition-colors">
-              +254 (708) 821-843
-            </a>
-          </div>
+                <div>
+                  <p className="text-sm text-muted-foreground">Phone</p>
+                  <a href="tel:+254708821843" className="font-semibold hover:text-primary transition-colors">
+                    +254 (708) 821-843
+                  </a>
+                </div>
               </div>
 
               <div className="flex items-center gap-4">
-          <div>
-            <p className="text-sm text-muted-foreground">Location</p>
-            <p className="font-semibold">Nairobi, Kenya</p>
-          </div>
+                <div>
+                  <p className="text-sm text-muted-foreground">Location</p>
+                  <p className="font-semibold">Nairobi, Kenya</p>
+                </div>
               </div>
             </div>
           </div>
@@ -360,12 +369,12 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
             <p className="text-muted-foreground text-sm">© 2025 Kweyu Delron Muyale. All rights reserved.</p>
             <div className="flex items-center gap-8">
               <Badge variant="outline" className="text-sm">
-          <Zap className="w-4 h-4 mr-2 text-yellow-500" />
-          65+ Performance
+                <Zap className="w-4 h-4 mr-2 text-yellow-500" />
+                65+ Performance
               </Badge>
               <Badge variant="outline" className="text-sm">
-          <Shield className="w-4 h-4 mr-2 text-green-500" />
-          WCAG AA Compliant
+                <Shield className="w-4 h-4 mr-2 text-green-500" />
+                WCAG AA Compliant
               </Badge>
             </div>
           </div>
@@ -380,18 +389,6 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
       >
         <ChevronDown className="w-7 h-7 rotate-180" />
       </Button>
-
-      {/* CSS Animation for gradient text (add this in your global CSS or styled component) */}
-      <style jsx global>{`
-        @keyframes gradient-x {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-        }
-        .animate-gradient-x {
-          background-size: 200% 200%;
-          animation: gradient-x 8s ease infinite;
-        }
-      `}</style>
     </div>
   );
 };
