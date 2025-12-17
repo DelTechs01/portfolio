@@ -9,7 +9,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { useLocation } from 'wouter';
 
 interface EducationProps {
   onBack: () => void;
@@ -17,13 +16,12 @@ interface EducationProps {
 
 const Education = ({ onBack }: EducationProps) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [, setLocation] = useLocation();
 
   const degrees = [
     {
       degree: 'Bachelor of Science in Software Engineering',
       institution: 'Kirinyaga University {KyU}',
-      location: 'kirinyaga, Kutus',
+      location: 'Kirinyaga, Kutus',
       period: '2022 - 2026',
       gpa: '3.8/4.0',
       specialization: 'Software Engineering - Current',
@@ -53,7 +51,7 @@ const Education = ({ onBack }: EducationProps) => {
       category: 'Programming',
       issueDate: 'January 2024',
       shortDescription: 'Certified in MERN full-stack software development through the February 2025 Cohort VII Software Development program.',
-      fullDescription: 'Successfully completed a 16 -week program in Software Development covering Python, Web Technologies, Database Management, Startup Building & Employability and Software Engineering Essentials, with a specialization in Full-Stack Development MERN Stack..',
+      fullDescription: 'Successfully completed a 16-week program in Software Development covering Python, Web Technologies, Database Management, Startup Building & Employability and Software Engineering Essentials, with a specialization in Full-Stack Development MERN Stack.',
       message: 'Mastery of Full Stack Development(MERN).',
       imageUrl: '/public/delron Full-Stack Development MERN Stack certificate_page-0001.jpg'
     },
@@ -279,10 +277,9 @@ const Education = ({ onBack }: EducationProps) => {
                         </div>
 
                         <Tabs defaultValue="achievements" className="w-full mt-4">
-                          <TabsList className="grid w-full grid-cols-3">
+                          <TabsList className="grid w-full grid-cols-2">
                             <TabsTrigger value="achievements">Achievements</TabsTrigger>
                             <TabsTrigger value="coursework">Coursework</TabsTrigger>
-                            {edu.thesis && <TabsTrigger value="thesis">Thesis</TabsTrigger>}
                           </TabsList>
 
                           <TabsContent value="achievements" className="mt-6">
@@ -303,16 +300,6 @@ const Education = ({ onBack }: EducationProps) => {
                               ))}
                             </div>
                           </TabsContent>
-
-                          {edu.thesis && (
-                            <TabsContent value="thesis" className="mt-6">
-                              <div className="space-y-3 text-sm">
-                                <p className="font-semibold">{edu.thesis.title}</p>
-                                <p className="text-muted-foreground">Advisor: {edu.thesis.advisor}</p>
-                                <p className="text-muted-foreground">{edu.thesis.abstract}</p>
-                              </div>
-                            </TabsContent>
-                          )}
                         </Tabs>
                       </div>
                     </div>

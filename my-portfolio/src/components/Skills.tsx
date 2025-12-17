@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, X, Code2, Database, Network, Shield, Blocks, Wrench } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { useLocation } from 'wouter';
 import { useState } from 'react';
@@ -131,41 +131,10 @@ const Skills = () => {
             </p>
           </motion.div>
 
-          {/* Desktop: Full View with Category Descriptions + Constellation */}
+          {/* Desktop: Full View */}
           <div className="hidden lg:block">
             <div className="grid lg:grid-cols-3 gap-10 relative">
-              {/* Constellation Lines */}
-              <div className="absolute inset-0 pointer-events-none">
-                <svg className="w-full h-full" viewBox="0 0 1200 800">
-                  <defs>
-                    <linearGradient id="line-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.5" />
-                      <stop offset="50%" stopColor="#a855f7" stopOpacity="0.7" />
-                      <stop offset="100%" stopColor="#ec4899" stopOpacity="0.5" />
-                    </linearGradient>
-                    <filter id="glow">
-                      <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
-                      <feMerge>
-                        <feMergeNode in="coloredBlur"/>
-                        <feMergeNode in="SourceGraphic"/>
-                      </feMerge>
-                    </filter>
-                  </defs>
-
-                  <line x1="200" y1="120" x2="600" y2="300" stroke="url(#line-gradient)" strokeWidth="2" opacity="0.8" />
-                  <circle cx="200" cy="120" r="8" fill="#3b82f6" filter="url(#glow)" />
-                  <circle cx="600" cy="300" r="8" fill="#a855f7" filter="url(#glow)" />
-
-                  <line x1="600" y1="300" x2="1000" y2="180" stroke="url(#line-gradient)" strokeWidth="2" opacity="0.8" />
-                  <circle cx="1000" cy="180" r="8" fill="#ec4899" filter="url(#glow)" />
-
-                  <line x1="200" y1="450" x2="1000" y2="600" stroke="url(#line-gradient)" strokeWidth="1.5" opacity="0.6" />
-                  <circle cx="200" cy="450" r="7" fill="#8b5cf6" filter="url(#glow)" />
-                  <circle cx="1000" cy="600" r="7" fill="#ec4899" filter="url(#glow)" />
-                </svg>
-              </div>
-
-              {/* Skill Cards with Category Headers */}
+              {/* Skill Cards */}
               {Object.entries(skills).map(([category, data]) => {
                 const Icon = categoryIcons[category as keyof typeof categoryIcons];
                 return (
@@ -208,8 +177,7 @@ const Skills = () => {
                               </div>
                               <Progress
                                 value={skill.level}
-                                className="h-5 bg-white/10 border border-white/20"
-                                indicatorClassName="bg-gradient-to-r from-primary to-accent shadow-lg"
+                                className="h-5 bg-white/10 border border-white/20 [&>div]:bg-gradient-to-r [&>div]:from-primary [&>div]:to-accent [&>div]:shadow-lg"
                               />
                               <p className="mt-4 text-foreground/80 font-medium drop-shadow">
                                 {skill.level >= 90 ? 'Expert' : skill.level >= 80 ? 'Advanced' : 'Proficient'}
@@ -294,7 +262,10 @@ const Skills = () => {
                                 <h4 className="font-semibold text-lg">{skill.name}</h4>
                                 <span className="text-3xl font-bold text-primary">{skill.level}%</span>
                               </div>
-                              <Progress value={skill.level} className="h-4" indicatorClassName="bg-gradient-to-r from-primary to-accent" />
+                              <Progress 
+                                value={skill.level} 
+                                className="h-4 [&>div]:bg-gradient-to-r [&>div]:from-primary [&>div]:to-accent" 
+                              />
                               <p className="mt-3 text-sm text-muted-foreground font-medium">
                                 {skill.level >= 90 ? 'Expert' : skill.level >= 80 ? 'Advanced' : 'Proficient'}
                               </p>
