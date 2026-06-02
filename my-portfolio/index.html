@@ -22,6 +22,18 @@
     <meta name="twitter:card" content="summary_large_image" />
 
     <title>Kweyu Delron Muyale — Software & Network Engineer</title>
+
+    <!-- Apply theme before paint to avoid a flash. Light is the default;
+         dark only when the visitor has explicitly opted in. -->
+    <script>
+      (function () {
+        try {
+          if (localStorage.getItem('darkMode') === 'true') {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
