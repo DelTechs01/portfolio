@@ -56,6 +56,7 @@ export default function Contact() {
   });
   const [sending, setSending] = useState(false);
   const [justSent, setJustSent] = useState(false);
+  const [honeypot, setHoneypot] = useState(''); // spam trap — humans never fill this
 
   useDocumentMeta({
     title: 'Contact',
@@ -64,6 +65,9 @@ export default function Contact() {
 
   const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Honeypot: if this hidden field is filled, it's a bot — silently ignore.
+    if (honeypot) return;
 
     if (!formData.name || !formData.email || !formData.message) {
       toast.error('Please fill in all required fields');
