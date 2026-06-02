@@ -49,7 +49,7 @@ const About = () => {
                   transition={{ delay: 0.6, duration: 0.8 }}
                   className="absolute -bottom-8 -right-8 bg-gradient-to-br from-primary to-accent rounded-3xl p-8 shadow-2xl border border-border/50"
                 >
-                  <p className="text-6xl font-extrabold text-primary-foreground">3+</p>
+                  <p className="text-6xl font-extrabold text-primary-foreground">4+</p>
                   <p className="text-lg font-semibold text-primary-foreground/90">Years of Hands-On Experience</p>
                 </motion.div>
               </div>

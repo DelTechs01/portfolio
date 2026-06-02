@@ -51,7 +51,7 @@ export default function AIAssistant() {
     }
 
     if (lowerMessage.includes('skill') || lowerMessage.includes('tech')) {
-      return 'Kweyu excels in Full-Stack Development using React, TypeScript, Node.js, Python (Django/Flask), AI/ML integration, and cybersecurity. He has 3+ years building secure, scalable apps with modern tools like AWS, Docker, TensorFlow, and M-Pesa integrations.';
+      return 'Kweyu excels in Full-Stack Development using React, TypeScript, Node.js, Python (Django/Flask), AI/ML integration, and cybersecurity. He has 4+ years building secure, scalable apps with modern tools like AWS, Docker, TensorFlow, and M-Pesa integrations.';
     }
 
     if (lowerMessage.includes('project') || lowerMessage.includes('portfolio')) {
@@ -71,7 +71,7 @@ export default function AIAssistant() {
     }
 
     if (lowerMessage.includes('experience') || lowerMessage.includes('background')) {
-      return 'Kweyu has 3+ years as a Full-Stack & AI Developer. He’s pursuing a B.S. in Software Engineering at Kirinyaga University and holds multiple certifications in AWS, Google Cloud, Ethical Hacking, and TensorFlow.';
+      return 'Kweyu has 4+ years as a Full-Stack & AI Developer. He’s pursuing a B.S. in Software Engineering at Kirinyaga University and holds multiple certifications in AWS, Google Cloud, Ethical Hacking, and TensorFlow.';
     }
 
     return "That's an interesting question! Feel free to explore the portfolio sections or send a direct message for more personalized details. 😊";
