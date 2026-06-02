@@ -5,53 +5,17 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { useDocumentMeta } from '@/hooks/useDocumentMeta';
+import type { CaseStudy as CaseStudyType } from '@/data/caseStudies';
 
 interface CaseStudyProps {
-  project: {
-    id: string;
-    title: string;
-    description: string;
-    image: string;
-    tags: string[];
-    problem: string;
-    solution: string;
-    architecture: {
-      description: string;
-      diagram: string;
-      components: string[];
-    };
-    techDecisions: {
-      decision: string;
-      rationale: string;
-      impact: string;
-    }[];
-    results: {
-      metric: string;
-      before: string;
-      after: string;
-      improvement: string;
-    }[];
-    challenges: {
-      challenge: string;
-      solution: string;
-    }[];
-    improvements: string[];
-    screenshots: string[];
-    timeline: string;
-    teamSize: string;
-    role: string;
-    github?: string;
-    demo?: string;
-    testimonial?: {
-      content: string;
-      author: string;
-      role: string;
-    };
-  };
+  project: CaseStudyType;
   onBack: () => void;
 }
 
 const CaseStudy = ({ project, onBack }: CaseStudyProps) => {
+  useDocumentMeta({ title: project.title, description: project.description });
+
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">

@@ -1,8 +1,15 @@
 import { motion } from 'framer-motion';
 import { Users, Zap, Shield, Code2, Brain, Lock, Globe } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import { useDocumentMeta } from '@/hooks/useDocumentMeta';
 
 const About = () => {
+  useDocumentMeta({
+    title: 'About',
+    description:
+      'About Kweyu Delron Muyale — Software Engineering student, IT support professional, and network engineer focused on secure, scalable systems.',
+  });
+
   return (
     <div className="min-h-screen bg-background">
       {/* Main Content Section */}
