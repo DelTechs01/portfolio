@@ -68,7 +68,7 @@ export const caseStudiesData = [
     timeline: 'Ongoing',
     teamSize: 'Solo / small team',
     role: 'Full-Stack Developer',
-    demo: '' // TODO: add live link
+    demo: 'https://eastmedic-hms.vercel.app/'
   },
   {
     id: 'zynthos-orchestrator',
@@ -201,7 +201,7 @@ export const caseStudiesData = [
     timeline: 'Ongoing',
     teamSize: 'Solo / small team',
     role: 'Full-Stack Developer',
-    demo: '' // TODO: add live link
+    demo: 'https://www.campustribe.tech/'
   },
   {
     id: 'uniconnectke',
