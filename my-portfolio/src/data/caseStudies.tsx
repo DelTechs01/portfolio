@@ -1,4 +1,208 @@
 export const caseStudiesData = [
+  // ── Featured projects ───────────────────────────────────────────────
+  // NOTE: Add your live links in the `demo` field of each (currently '').
+  // Descriptions/results are drafts written from the project names — tweak
+  // the copy to match the real projects.
+  {
+    id: 'eastmedic-hms',
+    title: 'EastMedic HMS — Hospital Management System',
+    description: 'A comprehensive hospital management system that digitizes patient records, appointments, billing, pharmacy, and inventory for clinics and mid-sized hospitals.',
+    image: 'https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=800&q=80',
+    tags: ['React', 'TypeScript', 'Node.js', 'PostgreSQL', 'Role-Based Access'],
+    problem: 'Clinics relied on paper records and disconnected spreadsheets, causing slow patient check-ins, billing errors, lost histories, and no real-time visibility into pharmacy stock.',
+    solution: 'Built a unified HMS with electronic medical records, appointment scheduling, automated billing, pharmacy/inventory tracking, and role-based dashboards for doctors, nurses, pharmacists, and administrators.',
+    architecture: {
+      description: 'Modular web application with a typed REST API, a relational database, and role-based access control protecting sensitive patient data.',
+      diagram: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80',
+      components: [
+        'React + TypeScript frontend with role-specific dashboards',
+        'Node.js REST API with input validation and audit logging',
+        'PostgreSQL for patient records, billing, and inventory',
+        'Role-Based Access Control (RBAC) for staff permissions',
+        'Appointment scheduling with reminders and notifications',
+        'Pharmacy and stock management with low-stock alerts',
+        'Encrypted storage for sensitive medical data'
+      ]
+    },
+    techDecisions: [
+      {
+        decision: 'Adopted role-based access control from day one',
+        rationale: 'Healthcare data is sensitive and access must be scoped per staff role.',
+        impact: 'Reduced risk of unauthorised access and simplified compliance.'
+      },
+      {
+        decision: 'Chose a relational database (PostgreSQL)',
+        rationale: 'Patient, billing, and inventory data is highly relational and needs strong integrity.',
+        impact: 'Consistent records and reliable cross-department reporting.'
+      },
+      {
+        decision: 'TypeScript across the stack',
+        rationale: 'Strong typing reduces runtime errors in a domain where mistakes are costly.',
+        impact: 'Fewer production bugs and safer refactors.'
+      }
+    ],
+    results: [
+      { metric: 'Patient Check-in', before: 'Manual', after: 'Digital', improvement: 'Faster, paperless intake' },
+      { metric: 'Billing Errors', before: 'Frequent', after: 'Automated', improvement: 'Fewer manual mistakes' },
+      { metric: 'Records Access', before: 'Scattered', after: 'Centralised', improvement: 'Single source of truth' }
+    ],
+    challenges: [
+      {
+        challenge: 'Protecting sensitive patient data',
+        solution: 'Implemented RBAC, encryption at rest, and audit trails for every record access.'
+      },
+      {
+        challenge: 'Keeping pharmacy stock in sync with dispensing',
+        solution: 'Linked dispensing actions to live inventory with automatic low-stock alerts.'
+      }
+    ],
+    improvements: [
+      'Add lab results and medical imaging integration',
+      'Offline-first mode for low-connectivity facilities',
+      'Insurance and claims processing module'
+    ],
+    screenshots: [
+      'https://images.unsplash.com/photo-1551076805-e1869033e561?w=800&q=80',
+      'https://images.unsplash.com/photo-1504439468489-c8920d796a29?w=800&q=80'
+    ],
+    timeline: 'Ongoing',
+    teamSize: 'Solo / small team',
+    role: 'Full-Stack Developer',
+    demo: '' // TODO: add live link
+  },
+  {
+    id: 'zynthos-orchestrator',
+    title: 'Zynthos Orchestrator Labs — Workflow Automation Platform',
+    description: 'A workflow orchestration platform for defining, scheduling, and monitoring automated jobs and multi-step pipelines across services.',
+    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80',
+    tags: ['Python', 'FastAPI', 'Docker', 'Redis', 'React'],
+    problem: 'Teams ran critical scripts and integrations manually or via scattered cron jobs, with no central visibility, retries, or alerting when something failed.',
+    solution: 'Created an orchestration platform where users define pipelines as steps, schedule them, and monitor runs in real time with automatic retries, logging, and failure alerts.',
+    architecture: {
+      description: 'Containerised microservice architecture with an API layer, a task queue, worker processes, and a real-time monitoring dashboard.',
+      diagram: 'https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=800&q=80',
+      components: [
+        'FastAPI backend exposing pipeline and run APIs',
+        'Redis-backed task queue for distributing jobs',
+        'Worker processes executing pipeline steps',
+        'React dashboard for real-time run monitoring',
+        'Retry, timeout, and alerting policies per step',
+        'Centralised logging and full run history',
+        'Dockerised services for reproducible deployments'
+      ]
+    },
+    techDecisions: [
+      {
+        decision: 'Queue-based execution with Redis',
+        rationale: 'Decouples scheduling from execution and lets workers scale independently.',
+        impact: 'Reliable job distribution under load.'
+      },
+      {
+        decision: 'Containerised every service with Docker',
+        rationale: 'Reproducible environments across development and production.',
+        impact: 'Faster, safer deployments.'
+      },
+      {
+        decision: 'FastAPI for the backend',
+        rationale: 'Async support and automatic API docs suit a job-heavy system.',
+        impact: 'High throughput and a great developer experience.'
+      }
+    ],
+    results: [
+      { metric: 'Job Scheduling', before: 'Manual', after: 'Automated', improvement: 'Hands-off, repeatable runs' },
+      { metric: 'Failure Visibility', before: 'None', after: 'Real-time', improvement: 'Instant alerts on failures' },
+      { metric: 'Reliability', before: 'Best-effort', after: 'Retried', improvement: 'Automatic recovery from transient errors' }
+    ],
+    challenges: [
+      {
+        challenge: 'Handling failed and stuck jobs gracefully',
+        solution: 'Added configurable retries, timeouts, and dead-letter handling per step.'
+      },
+      {
+        challenge: 'Scaling workers with demand',
+        solution: 'Used a queue-based design so workers scale horizontally without code changes.'
+      }
+    ],
+    improvements: [
+      'Visual drag-and-drop pipeline builder',
+      'Role-based access for teams',
+      'Pluggable integrations marketplace'
+    ],
+    screenshots: [
+      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
+      'https://images.unsplash.com/photo-1607799279861-4dd421887fb3?w=800&q=80'
+    ],
+    timeline: 'Ongoing',
+    teamSize: 'Solo / small team',
+    role: 'Backend & Platform Engineer',
+    demo: '' // TODO: add live link
+  },
+  {
+    id: 'campustribe-social',
+    title: 'CampusTribe Social — Campus Community Platform',
+    description: 'A social platform for campus communities, with verified student groups ("tribes"), event feeds, and real-time discussions.',
+    image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80',
+    tags: ['React', 'Flask', 'PostgreSQL', 'WebSocket', 'REST API'],
+    problem: 'Students lacked a dedicated, trusted space to find campus groups, discover events, and discuss topics without the noise of general social media.',
+    solution: 'Built a campus-focused social platform with verified communities, event feeds, real-time group chat, and moderation tools that keep discussions relevant and safe.',
+    architecture: {
+      description: 'React frontend with a Flask REST API, PostgreSQL storage, and WebSocket connections powering real-time chat and notifications.',
+      diagram: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80',
+      components: [
+        'React frontend with feed, groups, and events',
+        'Flask REST API for content and membership',
+        'PostgreSQL for users, tribes, posts, and events',
+        'WebSocket server for real-time chat and notifications',
+        'Student verification and community moderation',
+        'Event creation, RSVPs, and reminders'
+      ]
+    },
+    techDecisions: [
+      {
+        decision: 'Community-first ("tribe") data model',
+        rationale: 'Campus life revolves around groups, so communities are the core entity.',
+        impact: 'Natural organisation of content and easier discovery.'
+      },
+      {
+        decision: 'WebSockets for real-time interaction',
+        rationale: 'Discussions and notifications feel alive without page reloads.',
+        impact: 'Higher engagement and responsiveness.'
+      },
+      {
+        decision: 'Flask for a lightweight, fast-iterating backend',
+        rationale: 'Kept the API simple and quick to evolve.',
+        impact: 'Rapid feature delivery.'
+      }
+    ],
+    results: [
+      { metric: 'Community Building', before: 'Fragmented', after: 'Centralised', improvement: 'Verified tribes in one place' },
+      { metric: 'Event Discovery', before: 'Word of mouth', after: 'In-app feed', improvement: 'Higher event turnout' },
+      { metric: 'Engagement', before: 'Low', after: 'Real-time', improvement: 'Active group discussions' }
+    ],
+    challenges: [
+      {
+        challenge: 'Keeping communities authentic and safe',
+        solution: 'Added student verification plus reporting and moderation tools.'
+      },
+      {
+        challenge: 'Real-time messaging at scale',
+        solution: 'Optimised WebSocket broadcasting and connection handling.'
+      }
+    ],
+    improvements: [
+      'Native mobile apps for iOS and Android',
+      'AI-assisted content moderation',
+      'Cross-campus community discovery'
+    ],
+    screenshots: [
+      'https://images.unsplash.com/photo-1496469888073-80de7e952517?w=800&q=80',
+      'https://images.unsplash.com/photo-1543269865-cbf427effbad?w=800&q=80'
+    ],
+    timeline: 'Ongoing',
+    teamSize: 'Solo / small team',
+    role: 'Full-Stack Developer',
+    demo: '' // TODO: add live link
+  },
   {
     id: 'uniconnectke',
     title: 'UniConnectKE - University Social Platform',
