@@ -90,54 +90,6 @@ const Education = ({ onBack }: EducationProps) => {
       fullDescription: 'This certificate above verifies that Kweyu Delron successfully completed the course Python And Flask Framework Complete Course on 11/08/2024 as taught by Horizon Tech on Udemy. The certificate indicates the entire course was completed as validated by the student. The course duration represents the total video hours of the course at time of most recent completion.',
       message: 'Python drives intelligent automation and data-driven software solutions.',
       imageUrl: '/Udemy-Flask-Certificate.jpg'
-    },
-    {
-      id: 5,
-      name: 'TensorFlow Developer Certificate',
-      issuer: 'Google & TensorFlow',
-      issuerLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Tensorflow_logo.svg/1280px-Tensorflow_logo.svg.png',
-      category: 'AI/ML',
-      issueDate: 'November 2023',
-      shortDescription: 'Proficient in building production-ready ML models with TensorFlow.',
-      fullDescription: 'Validates hands-on experience in image classification, NLP, time series, and model deployment.',
-      message: 'Committed to shaping the future with AI.',
-      imageUrl: 'https://placehold.co/1200x800/FF6F00/ffffff/png?text=TensorFlow+Developer+Certificate&font=montserrat'
-    },
-    {
-      id: 6,
-      name: 'AI & Machine Learning Specialization',
-      issuer: 'Coursera (Stanford University)',
-      issuerLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Coursera_logo.svg/1200px-Coursera_logo.svg.png',
-      category: 'AI/ML',
-      issueDate: 'August 2022',
-      shortDescription: 'Comprehensive coverage of ML fundamentals to advanced topics.',
-      fullDescription: 'Andrew Ng\'s renowned specialization covering supervised/unsupervised learning, deep learning, and best practices.',
-      message: 'Strong foundational knowledge driving practical AI solutions.',
-      imageUrl: 'https://placehold.co/1200x800/0066FF/ffffff/png?text=Coursera+Machine+Learning+Specialization&font=montserrat'
-    },
-    {
-      id: 7,
-      name: 'Professional Scrum Master I (PSM I)',
-      issuer: 'Scrum.org',
-      issuerLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Scrum_Alliance_logo.svg/1200px-Scrum_Alliance_logo.svg.png',
-      category: 'Development',
-      issueDate: 'April 2023',
-      shortDescription: 'Mastery of the Scrum framework and agile principles.',
-      fullDescription: 'Certified understanding of Scrum roles, events, and artifacts.',
-      message: 'Delivering value iteratively with high-performing teams.',
-      imageUrl: 'https://placehold.co/1200x800/ffffff/000000/png?text=Professional+Scrum+Master+I&font=montserrat'
-    },
-    {
-      id: 8,
-      name: 'MongoDB Certified Developer',
-      issuer: 'MongoDB University',
-      issuerLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/MongoDB_Logo.svg/1280px-MongoDB_Logo.svg.png',
-      category: 'Development',
-      issueDate: 'February 2023',
-      shortDescription: 'Expert in MongoDB database development and design.',
-      fullDescription: 'Proficiency in NoSQL concepts, aggregation framework, and schema design.',
-      message: 'Building flexible, scalable data layers for modern applications.',
-      imageUrl: 'https://placehold.co/1200x800/47A248/ffffff/png?text=MongoDB+Certified+Developer&font=montserrat'
     }
   ];
 
@@ -151,7 +103,7 @@ const Education = ({ onBack }: EducationProps) => {
     { label: 'Degrees', value: degrees.length, icon: GraduationCap },
     { label: 'Certifications', value: certifications.length, icon: Award },
     { label: 'Years Learning', value: '3+', icon: BookOpen },
-    { label: 'Publications', value: '2', icon: Star }
+    { label: 'Specializations', value: '4', icon: Star }
   ];
 
   const timelineItems = [
