@@ -9,9 +9,15 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { useDocumentMeta } from '@/hooks/useDocumentMeta';
 
 const Education = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  useDocumentMeta({
+    title: 'Education & Certifications',
+    description:
+      'Academic background and professional certifications in software development, blockchain, networking, and more.',
+  });
 
   const degrees = [
     {

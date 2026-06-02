@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader } from '@/components/ui/
 import { Badge } from '@/components/ui/badge';
 import { useLocation } from 'wouter';
 import { caseStudiesData } from '@/data/caseStudies';
+import { useDocumentMeta } from '@/hooks/useDocumentMeta';
 
 interface CaseStudiesProps {
   onSelectProject: (id: string) => void;
@@ -12,6 +13,11 @@ interface CaseStudiesProps {
 
 const CaseStudies = ({ onSelectProject }: CaseStudiesProps) => {
   const [, setLocation] = useLocation();
+  useDocumentMeta({
+    title: 'Case Studies',
+    description:
+      'Featured projects and results — real-world impact through secure, scalable, and modern engineering.',
+  });
 
   const metricIcons: Record<string, React.ReactNode> = {
     Performance: <Zap className="w-5 h-5" />,

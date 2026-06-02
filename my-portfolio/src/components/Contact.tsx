@@ -34,6 +34,7 @@ import {
 } from '@/components/ui/select';
 import { Separator } from '@/components/ui/separator';
 import { toast } from 'sonner';
+import { useDocumentMeta } from '@/hooks/useDocumentMeta';
 
 interface FormData {
   name: string;
@@ -57,6 +58,11 @@ export default function Contact() {
   });
   const [sending, setSending] = useState(false);
   const [justSent, setJustSent] = useState(false);
+
+  useDocumentMeta({
+    title: 'Contact',
+    description: "Get in touch with Kweyu Delron Muyale — let's discuss your project.",
+  });
 
   const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
