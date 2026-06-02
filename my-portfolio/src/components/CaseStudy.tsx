@@ -202,7 +202,10 @@ const CaseStudy = ({ project, onBack }: CaseStudyProps) => {
                       <TrendingUp className="w-6 h-6 text-green-500" />
                       <span className="text-xl font-bold text-green-500">{result.improvement}</span>
                     </div>
-                    <Progress value={parseInt(result.improvement)} className="h-3" />
+                    <Progress
+                      value={Number.isNaN(parseInt(result.improvement, 10)) ? 100 : parseInt(result.improvement, 10)}
+                      className="h-3"
+                    />
                   </motion.div>
                 ))}
               </div>

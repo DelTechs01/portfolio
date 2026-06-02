@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ChevronLeft, TrendingUp, Users, Zap, Shield, Code2, Brain, Lock, Globe } from 'lucide-react';
+import { ChevronLeft, Users, Zap, Shield, Code2, Brain, Lock, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { useLocation } from 'wouter';
