@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
-  ChevronLeft,
   Mail,
   Phone,
   MapPin,
@@ -33,7 +32,6 @@ import {
 } from '@/components/ui/select';
 import { Separator } from '@/components/ui/separator';
 import { toast } from 'sonner';
-import { useLocation } from 'wouter';
 
 interface FormData {
   name: string;

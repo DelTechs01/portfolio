@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ChevronLeft, CheckCircle2, Server, HeadphonesIcon, Network, Shield, Blocks, Wifi, Tv } from 'lucide-react';
+import { CheckCircle2, Server, HeadphonesIcon, Network, Shield, Blocks, Tv } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
@@ -112,27 +112,6 @@ const Services = () => {
         <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-cyan-400/20 to-blue-600/20 rounded-full blur-3xl animate-pulse" />
         <div className="absolute bottom-32 right-20 w-80 h-80 bg-gradient-to-tr from-purple-500/30 to-pink-500/30 rounded-full blur-3xl animate-pulse delay-700" />
       </div>
-
-      {/* Sticky Header */}
-      <motion.div
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        className="sticky top-0 z-50 border-b border-border/40 backdrop-blur-xl bg-background/90"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
-          <div className="flex items-center gap-5">
-            <Button variant="ghost" size="icon" onClick={() => setLocation('/')}>
-              <ChevronLeft className="w-6 h-6" />
-            </Button>
-            <div>
-              <h1 className="text-3xl font-extrabold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-                Services
-              </h1>
-              <p className="text-muted-foreground">Professional solutions tailored to your needs</p>
-            </div>
-          </div>
-        </div>
-      </motion.div>
 
       {/* Main Content */}
       <section className="py-28 lg:py-40 relative z-10">

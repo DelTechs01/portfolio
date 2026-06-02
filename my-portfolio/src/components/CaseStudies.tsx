@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ChevronLeft, ExternalLink, Zap, Shield, TrendingUp, Clock } from 'lucide-react';
+import { ExternalLink, Zap, Shield, TrendingUp, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -29,27 +29,6 @@ const CaseStudies = ({ onSelectProject }: CaseStudiesProps) => {
           50% { background-position: 100% 50%; }
         }
       `}</style>
-
-      {/* Sticky Header */}
-      <motion.div
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        className="sticky top-0 z-50 border-b border-border/40 backdrop-blur-xl bg-background/90"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex items-center gap-5">
-            <Button variant="ghost" size="icon" onClick={() => setLocation('/')}>
-              <ChevronLeft className="w-7 h-7" />
-            </Button>
-            <div>
-              <h1 className="text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-                Case Studies
-              </h1>
-              <p className="text-muted-foreground mt-1">Real-world impact through secure, innovative solutions</p>
-            </div>
-          </div>
-        </div>
-      </motion.div>
 
       {/* Main Content */}
       <section className="py-28 lg:py-40 bg-muted/30 relative overflow-hidden">
