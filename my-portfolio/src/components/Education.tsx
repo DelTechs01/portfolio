@@ -141,7 +141,7 @@ const Education = ({ onBack }: EducationProps) => {
     }
   ];
 
-  const categories = ['all', 'Programming','Cloud', 'Security', 'AI/ML', 'Development', 'Blockchain Technology'] as const;
+  const categories = ['all', ...Array.from(new Set(certifications.map((c) => c.category)))];
 
   const filteredCertifications = selectedCategory === 'all' 
     ? certifications 

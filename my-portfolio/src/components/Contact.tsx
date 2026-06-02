@@ -116,8 +116,8 @@ export default function Contact() {
                     <div className="mb-8 flex justify-center">
                       <div className="relative h-32 w-32 overflow-hidden rounded-full border-4 border-primary/20 shadow-lg ring-2 ring-accent/30">
                         <img
-                          src="https://placehold.co/128x128/png?text=DK&font=montserrat" // Replace with actual photo URL
-                          alt="Delron Kweyu Profile"
+                          src="/Profile.jpg"
+                          alt="Kweyu Delron Muyale"
                           className="h-full w-full object-cover"
                           loading="lazy"
                         />
