@@ -1,6 +1,11 @@
 import { useEffect } from 'react';
 import { Route, Router, Switch, useLocation } from 'wouter';
 import { AnimatePresence, motion } from 'framer-motion';
+import Navbar from '@/components/Navbar';
+import BackToTop from '@/components/BackToTop';
+import AccessibilityControls from '@/components/AccessibilityControls';
+import AIAssistant from '@/components/AIAssistant';
+import PersonalizationEngine from '@/components/PersonalizationEngine';
 import Portfolio from '@/components/Portfolio';
 import CaseStudy from '@/components/CaseStudy';
 import Education from '@/components/Education';
@@ -13,7 +18,7 @@ import { caseStudiesData } from '@/data/caseStudies';
 
 function NotFound({ onHome }: { onHome: () => void }) {
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="min-h-[70vh] flex items-center justify-center">
       <div className="text-center">
         <h1 className="text-4xl font-bold mb-4">404</h1>
         <p className="text-muted-foreground mb-6">Page not found</p>
@@ -38,6 +43,13 @@ function App() {
 
   return (
     <Router base="/">
+      {/* Persistent chrome — rendered outside the transition so it never unmounts */}
+      <Navbar />
+      <AccessibilityControls />
+      <AIAssistant />
+      <PersonalizationEngine />
+      <BackToTop />
+
       <AnimatePresence mode="wait">
         <motion.div
           key={location}
@@ -73,7 +85,7 @@ function App() {
               <Contact />
             </Route>
             <Route path="/education">
-              <Education onBack={goHome} />
+              <Education />
             </Route>
             <Route path="/">
               <Portfolio onSelectProject={handleSelectProject} />

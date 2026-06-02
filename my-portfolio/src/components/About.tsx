@@ -1,35 +1,10 @@
 import { motion } from 'framer-motion';
-import { ChevronLeft, Users, Zap, Shield, Code2, Brain, Lock, Globe } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Users, Zap, Shield, Code2, Brain, Lock, Globe } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
-import { useLocation } from 'wouter';
 
 const About = () => {
-  const [, setLocation] = useLocation();
-
   return (
     <div className="min-h-screen bg-background">
-      {/* Sticky Header with Gradient Accent */}
-      <motion.div 
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        className="sticky top-0 z-50 border-b border-border/40 backdrop-blur-xl bg-background/90"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
-          <div className="flex items-center gap-5">
-            <Button variant="ghost" size="icon" onClick={() => setLocation('/')}>
-              <ChevronLeft className="w-6 h-6" />
-            </Button>
-            <div>
-              <h1 className="text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-                About Me
-              </h1>
-              <p className="text-muted-foreground">Crafting secure and innovative digital solutions</p>
-            </div>
-          </div>
-        </div>
-      </motion.div>
-
       {/* Main Content Section */}
       <section className="py-28 lg:py-40 bg-muted/30 relative overflow-hidden">
         {/* Subtle Background Glows */}

@@ -1,19 +1,12 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useLocation } from 'wouter';
-import { 
-  Moon, Sun, ChevronDown, Code2, Sparkles, Zap, Shield, Users, Terminal as TerminalIcon, Menu, X
-} from 'lucide-react';
+import { ChevronDown, Code2, Sparkles, Zap, Shield, Users, Terminal as TerminalIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import AIAssistant from '@/components/AIAssistant';
-import AccessibilityControls from '@/components/AccessibilityControls';
-import PersonalizationEngine from '@/components/PersonalizationEngine';
 import Terminal from '@/components/Terminal';
-import { useTheme } from '@/hooks/useTheme';
+import { navItems } from '@/components/Navbar';
 
 interface PortfolioProps {
   onSelectProject: (id: string) => void;
@@ -21,30 +14,10 @@ interface PortfolioProps {
 
 const Portfolio = ({ onSelectProject }: PortfolioProps) => {
   const [, setLocation] = useLocation();
-  const { isDark, toggle: toggleDarkMode } = useTheme();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const navigateTo = (path: string) => {
-    setLocation(path);
-    setMobileMenuOpen(false);
-  };
-
-  const navItems = [
-    { label: 'About', path: '/about' },
-    { label: 'Skills', path: '/skills' },
-    { label: 'Case Studies', path: '/case-studies' },
-    { label: 'Services', path: '/services' },
-    { label: 'Education', path: '/education' },
-    { label: 'Contact', path: '/contact' }
-  ];
+  const navigateTo = (path: string) => setLocation(path);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <AccessibilityControls />
-      <AIAssistant />
-      <PersonalizationEngine />
-
-      {/* Inline global styles moved to regular <style> without jsx/global */}
       <style>{`
         @keyframes gradient-x {
           0%, 100% { background-position: 0% 50%; }
@@ -56,131 +29,32 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
         }
       `}</style>
 
-      {/* Enhanced Navbar */}
-      <motion.nav 
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        className="fixed top-0 left-0 right-0 z-50 border-b border-border/40 backdrop-blur-xl bg-background/90"
-      >
-        <div className="mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-14 md:h-16">
-            <motion.div 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="text-xl md:text-2xl font-bold cursor-pointer overflow-hidden"
-              onClick={() => navigateTo('/')}
-            >
-              <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent transition-all duration-700 hover:from-pink-500 hover:via-purple-500 hover:to-cyan-500">
-                Kweyu
-              </span>
-              <span className="text-primary">{' {Delron}'}</span>
-            </motion.div>
-
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
-              {navItems.map((item) => (
-                <button
-                  key={item.label}
-                  onClick={() => navigateTo(item.path)}
-                  className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors relative group py-2"
-                >
-                  {item.label}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-accent transition-all group-hover:w-full" />
-                </button>
-              ))}
-
-              <Button 
-                variant="ghost" 
-                size="icon" 
-                onClick={toggleDarkMode}
-                className="rounded-full h-10 w-10"
-              >
-                {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-              </Button>
-            </div>
-
-            {/* Mobile Navigation */}
-            <div className="flex items-center gap-3 md:hidden">
-              <Button 
-                variant="ghost" 
-                size="icon" 
-                onClick={toggleDarkMode}
-                className="rounded-full h-10 w-10"
-              >
-                {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-              </Button>
-
-              <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-                <SheetTrigger asChild>
-                  <Button variant="ghost" size="icon" className="rounded-full h-10 w-10">
-                    <Menu className="h-6 w-6" />
-                  </Button>
-                </SheetTrigger>
-
-                <SheetContent side="right" className="w-80 bg-background/95 backdrop-blur-xl border-l border-border/50">
-                  <div className="flex flex-col h-full pt-6 px-6">
-                    <div className="flex items-center justify-between mb-12">
-                      <h3 className="text-2xl font-bold">
-                        Kweyu<span className="bg-gradient-to-r from-blue-500 to-pink-500 bg-clip-text text-transparent"> Delron</span>
-                      </h3>
-                      <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(false)}>
-                        <X className="h-6 w-6" />
-                      </Button>
-                    </div>
-
-                    <nav className="flex flex-col space-y-1">
-                      {navItems.map((item) => (
-                        <button
-                          key={item.label}
-                          onClick={() => navigateTo(item.path)}
-                          className="text-left text-lg font-medium py-4 px-3 rounded-lg hover:bg-accent/50 transition-colors"
-                        >
-                          {item.label}
-                        </button>
-                      ))}
-                    </nav>
-
-                    <div className="mt-auto pb-8">
-                      <Separator className="my-8" />
-                      <p className="text-sm text-muted-foreground">
-                        Secure • Scalable • Innovative
-                      </p>
-                    </div>
-                  </div>
-                </SheetContent>
-              </Sheet>
-            </div>
-          </div>
-        </div>
-      </motion.nav>
-
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-14 md:pt-16">
+      <section className="relative min-h-[calc(100vh-3.5rem)] md:min-h-[calc(100vh-4rem)] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-purple-500/5 to-pink-500/10 dark:from-primary/20 dark:via-purple-600/10 dark:to-pink-600/10" />
         <div className="absolute inset-0 opacity-40">
           <div className="absolute top-10 left-10 w-96 h-96 bg-gradient-to-br from-cyan-400/30 to-blue-600/30 rounded-full blur-3xl animate-pulse" />
           <div className="absolute bottom-20 right-10 w-80 h-80 bg-gradient-to-tr from-purple-500/40 to-pink-500/40 rounded-full blur-3xl animate-pulse delay-700" />
           <div className="absolute top-1/3 right-1/3 w-64 h-64 bg-gradient-to-bl from-accent/30 to-primary/30 rounded-full blur-3xl animate-pulse delay-1000" />
         </div>
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-20">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, ease: "easeOut" }}
+            transition={{ duration: 1.2, ease: 'easeOut' }}
           >
             <Badge variant="secondary" className="mb-8 px-6 py-3 text-sm font-medium backdrop-blur-md">
               <Sparkles className="w-4 h-4 mr-2" />
               Available for Freelance & Full-time Opportunities
             </Badge>
-            
+
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-8 leading-tight">
               <span className="inline-block bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-gradient-x">
                 Kweyu Delron Muyale
               </span>
             </h1>
-            
+
             <p className="text-2xl md:text-3xl text-muted-foreground mb-6 font-light tracking-wide">
               Software Engineering Student • IT Solutions & Network Engineer
             </p>
@@ -207,19 +81,19 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
                 <span className="font-bold">7+ Successful Projects</span>
               </div>
             </div>
-            
+
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 className="text-lg px-12 py-7 shadow-xl bg-primary hover:bg-primary/90 group"
                 onClick={() => navigateTo('/case-studies')}
               >
                 Explore Case Studies
                 <Code2 className="ml-3 h-6 w-6 group-hover:rotate-12 transition-transform" />
               </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
+              <Button
+                size="lg"
+                variant="outline"
                 className="text-lg px-12 py-7 border-2 group backdrop-blur-md"
                 onClick={() => navigateTo('/contact')}
               >
@@ -230,7 +104,7 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
 
             <motion.div
               animate={{ y: [0, 15, 0] }}
-              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
               className="mt-24 cursor-pointer"
               onClick={() => navigateTo('/about')}
             >
@@ -254,7 +128,8 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
               <h2 className="text-4xl md:text-5xl font-bold">Interactive Terminal</h2>
             </div>
             <p className="text-lg text-muted-foreground mb-10 max-w-3xl">
-              Dive into my skills and experience through an interactive command-line interface. Type <code className="bg-background/80 px-3 py-1.5 rounded-lg font-mono">help</code> to begin.
+              Dive into my skills and experience through an interactive command-line interface. Type{' '}
+              <code className="bg-background/80 px-3 py-1.5 rounded-lg font-mono">help</code> to begin.
             </p>
             <Terminal />
           </motion.div>
@@ -271,7 +146,7 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
               </h3>
               <p className="text-muted-foreground">Building the future, one secure line of code at a time.</p>
             </div>
-            
+
             <div>
               <h4 className="font-semibold mb-5 text-lg">Navigation</h4>
               <ul className="space-y-4">
@@ -310,7 +185,7 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
               </div>
             </div>
           </div>
-          
+
           <Separator className="mb-12" />
           <div className="mb-8 p-6 bg-background/50 rounded-lg border border-border/50 backdrop-blur-sm">
             <div className="grid md:grid-cols-3 gap-6 mb-6">
@@ -322,7 +197,7 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
                   </a>
                 </div>
               </div>
-              
+
               <div className="flex items-center gap-4">
                 <div>
                   <p className="text-sm text-muted-foreground">Phone</p>
@@ -340,7 +215,7 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
               </div>
             </div>
           </div>
-          
+
           <Separator className="mb-12" />
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <p className="text-muted-foreground text-sm">© 2025 Kweyu Delron Muyale. All rights reserved.</p>
@@ -357,16 +232,6 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
           </div>
         </div>
       </footer>
-
-      {/* Back to Top Button — left side to avoid the AI Assistant toggle (bottom-right) */}
-      <Button
-        className="fixed bottom-8 left-8 rounded-full shadow-2xl z-40 bg-gradient-to-br from-primary to-accent hover:opacity-90 text-primary-foreground"
-        size="icon"
-        aria-label="Back to top"
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-      >
-        <ChevronDown className="w-7 h-7 rotate-180" />
-      </Button>
     </div>
   );
 };
