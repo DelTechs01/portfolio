@@ -219,7 +219,7 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
             <div className="flex flex-wrap justify-center gap-6 mb-12">
               <div className="flex items-center gap-3 bg-background/60 backdrop-blur-md px-6 py-4 rounded-full border border-border/60 shadow-lg">
                 <Zap className="w-6 h-6 text-yellow-500" />
-                <span className="font-bold">75+ Lighthouse Score</span>
+                <span className="font-bold">95+ Lighthouse Score</span>
               </div>
               <div className="flex items-center gap-3 bg-background/60 backdrop-blur-md px-6 py-4 rounded-full border border-border/60 shadow-lg">
                 <Shield className="w-6 h-6 text-green-500" />
@@ -370,7 +370,7 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
             <div className="flex items-center gap-8">
               <Badge variant="outline" className="text-sm">
                 <Zap className="w-4 h-4 mr-2 text-yellow-500" />
-                65+ Performance
+                95+ Performance
               </Badge>
               <Badge variant="outline" className="text-sm">
                 <Shield className="w-4 h-4 mr-2 text-green-500" />
@@ -381,10 +381,11 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
         </div>
       </footer>
 
-      {/* Back to Top Button */}
-      <Button 
-        className="fixed bottom-8 right-8 rounded-full shadow-2xl z-40 bg-gradient-to-br from-primary to-accent hover:opacity-90 text-primary-foreground"
-        size="icon" 
+      {/* Back to Top Button — left side to avoid the AI Assistant toggle (bottom-right) */}
+      <Button
+        className="fixed bottom-8 left-8 rounded-full shadow-2xl z-40 bg-gradient-to-br from-primary to-accent hover:opacity-90 text-primary-foreground"
+        size="icon"
+        aria-label="Back to top"
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
       >
         <ChevronDown className="w-7 h-7 rotate-180" />
