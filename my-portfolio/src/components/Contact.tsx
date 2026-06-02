@@ -236,6 +236,17 @@ export default function Contact() {
                   </CardHeader>
                   <CardContent>
                     <form onSubmit={handleContactSubmit} className="space-y-6">
+                      {/* Honeypot — hidden from users, catches bots */}
+                      <input
+                        type="text"
+                        name="botcheck"
+                        value={honeypot}
+                        onChange={(e) => setHoneypot(e.target.value)}
+                        tabIndex={-1}
+                        autoComplete="off"
+                        aria-hidden="true"
+                        className="hidden"
+                      />
                       <div className="space-y-2">
                         <Label htmlFor="name">Name *</Label>
                         <Input
