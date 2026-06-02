@@ -41,6 +41,10 @@ interface FormData {
   message: string;
 }
 
+// Web3Forms access key — set VITE_WEB3FORMS_ACCESS_KEY in your .env (or Vercel
+// env vars). Get a free key at https://web3forms.com using kweyudelron37@gmail.com.
+const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY ?? '';
+
 export default function Contact() {
   const [formData, setFormData] = useState<FormData>({
     name: '',
@@ -49,8 +53,9 @@ export default function Contact() {
     timeline: '',
     message: '',
   });
+  const [sending, setSending] = useState(false);
 
-  const handleContactSubmit = (e: React.FormEvent) => {
+  const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!formData.name || !formData.email || !formData.message) {
@@ -58,8 +63,40 @@ export default function Contact() {
       return;
     }
 
-    toast.success("Message sent! I'll respond within 24 hours.");
-    setFormData({ name: '', email: '', budget: '', timeline: '', message: '' });
+    if (!WEB3FORMS_ACCESS_KEY) {
+      toast.error('Contact form is not configured yet — please email me directly at kweyudelron37@gmail.com.');
+      return;
+    }
+
+    setSending(true);
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `New portfolio message from ${formData.name}`,
+          from_name: formData.name,
+          name: formData.name,
+          email: formData.email,
+          budget: formData.budget || 'Not specified',
+          timeline: formData.timeline || 'Not specified',
+          message: formData.message,
+        }),
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        toast.success("Message sent! I'll respond within 24 hours.");
+        setFormData({ name: '', email: '', budget: '', timeline: '', message: '' });
+      } else {
+        toast.error(data.message || 'Could not send your message. Please try again.');
+      }
+    } catch {
+      toast.error('Network error. Please try again, or email me directly.');
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -259,9 +296,10 @@ export default function Contact() {
                       </div>
                       <Button
                         type="submit"
+                        disabled={sending}
                         className="w-full transition-transform hover:scale-[1.02] hover:shadow-lg"
                       >
-                        Send Message
+                        {sending ? 'Sending...' : 'Send Message'}
                         <Send className="ml-2 h-4 w-4" />
                       </Button>
                     </form>
