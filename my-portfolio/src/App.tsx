@@ -1,20 +1,31 @@
-import { useEffect } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 import { Route, Router, Switch, useLocation } from 'wouter';
 import { AnimatePresence, motion } from 'framer-motion';
+import { Loader2 } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import BackToTop from '@/components/BackToTop';
 import AccessibilityControls from '@/components/AccessibilityControls';
 import AIAssistant from '@/components/AIAssistant';
 import PersonalizationEngine from '@/components/PersonalizationEngine';
-import Portfolio from '@/components/Portfolio';
-import CaseStudy from '@/components/CaseStudy';
-import Education from '@/components/Education';
-import About from '@/components/About';
-import Skills from '@/components/Skills';
-import CaseStudies from '@/components/CaseStudies';
-import Services from '@/components/Services';
-import Contact from '@/components/Contact';
 import { caseStudiesData } from '@/data/caseStudies';
+
+// Route-level code splitting — each page ships as its own chunk.
+const Portfolio = lazy(() => import('@/components/Portfolio'));
+const CaseStudy = lazy(() => import('@/components/CaseStudy'));
+const Education = lazy(() => import('@/components/Education'));
+const About = lazy(() => import('@/components/About'));
+const Skills = lazy(() => import('@/components/Skills'));
+const CaseStudies = lazy(() => import('@/components/CaseStudies'));
+const Services = lazy(() => import('@/components/Services'));
+const Contact = lazy(() => import('@/components/Contact'));
+
+function PageLoader() {
+  return (
+    <div className="min-h-[60vh] flex items-center justify-center">
+      <Loader2 className="w-8 h-8 animate-spin text-primary" />
+    </div>
+  );
+}
 
 function NotFound({ onHome }: { onHome: () => void }) {
   return (
@@ -50,52 +61,54 @@ function App() {
       <PersonalizationEngine />
       <BackToTop />
 
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={location}
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -8 }}
-          transition={{ duration: 0.2, ease: 'easeOut' }}
-        >
-          <Switch location={location}>
-            <Route path="/about">
-              <About />
-            </Route>
-            <Route path="/skills">
-              <Skills />
-            </Route>
-            <Route path="/case-studies">
-              <CaseStudies onSelectProject={handleSelectProject} />
-            </Route>
-            <Route path="/case-studies/:id">
-              {(params) => {
-                const project = caseStudiesData.find((p) => p.id === params.id);
-                return project ? (
-                  <CaseStudy project={project} onBack={() => setLocation('/case-studies')} />
-                ) : (
-                  <NotFound onHome={goHome} />
-                );
-              }}
-            </Route>
-            <Route path="/services">
-              <Services />
-            </Route>
-            <Route path="/contact">
-              <Contact />
-            </Route>
-            <Route path="/education">
-              <Education />
-            </Route>
-            <Route path="/">
-              <Portfolio />
-            </Route>
-            <Route>
-              <NotFound onHome={goHome} />
-            </Route>
-          </Switch>
-        </motion.div>
-      </AnimatePresence>
+      <Suspense fallback={<PageLoader />}>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={location}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
+          >
+            <Switch location={location}>
+              <Route path="/about">
+                <About />
+              </Route>
+              <Route path="/skills">
+                <Skills />
+              </Route>
+              <Route path="/case-studies">
+                <CaseStudies onSelectProject={handleSelectProject} />
+              </Route>
+              <Route path="/case-studies/:id">
+                {(params) => {
+                  const project = caseStudiesData.find((p) => p.id === params.id);
+                  return project ? (
+                    <CaseStudy project={project} onBack={() => setLocation('/case-studies')} />
+                  ) : (
+                    <NotFound onHome={goHome} />
+                  );
+                }}
+              </Route>
+              <Route path="/services">
+                <Services />
+              </Route>
+              <Route path="/contact">
+                <Contact />
+              </Route>
+              <Route path="/education">
+                <Education />
+              </Route>
+              <Route path="/">
+                <Portfolio />
+              </Route>
+              <Route>
+                <NotFound onHome={goHome} />
+              </Route>
+            </Switch>
+          </motion.div>
+        </AnimatePresence>
+      </Suspense>
     </Router>
   );
 }
