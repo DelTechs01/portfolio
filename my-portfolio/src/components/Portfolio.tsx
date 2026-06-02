@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useLocation } from 'wouter';
 import { 
@@ -13,39 +13,16 @@ import AIAssistant from '@/components/AIAssistant';
 import AccessibilityControls from '@/components/AccessibilityControls';
 import PersonalizationEngine from '@/components/PersonalizationEngine';
 import Terminal from '@/components/Terminal';
+import { useTheme } from '@/hooks/useTheme';
 
 interface PortfolioProps {
   onSelectProject: (id: string) => void;
 }
 
 const Portfolio = ({ onSelectProject }: PortfolioProps) => {
-  const [location, setLocation] = useLocation();
-  const [darkMode, setDarkMode] = useState(false);
+  const [, setLocation] = useLocation();
+  const { isDark, toggle: toggleDarkMode } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const savedMode = localStorage.getItem('darkMode');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const isDark = savedMode === 'true' || (savedMode === null && prefersDark);
-    
-    setDarkMode(isDark);
-    if (isDark) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, []);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location]);
-
-  const toggleDarkMode = () => {
-    const newMode = !darkMode;
-    setDarkMode(newMode);
-    document.documentElement.classList.toggle('dark', newMode);
-    localStorage.setItem('darkMode', newMode.toString());
-  };
 
   const navigateTo = (path: string) => {
     setLocation(path);
@@ -119,7 +96,7 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
                 onClick={toggleDarkMode}
                 className="rounded-full h-10 w-10"
               >
-                {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
               </Button>
             </div>
 
@@ -131,7 +108,7 @@ const Portfolio = ({ onSelectProject }: PortfolioProps) => {
                 onClick={toggleDarkMode}
                 className="rounded-full h-10 w-10"
               >
-                {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
               </Button>
 
               <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
