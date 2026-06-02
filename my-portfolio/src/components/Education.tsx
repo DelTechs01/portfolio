@@ -86,6 +86,18 @@ const Education = () => {
       fullDescription: 'This certificate above verifies that Kweyu Delron successfully completed the course Python And Flask Framework Complete Course on 11/08/2024 as taught by Horizon Tech on Udemy. The certificate indicates the entire course was completed as validated by the student. The course duration represents the total video hours of the course at time of most recent completion.',
       message: 'Python drives intelligent automation and data-driven software solutions.',
       imageUrl: '/Udemy-Flask-Certificate.jpg'
+    },
+    {
+      id: 5,
+      name: 'Getting Started with Cisco Packet Tracer',
+      issuer: 'Cisco Networking Academy',
+      issuerLogo: 'https://upload.wikimedia.org/wikipedia/commons/0/08/Cisco_logo_blue_2016.svg',
+      category: 'Networking',
+      issueDate: 'August 2024',
+      shortDescription: 'Certified in building, configuring, and simulating networks using Cisco Packet Tracer.',
+      fullDescription: 'Successfully completed the "Getting Started with Cisco Packet Tracer" course offered by the Cisco Networking Academy, covering the fundamentals of designing, configuring, and simulating networks with Packet Tracer. Cert ID: 73ce4bd4-2aaf-423b-98aa-a39c11105ca5.',
+      message: 'Hands-on network design and simulation with industry-standard tools.',
+      imageUrl: '/Getting_Started_with_Cisco_Packet_Tracer_certificate_kweyudelron37-gmail-com_73ce4bd4-2aaf-423b-98aa-a39c11105ca5.pdf'
     }
   ];
 
@@ -99,7 +111,7 @@ const Education = () => {
     { label: 'Degrees', value: degrees.length, icon: GraduationCap },
     { label: 'Certifications', value: certifications.length, icon: Award },
     { label: 'Years Learning', value: '3+', icon: BookOpen },
-    { label: 'Specializations', value: '4', icon: Star }
+    { label: 'Specializations', value: categories.length - 1, icon: Star }
   ];
 
   const timelineItems = [
@@ -313,12 +325,20 @@ const Education = () => {
                           </Button>
                         </DialogTrigger>
                         <DialogContent className="max-w-4xl p-0 overflow-hidden">
-                          <div className="relative">
-                            <img 
-                              src={cert.imageUrl} 
-                              alt={`${cert.name} Certificate`}
-                              className="w-full h-auto"
-                            />
+                          <div className="relative bg-muted">
+                            {cert.imageUrl.toLowerCase().endsWith('.pdf') ? (
+                              <iframe
+                                src={cert.imageUrl}
+                                title={`${cert.name} Certificate`}
+                                className="w-full h-[70vh]"
+                              />
+                            ) : (
+                              <img
+                                src={cert.imageUrl}
+                                alt={`${cert.name} Certificate`}
+                                className="w-full h-auto"
+                              />
+                            )}
                           </div>
                           <div className="p-8 space-y-6 bg-background">
                             <DialogHeader>
@@ -339,7 +359,10 @@ const Education = () => {
 
                             <div className="flex gap-3 pt-4">
                               <Button variant="secondary" className="flex-1" asChild>
-                                <a href={cert.imageUrl} download={`${cert.name.replace(/\s+/g, '_')}.png`}>
+                                <a
+                                  href={cert.imageUrl}
+                                  download={`${cert.name.replace(/\s+/g, '_')}${cert.imageUrl.slice(cert.imageUrl.lastIndexOf('.'))}`}
+                                >
                                   Download Certificate
                                 </a>
                               </Button>
