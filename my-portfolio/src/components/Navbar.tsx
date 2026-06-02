@@ -39,14 +39,21 @@ const Navbar = () => {
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14 md:h-16">
           <button
-            className="text-xl md:text-2xl font-bold cursor-pointer overflow-hidden"
+            className="flex items-center gap-2.5 cursor-pointer"
             onClick={() => navigateTo('/')}
             aria-label="Go to home"
           >
-            <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent transition-all duration-700 hover:from-pink-500 hover:via-purple-500 hover:to-cyan-500">
-              Kweyu
+            <img
+              src="/pwa-192x192.png"
+              alt="Kweyu Delron"
+              className="h-9 w-9 rounded-full object-cover border border-border/60 shadow-sm"
+            />
+            <span className="text-xl md:text-2xl font-bold overflow-hidden">
+              <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent transition-all duration-700 hover:from-pink-500 hover:via-purple-500 hover:to-cyan-500">
+                Kweyu
+              </span>
+              <span className="text-primary">{' {Delron}'}</span>
             </span>
-            <span className="text-primary">{' {Delron}'}</span>
           </button>
 
           {/* Desktop Navigation */}

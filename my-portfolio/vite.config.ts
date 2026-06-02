@@ -10,7 +10,9 @@ export default defineConfig({
     tailwindcss(),
     VitePWA({
       registerType: "autoUpdate",
-      includeAssets: ["vite.svg"],
+      // Icons (favicon, apple-touch, 192/512, maskable) are generated from
+      // public/Profile.jpg by pwa-assets.config.ts and injected automatically.
+      pwaAssets: { config: true },
       manifest: {
         name: "Kweyu Delron Muyale — Portfolio",
         short_name: "KD Portfolio",
@@ -21,15 +23,11 @@ export default defineConfig({
         display: "standalone",
         start_url: "/",
         scope: "/",
-        icons: [
-          { src: "/Profile.jpg", sizes: "192x192", type: "image/jpeg", purpose: "any" },
-          { src: "/Profile.jpg", sizes: "512x512", type: "image/jpeg", purpose: "any maskable" },
-        ],
       },
       workbox: {
-        // Precache the app shell only. The large certificate/profile images
-        // (8–9 MB) stay on the network and are served at runtime instead.
-        globPatterns: ["**/*.{js,css,html,svg,woff,woff2}"],
+        // Precache the app shell + generated icons. The large certificate/profile
+        // images (8–9 MB) stay on the network and are served at runtime instead.
+        globPatterns: ["**/*.{js,css,html,svg,png,ico,woff,woff2}"],
         runtimeCaching: [
           {
             urlPattern: ({ request }) => request.destination === "image",
