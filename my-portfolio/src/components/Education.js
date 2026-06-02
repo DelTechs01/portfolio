@@ -131,7 +131,7 @@ const Education = ({ onBack }) => {
             imageUrl: 'https://placehold.co/1200x800/47A248/ffffff/png?text=MongoDB+Certified+Developer&font=montserrat'
         }
     ];
-    const categories = ['all', 'Programming', 'Cloud', 'Security', 'AI/ML', 'Development', 'Blockchain Technology'];
+    const categories = ['all', ...Array.from(new Set(certifications.map((c) => c.category)))];
     const filteredCertifications = selectedCategory === 'all'
         ? certifications
         : certifications.filter(cert => cert.category === selectedCategory);
