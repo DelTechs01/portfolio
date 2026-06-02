@@ -2,8 +2,15 @@ import { motion } from 'framer-motion';
 import { Code2, Database, Network, Shield, Blocks, Wrench } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
+import { useDocumentMeta } from '@/hooks/useDocumentMeta';
 
 const Skills = () => {
+  useDocumentMeta({
+    title: 'Skills',
+    description:
+      'Technical skills across programming, backend & databases, networking, cybersecurity, emerging tech, and developer tools.',
+  });
+
   const skills = {
     Programming: {
       description: 'Clean, efficient, maintainable code across multiple languages.',

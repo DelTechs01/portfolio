@@ -9,8 +9,9 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import Terminal from '@/components/Terminal';
-import { navItems } from '@/components/Navbar';
+import { navItems } from '@/data/nav';
 import { caseStudiesData } from '@/data/caseStudies';
+import { useDocumentMeta } from '@/hooks/useDocumentMeta';
 
 // Drop your CV at public/Kweyu_Delron_Muyale_CV.pdf to enable the download.
 const CV_URL = '/Kweyu_Delron_Muyale_CV.pdf';
@@ -25,6 +26,13 @@ const Portfolio = () => {
   const [, setLocation] = useLocation();
   const navigateTo = (path: string) => setLocation(path);
   const featured = caseStudiesData.slice(0, 3);
+
+  useDocumentMeta({
+    title: 'Home',
+    isHome: true,
+    description:
+      'Kweyu Delron Muyale — Software Engineer, Network Engineer & IT Solutions specialist building secure, scalable, AI-powered systems.',
+  });
 
   return (
     <div className="min-h-screen bg-background text-foreground">

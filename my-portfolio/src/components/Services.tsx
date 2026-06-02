@@ -4,9 +4,15 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { useLocation } from 'wouter';
+import { useDocumentMeta } from '@/hooks/useDocumentMeta';
 
 const Services = () => {
   const [, setLocation] = useLocation();
+  useDocumentMeta({
+    title: 'Services',
+    description:
+      'Services: backend & web development, IT support, network engineering, cybersecurity, blockchain, and home streaming setup.',
+  });
 
   const services = [
     {
