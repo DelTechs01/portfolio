@@ -66,21 +66,23 @@ B.Sc. Software Engineering - Kirinyaga University
 Email:    kweyudelron37@gmail.com
 Phone:    +254 (708) 821-843
 GitHub:   https://github.com/DelTechs01
-LinkedIn: linkedin.com/in/kweyudelron`,
+LinkedIn: linkedin.com/in/kweyu-delron-3a4060244
+X:        https://x.com/BTripatakah`,
 
     projects: () => `Featured Projects:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-1. UniConnectKE - University Social Platform
-   Tech: React, Flask, PostgreSQL
-   Description: Connects Kenyan university students, supports verified communities, and social features
+1. EastMedic HMS - Hospital Management System
+   Tech: React, TypeScript, Node.js, PostgreSQL
+   Live: https://eastmedic-hms.vercel.app
 
-2. AI-Powered Learning Platform
-   Tech: Python, Flask,PHP, AI Integration
-   Description: Personalized AI tutor delivering daily learning content
+2. CampusTribe Social - Campus Community Platform
+   Tech: React, Flask, PostgreSQL, WebSocket
+   Live: https://www.campustribe.tech
 
-3. M-Pesa Integrated E-Commerce System
-   Tech: PHP, HTML, CSS, JS
-   Description: Realistic payment system integrated with M-Pesa API`,
+3. Zynthos Orchestrator - Workflow Automation Platform
+   Tech: Python, FastAPI, Docker, Redis, React
+
+Type "help" to explore more, or visit the Case Studies page.`,
 
     whoami: () => 'visitor@portfolio ~ guest user',
 

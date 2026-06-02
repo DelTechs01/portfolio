@@ -57,7 +57,7 @@ export default function AIAssistant() {
     }
 
     if (lowerMessage.includes('project') || lowerMessage.includes('portfolio')) {
-      return `Here are some of Kweyu's standout projects:\n\n• **UniConnectKE** – Social platform for Kenyan university students\n• **AI Learning Platform** – Personalized training with adaptive AI\n• **M-Pesa E-Commerce** – Secure online store with mobile payments\n• **Cybersecurity Audit Tool** – Automated vulnerability scanner`;
+      return `Here are some of Kweyu's standout projects:\n\n• **EastMedic HMS** – Hospital management system (patients, billing, pharmacy)\n• **CampusTribe Social** – Campus community platform with real-time chat\n• **Zynthos Orchestrator** – Workflow automation & monitoring platform\n\nYou can explore full case studies on the Case Studies page!`;
     }
 
     if (lowerMessage.includes('service') || lowerMessage.includes('hire') || lowerMessage.includes('offer')) {

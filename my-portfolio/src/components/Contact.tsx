@@ -11,6 +11,8 @@ import {
   Github,
   Linkedin,
   Twitter,
+  Loader2,
+  CheckCircle2,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -54,6 +56,7 @@ export default function Contact() {
     message: '',
   });
   const [sending, setSending] = useState(false);
+  const [justSent, setJustSent] = useState(false);
 
   const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -89,6 +92,8 @@ export default function Contact() {
       if (data.success) {
         toast.success("Message sent! I'll respond within 24 hours.");
         setFormData({ name: '', email: '', budget: '', timeline: '', message: '' });
+        setJustSent(true);
+        setTimeout(() => setJustSent(false), 6000);
       } else {
         toast.error(data.message || 'Could not send your message. Please try again.');
       }
@@ -297,11 +302,32 @@ export default function Contact() {
                       <Button
                         type="submit"
                         disabled={sending}
-                        className="w-full transition-transform hover:scale-[1.02] hover:shadow-lg"
+                        className="w-full transition-transform hover:scale-[1.02] hover:shadow-lg disabled:opacity-80"
                       >
-                        {sending ? 'Sending...' : 'Send Message'}
-                        <Send className="ml-2 h-4 w-4" />
+                        {sending ? (
+                          <>
+                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                            Sending...
+                          </>
+                        ) : (
+                          <>
+                            Send Message
+                            <Send className="ml-2 h-4 w-4" />
+                          </>
+                        )}
                       </Button>
+
+                      {justSent && (
+                        <motion.div
+                          initial={{ opacity: 0, y: -6 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="flex items-center gap-2 rounded-lg border border-green-500/30 bg-green-500/10 px-4 py-3 text-sm font-medium text-green-600 dark:text-green-400"
+                          role="status"
+                        >
+                          <CheckCircle2 className="h-5 w-5 flex-shrink-0" />
+                          Message sent successfully — I'll get back to you within 24 hours.
+                        </motion.div>
+                      )}
                     </form>
                   </CardContent>
                 </Card>
