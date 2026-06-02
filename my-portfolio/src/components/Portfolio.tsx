@@ -8,11 +8,7 @@ import { Separator } from '@/components/ui/separator';
 import Terminal from '@/components/Terminal';
 import { navItems } from '@/components/Navbar';
 
-interface PortfolioProps {
-  onSelectProject: (id: string) => void;
-}
-
-const Portfolio = ({ onSelectProject }: PortfolioProps) => {
+const Portfolio = () => {
   const [, setLocation] = useLocation();
   const navigateTo = (path: string) => setLocation(path);
 

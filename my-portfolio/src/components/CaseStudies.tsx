@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { ExternalLink, Zap, Shield, TrendingUp, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { useLocation } from 'wouter';
 import { caseStudiesData } from '@/data/caseStudies';

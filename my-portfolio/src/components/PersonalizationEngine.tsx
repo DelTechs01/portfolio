@@ -13,7 +13,7 @@ interface PersonalizationEngineProps {
 }
 
 const PersonalizationEngine = ({ onPersonalize }: PersonalizationEngineProps) => {
-  const [visitorType, setVisitorType] = useState<VisitorType>(null);
+  const [, setVisitorType] = useState<VisitorType>(null);
   const [showPrompt, setShowPrompt] = useState(false);
   const [dismissed, setDismissed] = useState(false);
 

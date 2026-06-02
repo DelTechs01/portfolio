@@ -88,7 +88,7 @@ function App() {
               <Education />
             </Route>
             <Route path="/">
-              <Portfolio onSelectProject={handleSelectProject} />
+              <Portfolio />
             </Route>
             <Route>
               <NotFound onHome={goHome} />
