@@ -10,4 +10,17 @@ export default defineConfig({
       "@": path.resolve(__dirname, "src"),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        // Split heavy vendor libs into their own chunks for better caching
+        // and faster initial load (keeps the main bundle lean).
+        manualChunks: {
+          react: ["react", "react-dom", "wouter"],
+          motion: ["framer-motion"],
+          icons: ["lucide-react"],
+        },
+      },
+    },
+  },
 });
