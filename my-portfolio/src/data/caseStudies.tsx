@@ -1,4 +1,46 @@
-export const caseStudiesData = [
+export interface CaseStudy {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  tags: string[];
+  problem: string;
+  solution: string;
+  architecture: {
+    description: string;
+    diagram: string;
+    components: string[];
+  };
+  techDecisions: {
+    decision: string;
+    rationale: string;
+    impact: string;
+  }[];
+  results: {
+    metric: string;
+    before: string;
+    after: string;
+    improvement: string;
+  }[];
+  challenges: {
+    challenge: string;
+    solution: string;
+  }[];
+  improvements: string[];
+  screenshots: string[];
+  timeline: string;
+  teamSize: string;
+  role: string;
+  github?: string;
+  demo?: string;
+  testimonial?: {
+    content: string;
+    author: string;
+    role: string;
+  };
+}
+
+export const caseStudiesData: CaseStudy[] = [
   // ── Featured projects ───────────────────────────────────────────────
   // NOTE: Add your live links in the `demo` field of each (currently '').
   // Descriptions/results are drafts written from the project names — tweak
