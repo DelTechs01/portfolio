@@ -10,7 +10,7 @@ export default defineConfig({
     tailwindcss(),
     VitePWA({
       registerType: "autoUpdate",
-      includeAssets: ["Profile.jpg", "vite.svg"],
+      includeAssets: ["vite.svg"],
       manifest: {
         name: "Kweyu Delron Muyale — Portfolio",
         short_name: "KD Portfolio",
@@ -27,7 +27,19 @@ export default defineConfig({
         ],
       },
       workbox: {
-        globPatterns: ["**/*.{js,css,html,svg,png,jpg,jpeg,woff2}"],
+        // Precache the app shell only. The large certificate/profile images
+        // (8–9 MB) stay on the network and are served at runtime instead.
+        globPatterns: ["**/*.{js,css,html,svg,woff,woff2}"],
+        runtimeCaching: [
+          {
+            urlPattern: ({ request }) => request.destination === "image",
+            handler: "CacheFirst",
+            options: {
+              cacheName: "images",
+              expiration: { maxEntries: 40, maxAgeSeconds: 60 * 60 * 24 * 30 },
+            },
+          },
+        ],
       },
     }),
   ],
