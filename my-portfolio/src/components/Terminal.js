@@ -48,17 +48,17 @@ Tools & Platforms:
         education: () => `Education:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 B.Sc. Software Engineering - Kirinyaga University
-  GPA: 3.5/4.0 | Specialization: Backend Development & Networking`,
+  GPA: 3.8/4.0 | Specialization: Backend Development & Networking`,
         certs: () => `Certifications:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-✓ Certified Mobile Apllication Tester
-✓ BlockChain Fundamentals
-✓ Injective Developer Certificate
-✓ Power Learn Project(PLP) Certificate`,
+✓ Full-Stack Development (MERN) - Power Learn Project
+✓ Injective: Layer 1 Blockchain - Binance Academy
+✓ Crypto & Blockchain Fundamentals - Binance Academy
+✓ Python & Flask Framework - Udemy`,
         contact: () => `Contact Information:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Email:    kweyudelron37@gmail.com.com
-Phone:    +254 708821843
+Email:    kweyudelron37@gmail.com
+Phone:    +254 (708) 821-843
 GitHub:   https://github.com/DelTechs01
 LinkedIn: linkedin.com/in/kweyudelron`,
         projects: () => `Featured Projects:
