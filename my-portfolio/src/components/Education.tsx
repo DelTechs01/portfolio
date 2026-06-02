@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  GraduationCap, Award, Calendar, MapPin, BookOpen, 
-  ChevronLeft, Trophy, Star, CheckCircle2, Eye
+import {
+  GraduationCap, Award, Calendar, MapPin, BookOpen,
+  Trophy, Star, CheckCircle2, Eye
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -10,11 +10,7 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
-interface EducationProps {
-  onBack: () => void;
-}
-
-const Education = ({ onBack }: EducationProps) => {
+const Education = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
   const degrees = [
@@ -113,21 +109,6 @@ const Education = ({ onBack }: EducationProps) => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
-      {/* Header */}
-      <div className="sticky top-0 z-50 bg-background/80 border-b border-border backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center gap-4">
-            <Button variant="ghost" size="icon" onClick={onBack}>
-              <ChevronLeft className="w-5 h-5" />
-            </Button>
-            <div>
-              <h1 className="text-2xl font-bold tracking-tight">Education & Certifications</h1>
-              <p className="text-sm text-muted-foreground">Academic background and professional qualifications</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-br from-primary/5 to-accent/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

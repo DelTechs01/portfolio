@@ -42,7 +42,6 @@ interface FormData {
 }
 
 export default function Contact() {
-  const [, setLocation] = useLocation();
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -65,21 +64,6 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/30">
-      {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-4">
-            <Button variant="ghost" size="icon" onClick={() => setLocation('/')} aria-label="Go back">
-              <ChevronLeft className="h-5 w-5" />
-            </Button>
-            <div>
-              <h1 className="text-2xl font-bold tracking-tight">Get in Touch</h1>
-              <p className="text-sm text-muted-foreground">Let's discuss your project</p>
-            </div>
-          </div>
-        </div>
-      </header>
-
       {/* Main Content */}
       <section className="py-24 bg-gradient-to-br from-primary/5 via-background to-accent/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
