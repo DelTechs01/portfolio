@@ -1,5 +1,3 @@
-'use client';
-
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, X, Send, Sparkles, User, Bot } from 'lucide-react';

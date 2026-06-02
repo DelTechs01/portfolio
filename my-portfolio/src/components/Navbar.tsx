@@ -6,15 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { useTheme } from '@/hooks/useTheme';
-
-export const navItems = [
-  { label: 'About', path: '/about' },
-  { label: 'Skills', path: '/skills' },
-  { label: 'Case Studies', path: '/case-studies' },
-  { label: 'Services', path: '/services' },
-  { label: 'Education', path: '/education' },
-  { label: 'Contact', path: '/contact' },
-];
+import { navItems } from '@/data/nav';
 
 const Navbar = () => {
   const [location, setLocation] = useLocation();
