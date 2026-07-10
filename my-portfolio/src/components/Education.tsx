@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
-  GraduationCap, Award, Calendar, MapPin, BookOpen,
-  Trophy, Star, CheckCircle2, Eye
+  GraduationCap, Award, Calendar, MapPin, BookOpen, Star, CheckCircle2, Eye,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import PageHeader from '@/components/PageHeader';
 import { useDocumentMeta } from '@/hooks/useDocumentMeta';
 
 const Education = () => {
@@ -31,7 +31,7 @@ const Education = () => {
       achievements: [
         'Student Body President',
         'Hackathon Winner (3x)',
-        'Outstanding Senior Award'
+        'Outstanding Senior Award',
       ],
       coursework: [
         'Data Structures & Algorithms',
@@ -39,9 +39,9 @@ const Education = () => {
         'Database Systems',
         'Web Development',
         'Software Engineering',
-        'Computer Networks'
-      ]
-    }
+        'Computer Networks',
+      ],
+    },
   ];
 
   const certifications = [
@@ -55,7 +55,7 @@ const Education = () => {
       shortDescription: 'Certified in MERN full-stack software development through the February 2025 Cohort VII Software Development program.',
       fullDescription: 'Successfully completed a 16-week program in Software Development covering Python, Web Technologies, Database Management, Startup Building & Employability and Software Engineering Essentials, with a specialization in Full-Stack Development MERN Stack.',
       message: 'Mastery of Full Stack Development(MERN).',
-      imageUrl: '/delron Full-Stack Development MERN Stack certificate_page-0001.jpg'
+      imageUrl: '/delron Full-Stack Development MERN Stack certificate_page-0001.jpg',
     },
     {
       id: 2,
@@ -67,7 +67,7 @@ const Education = () => {
       shortDescription: 'Certified in building and understanding DeFi-focused applications on the Injective Layer 1 blockchain.',
       fullDescription: "An in-depth understanding of Injective's architecture, Web3 modules, INJ token, Community BuyBack, tokenization infrastructure, and performance metrics",
       message: 'Instructor : Brandon Goss - Head of Research at Injective',
-      imageUrl: '/Injectictive-Layer1-Certificate_page-0001.jpg'
+      imageUrl: '/Injectictive-Layer1-Certificate_page-0001.jpg',
     },
     {
       id: 3,
@@ -79,7 +79,7 @@ const Education = () => {
       shortDescription: 'Certified in blockchain fundamentals, including cryptocurrencies, DeFi, Web3, and investment basics.',
       fullDescription: 'The Beginner Track provided an introductory overview of the blockchain ecosystem and equiped me with the fundamental concepts needed to navigate the cryptocurrency space. This course encompassed a series of modules focusing on the basics of blockchain technology, cryptocurrencies, decentralized finance (DeFi), Web3, and trading and investing strategies.',
       message: 'Beginner-level understanding of the blockchain ecosystem.',
-      imageUrl: '/beginer-track-blockchain-NFT-Award.jpeg'
+      imageUrl: '/beginer-track-blockchain-NFT-Award.jpeg',
     },
     {
       id: 4,
@@ -91,7 +91,7 @@ const Education = () => {
       shortDescription: 'Certified in Python programming and Flask framework development for building secure, scalable web applications.',
       fullDescription: 'This certificate above verifies that Kweyu Delron successfully completed the course Python And Flask Framework Complete Course on 11/08/2024 as taught by Horizon Tech on Udemy. The certificate indicates the entire course was completed as validated by the student. The course duration represents the total video hours of the course at time of most recent completion.',
       message: 'Python drives intelligent automation and data-driven software solutions.',
-      imageUrl: '/Udemy-Flask-Certificate.jpg'
+      imageUrl: '/Udemy-Flask-Certificate.jpg',
     },
     {
       id: 5,
@@ -103,106 +103,88 @@ const Education = () => {
       shortDescription: 'Certified in building, configuring, and simulating networks using Cisco Packet Tracer.',
       fullDescription: 'Successfully completed the "Getting Started with Cisco Packet Tracer" course offered by the Cisco Networking Academy, covering the fundamentals of designing, configuring, and simulating networks with Packet Tracer. Cert ID: 73ce4bd4-2aaf-423b-98aa-a39c11105ca5.',
       message: 'Hands-on network design and simulation with industry-standard tools.',
-      imageUrl: '/Getting_Started_with_Cisco_Packet_Tracer_certificate_kweyudelron37-gmail-com_73ce4bd4-2aaf-423b-98aa-a39c11105ca5.pdf'
-    }
+      imageUrl: '/Getting_Started_with_Cisco_Packet_Tracer_certificate_kweyudelron37-gmail-com_73ce4bd4-2aaf-423b-98aa-a39c11105ca5.pdf',
+    },
   ];
 
   const categories = ['all', ...Array.from(new Set(certifications.map((c) => c.category)))];
 
-  const filteredCertifications = selectedCategory === 'all' 
-    ? certifications 
-    : certifications.filter(cert => cert.category === selectedCategory);
+  const filteredCertifications = selectedCategory === 'all'
+    ? certifications
+    : certifications.filter((cert) => cert.category === selectedCategory);
 
   const stats = [
     { label: 'Degrees', value: degrees.length, icon: GraduationCap },
     { label: 'Certifications', value: certifications.length, icon: Award },
     { label: 'Years Learning', value: '3+', icon: BookOpen },
-    { label: 'Specializations', value: categories.length - 1, icon: Star }
+    { label: 'Specializations', value: categories.length - 1, icon: Star },
   ];
 
   const timelineItems = [
-    ...degrees.map(d => ({ ...d, type: 'degree' as const, sortYear: parseInt(d.period.split(' - ')[1], 10) })),
-    ...certifications.map(c => ({ ...c, type: 'cert' as const, sortYear: parseInt(c.issueDate.split(' ')[1], 10) }))
+    ...degrees.map((d) => ({ ...d, type: 'degree' as const, sortYear: parseInt(d.period.split(' - ')[1], 10) })),
+    ...certifications.map((c) => ({ ...c, type: 'cert' as const, sortYear: parseInt(c.issueDate.split(' ')[1], 10) })),
   ].sort((a, b) => b.sortYear - a.sortYear);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
-      {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-primary/5 to-accent/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center"
-          >
-            <Badge variant="secondary" className="mb-4 px-4 py-1.5 text-sm font-medium">
-              <Trophy className="w-4 h-4 mr-2" />
-              Lifelong Learner
-            </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
-              Pursuing Excellence Through
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent"> Continuous Education</span>
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Grounded in Software Engineering, my academic journey spans artificial intelligence, cybersecurity, ethical hacking, blockchain technologies, and network engineering. I continuously strengthen my skills through rigorous coursework, hands-on system development, and practical network installation experience, with a strong focus on building secure, scalable, and future-ready digital solutions.
-            </p>
-          </motion.div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <Card className="text-center border-none shadow-md hover:shadow-xl transition-shadow duration-300 bg-background/80 backdrop-blur-sm">
-                  <CardContent className="p-6">
-                    <stat.icon className="w-8 h-8 mx-auto mb-3 text-primary" />
-                    <p className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent mb-1">{stat.value}</p>
-                    <p className="text-sm text-muted-foreground uppercase tracking-wide">{stat.label}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
+    <div className="min-h-screen bg-background">
+      <PageHeader
+        eyebrow="// education"
+        title="Education & certifications"
+        subtitle="Grounded in Software Engineering, my learning spans AI, cybersecurity, ethical hacking, blockchain, and network engineering, through rigorous coursework and hands-on system and network builds."
+      >
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
+          {stats.map((stat, index) => (
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.08 }}
+            >
+              <Card className="border-border/60 bg-card/60">
+                <CardContent className="p-5">
+                  <stat.icon className="w-5 h-5 text-primary mb-3" />
+                  <p className="text-2xl font-bold leading-none">{stat.value}</p>
+                  <p className="text-xs text-muted-foreground mt-1.5 uppercase tracking-wide">{stat.label}</p>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
         </div>
-      </section>
+      </PageHeader>
 
-      {/* Academic Qualifications Section */}
-      <section className="py-20 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-3 mb-12">
-            <GraduationCap className="w-8 h-8 text-primary" />
-            <h2 className="text-3xl font-bold tracking-tight">Academic Qualifications</h2>
+      {/* Academic Qualifications */}
+      <section className="py-20 lg:py-24">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center gap-3 mb-10">
+            <GraduationCap className="w-6 h-6 text-primary" />
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Academic qualifications</h2>
           </div>
 
-          <div className="space-y-12">
+          <div className="space-y-8">
             {degrees.map((edu, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Card className="overflow-hidden border-none shadow-md hover:shadow-xl transition-shadow duration-300 bg-muted/30 backdrop-blur-sm">
+                <Card className="border-border/60 hover:shadow-lg transition-shadow">
                   <CardContent className="p-6 md:p-8">
                     <div className="flex flex-col md:flex-row gap-6 md:gap-8">
                       <div className="flex-shrink-0">
-                        <div className="w-24 h-24 rounded-xl overflow-hidden border border-border shadow-sm bg-white p-4">
-                          <img 
-                            src={edu.logo} 
+                        <div className="w-20 h-20 rounded-xl overflow-hidden border border-border shadow-sm bg-white p-3">
+                          <img
+                            src={edu.logo}
                             alt={`${edu.institution} logo`}
                             className="w-full h-full object-contain"
                           />
                         </div>
                       </div>
 
-                      <div className="flex-1 space-y-6">
+                      <div className="flex-1 space-y-5">
                         <div>
-                          <h3 className="text-2xl font-bold mb-3 tracking-tight">{edu.degree}</h3>
+                          <h3 className="text-xl md:text-2xl font-bold mb-3 tracking-tight">{edu.degree}</h3>
                           <div className="flex flex-wrap gap-4 text-muted-foreground text-sm">
                             <div className="flex items-center gap-2">
                               <BookOpen className="w-4 h-4" />
@@ -227,13 +209,13 @@ const Education = () => {
                           <Badge variant="secondary" className="px-3 py-1">{edu.specialization}</Badge>
                         </div>
 
-                        <Tabs defaultValue="achievements" className="w-full mt-4">
+                        <Tabs defaultValue="achievements" className="w-full mt-2">
                           <TabsList className="grid w-full grid-cols-2">
                             <TabsTrigger value="achievements">Achievements</TabsTrigger>
                             <TabsTrigger value="coursework">Coursework</TabsTrigger>
                           </TabsList>
 
-                          <TabsContent value="achievements" className="mt-6">
+                          <TabsContent value="achievements" className="mt-5">
                             <ul className="grid md:grid-cols-2 gap-3">
                               {edu.achievements.map((achievement, i) => (
                                 <li key={i} className="flex items-start gap-2 text-sm">
@@ -244,7 +226,7 @@ const Education = () => {
                             </ul>
                           </TabsContent>
 
-                          <TabsContent value="coursework" className="mt-6">
+                          <TabsContent value="coursework" className="mt-5">
                             <div className="flex flex-wrap gap-2">
                               {edu.coursework.map((course, i) => (
                                 <Badge key={i} variant="outline" className="px-3 py-1 text-sm">{course}</Badge>
@@ -262,20 +244,20 @@ const Education = () => {
         </div>
       </section>
 
-      {/* Certifications Section */}
-      <section className="py-20 bg-muted/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-12">
+      {/* Certifications */}
+      <section className="py-20 lg:py-24 bg-muted/40 border-t border-border/50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between mb-8">
             <div className="flex items-center gap-3">
-              <Award className="w-8 h-8 text-primary" />
-              <h2 className="text-3xl font-bold tracking-tight">Professional Certifications</h2>
+              <Award className="w-6 h-6 text-primary" />
+              <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Professional certifications</h2>
             </div>
             <Badge variant="outline" className="px-3 py-1 text-sm font-medium">
               {certifications.length} Active
             </Badge>
           </div>
 
-          <div className="flex flex-wrap gap-3 mb-10">
+          <div className="flex flex-wrap gap-2 mb-8">
             {categories.map((category) => (
               <Button
                 key={category}
@@ -287,32 +269,32 @@ const Education = () => {
                 {category === 'all' ? 'All' : category}
                 {category !== 'all' && (
                   <Badge variant="secondary" className="ml-2 px-2 py-0.5 text-xs">
-                    {certifications.filter(c => c.category === category).length}
+                    {certifications.filter((c) => c.category === category).length}
                   </Badge>
                 )}
               </Button>
             ))}
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredCertifications.map((cert, index) => (
               <motion.div
                 key={cert.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                transition={{ delay: index * 0.08 }}
               >
-                <Card className="h-full flex flex-col border-none shadow-md hover:shadow-xl transition-shadow duration-300 bg-background/80 backdrop-blur-sm">
+                <Card className="h-full flex flex-col border-border/60 bg-background hover:border-primary/40 hover:shadow-lg transition-colors">
                   <CardHeader>
-                    <div className="flex justify-between items-start mb-4">
+                    <div className="flex justify-between items-start mb-3">
                       <Badge variant="secondary">{cert.category}</Badge>
                     </div>
-                    <CardTitle className="text-xl leading-tight">{cert.name}</CardTitle>
+                    <CardTitle className="text-lg leading-tight">{cert.name}</CardTitle>
                     <CardDescription className="mt-2 flex items-center gap-2">
-                      <div className="w-6 h-6 rounded-full overflow-hidden border">
+                      <span className="w-6 h-6 rounded-full overflow-hidden border flex-shrink-0">
                         <img src={cert.issuerLogo} alt={cert.issuer} className="w-full h-full object-contain" />
-                      </div>
+                      </span>
                       <span>{cert.issuer}</span>
                     </CardDescription>
                   </CardHeader>
@@ -322,10 +304,10 @@ const Education = () => {
                       {cert.shortDescription}
                     </p>
 
-                    <div className="mt-8">
+                    <div className="mt-6">
                       <Dialog>
                         <DialogTrigger asChild>
-                          <Button variant="default" className="w-full">
+                          <Button variant="outline" className="w-full">
                             <Eye className="w-4 h-4 mr-2" />
                             View Certificate
                           </Button>
@@ -363,7 +345,7 @@ const Education = () => {
                               </blockquote>
                             </div>
 
-                            <div className="flex gap-3 pt-4">
+                            <div className="flex gap-3 pt-2">
                               <Button variant="secondary" className="flex-1" asChild>
                                 <a
                                   href={cert.imageUrl}
@@ -386,33 +368,34 @@ const Education = () => {
       </section>
 
       {/* Educational Timeline */}
-      <section className="py-20 bg-background">
+      <section className="py-20 lg:py-24">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold mb-12 text-center tracking-tight">Educational Timeline</h2>
-          
+          <h2 className="text-2xl md:text-3xl font-bold mb-12 text-center tracking-tight">
+            Educational timeline
+          </h2>
+
           <div className="relative">
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-border/50 rounded-full" />
-            
-            <div className="space-y-16">
+            <div className="absolute left-1/2 -translate-x-1/2 h-full w-px bg-border" />
+
+            <div className="space-y-12">
               {timelineItems.map((item, index) => {
                 const isLeft = index % 2 === 0;
-                
                 return (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, x: isLeft ? -50 : 50 }}
+                    initial={{ opacity: 0, x: isLeft ? -40 : 40 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     className={`flex items-center gap-8 ${isLeft ? 'flex-row' : 'flex-row-reverse'}`}
                   >
                     <div className={`flex-1 ${isLeft ? 'text-right' : 'text-left'}`}>
-                      <Card className="inline-block max-w-md border-none shadow-sm hover:shadow-md transition-shadow bg-muted/30 backdrop-blur-sm">
+                      <Card className="inline-block max-w-md border-border/60 hover:shadow-md transition-shadow">
                         <CardContent className="p-4">
                           <Badge variant="secondary" className="mb-2 px-3 py-1 text-xs">
                             {item.type === 'degree' ? <GraduationCap className="w-3 h-3 mr-1" /> : <Award className="w-3 h-3 mr-1" />}
                             {item.type === 'degree' ? item.period : item.issueDate}
                           </Badge>
-                          <h4 className="font-bold text-lg mb-1">
+                          <h4 className="font-bold text-base mb-1">
                             {item.type === 'degree' ? item.degree : item.name}
                           </h4>
                           <p className="text-sm text-muted-foreground">
@@ -421,11 +404,11 @@ const Education = () => {
                         </CardContent>
                       </Card>
                     </div>
-                    
+
                     <div className="relative z-10">
-                      <div className="w-5 h-5 rounded-full bg-primary border-4 border-background shadow-md" />
+                      <div className="w-4 h-4 rounded-full bg-primary border-4 border-background shadow-md" />
                     </div>
-                    
+
                     <div className="flex-1" />
                   </motion.div>
                 );

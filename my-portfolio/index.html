@@ -6,21 +6,21 @@
     <meta name="theme-color" content="#4f46e5" />
     <meta
       name="description"
-      content="Kweyu Delron Muyale — Software Engineer, Network Engineer & IT Solutions specialist building secure, scalable, AI-powered systems."
+      content="Kweyu Delron Muyale - Software Engineer, Network Engineer & IT Solutions specialist building secure, scalable, AI-powered systems."
     />
     <meta name="author" content="Kweyu Delron Muyale" />
 
-    <!-- Fonts: Inter (body) + Space Grotesk (headings) -->
+    <!-- Fonts: Inter (body) + Sora (headings) + JetBrains Mono (labels/code) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
 
     <!-- Open Graph / social preview -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Kweyu Delron Muyale — Software & Network Engineer" />
+    <meta property="og:title" content="Kweyu Delron Muyale - Software & Network Engineer" />
     <meta
       property="og:description"
       content="Building secure, scalable, and AI-powered solutions. Backend development, networking, cybersecurity & blockchain."
@@ -28,16 +28,18 @@
     <meta property="og:image" content="/pwa-512x512.png" />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <title>Kweyu Delron Muyale — Software & Network Engineer</title>
+    <title>Kweyu Delron Muyale - Software & Network Engineer</title>
 
     <!-- Apply theme before paint to avoid a flash. Light is the default;
          dark only when the visitor has explicitly opted in. -->
     <script>
       (function () {
         try {
-          if (localStorage.getItem('darkMode') === 'true') {
-            document.documentElement.classList.add('dark');
+          if (localStorage.getItem("darkMode") === "true") {
+            document.documentElement.classList.add("dark");
           }
+          var fs = localStorage.getItem("fontSize") || "90";
+          document.documentElement.style.fontSize = fs + "%";
         } catch (e) {}
       })();
     </script>

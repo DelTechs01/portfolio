@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 const SITE_NAME = 'Kweyu Delron Muyale';
-const DEFAULT_TITLE = 'Kweyu Delron Muyale — Software & Network Engineer';
+const DEFAULT_TITLE = 'Kweyu Delron Muyale  Software & Network Engineer';
 
 interface DocumentMeta {
   /** Page title. The site name is appended automatically unless it's the home page. */
@@ -27,7 +27,7 @@ function setMeta(name: string, content: string) {
  */
 export function useDocumentMeta({ title, description, isHome }: DocumentMeta) {
   useEffect(() => {
-    document.title = isHome ? DEFAULT_TITLE : `${title} — ${SITE_NAME}`;
+    document.title = isHome ? DEFAULT_TITLE : `${title}  ${SITE_NAME}`;
     if (description) setMeta('description', description);
   }, [title, description, isHome]);
 }

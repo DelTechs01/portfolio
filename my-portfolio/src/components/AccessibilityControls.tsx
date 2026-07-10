@@ -12,12 +12,12 @@ const AccessibilityControls = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [highContrast, setHighContrast] = useState(false);
-  const [fontSize, setFontSize] = useState(100);
+  const [fontSize, setFontSize] = useState(90);
 
   useEffect(() => {
     const storedReducedMotion = localStorage.getItem('reducedMotion') === 'true';
     const storedHighContrast = localStorage.getItem('highContrast') === 'true';
-    const storedFontSize = parseInt(localStorage.getItem('fontSize') || '100');
+    const storedFontSize = parseInt(localStorage.getItem('fontSize') || '90');
 
     setReducedMotion(storedReducedMotion);
     setHighContrast(storedHighContrast);
@@ -66,14 +66,14 @@ const AccessibilityControls = () => {
   const resetSettings = () => {
     setReducedMotion(false);
     setHighContrast(false);
-    setFontSize(100);
-    
+    setFontSize(90);
+
     localStorage.removeItem('reducedMotion');
     localStorage.removeItem('highContrast');
     localStorage.removeItem('fontSize');
-    
+
     document.documentElement.classList.remove('reduce-motion', 'high-contrast');
-    document.documentElement.style.fontSize = '100%';
+    document.documentElement.style.fontSize = '90%';
   };
 
   return (

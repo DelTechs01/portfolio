@@ -5,7 +5,7 @@ import { useState } from 'react';
  *
  * The initial `.dark` class is applied by a blocking script in index.html
  * (light is the default; dark only when the visitor opted in), so the hook's
- * initial state is read straight from the DOM — no flash, no system-pref guess.
+ * initial state is read straight from the DOM  no flash, no system-pref guess.
  */
 export function useTheme() {
   const [isDark, setIsDark] = useState(

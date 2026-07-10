@@ -1,162 +1,96 @@
 import { motion } from 'framer-motion';
-import { ExternalLink, Zap, Shield, TrendingUp, Clock } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { useLocation } from 'wouter';
 import { caseStudiesData } from '@/data/caseStudies';
 import { useDocumentMeta } from '@/hooks/useDocumentMeta';
 
-interface CaseStudiesProps {
-  onSelectProject: (id: string) => void;
-}
-
-const CaseStudies = ({ onSelectProject }: CaseStudiesProps) => {
-  const [, setLocation] = useLocation();
+const CaseStudies = () => {
   useDocumentMeta({
-    title: 'Case Studies',
+    title: 'Projects',
     description:
-      'Featured projects and results — real-world impact through secure, scalable, and modern engineering.',
+      'A selection of projects I have designed and built  with links to live demos and source code.',
   });
-
-  const metricIcons: Record<string, React.ReactNode> = {
-    Performance: <Zap className="w-5 h-5" />,
-    Security: <Shield className="w-5 h-5" />,
-    Growth: <TrendingUp className="w-5 h-5" />,
-    Time: <Clock className="w-5 h-5" />,
-  };
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Inline global styles without jsx/global */}
-      <style>{`
-        @keyframes gradient-x {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-        }
-      `}</style>
-
-      {/* Main Content */}
-      <section className="py-28 lg:py-40 bg-muted/30 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-cyan-400/20 to-blue-600/20 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-32 right-20 w-80 h-80 bg-gradient-to-tr from-purple-500/30 to-pink-500/30 rounded-full blur-3xl animate-pulse delay-700" />
-        </div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <section className="py-24 lg:py-32">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Header */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9 }}
-            className="text-center mb-20"
+            transition={{ duration: 0.5 }}
+            className="mb-14 max-w-2xl"
           >
-            <h2 className="text-5xl md:text-7xl font-extrabold mb-6 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
-              Featured Projects & Results
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-              From concept to deployment delivering measurable improvements in performance, security, and scalability using modern technologies.
+            <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-3">
+              Projects
+            </p>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">Things I've built</h1>
+            <p className="text-lg text-muted-foreground">
+              A selection of projects, each with a live demo or source code so you can explore them
+              yourself.
             </p>
           </motion.div>
 
-          {/* Projects Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {/* Cards */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {caseStudiesData.map((project, index) => (
               <motion.div
                 key={project.id}
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.15, duration: 0.8 }}
-                whileHover={{ y: -12 }}
-                className="group"
+                transition={{ delay: Math.min(index * 0.06, 0.3), duration: 0.4 }}
               >
-                <Card
-                  className="h-full overflow-hidden border-border/50 bg-background/60 backdrop-blur shadow-xl hover:shadow-2xl transition-all duration-700 cursor-pointer"
-                  onClick={() => onSelectProject(project.id)}
-                >
-                  <div className="relative overflow-hidden h-64">
+                <Card className="h-full flex flex-col overflow-hidden border-border/60 hover:border-primary/40 hover:shadow-lg transition-colors">
+                  <div className="relative h-44 overflow-hidden">
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      loading="lazy"
+                      className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-
-                    <div className="absolute inset-0 flex items-end p-8 translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
-                      <h3 className="text-2xl font-bold text-white drop-shadow-lg">
-                        {project.title}
-                      </h3>
-                    </div>
-
-                    <Badge className="absolute top-6 right-6 bg-gradient-to-r from-primary to-accent text-primary-foreground shadow-lg">
-                      Case Study
-                    </Badge>
                   </div>
 
-                  <CardHeader className="pb-4">
-                    <CardDescription className="text-base leading-relaxed">
-                      {project.description}
-                    </CardDescription>
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-lg leading-snug">{project.title}</CardTitle>
                   </CardHeader>
 
-                  <CardContent className="space-y-6">
-                    <div className="flex flex-wrap gap-2">
-                      {project.tags.map((tag) => (
-                        <Badge
-                          key={tag}
-                          variant="outline"
-                          className="border-primary/30 text-foreground/80 hover:bg-primary hover:text-primary-foreground transition-colors"
-                        >
+                  <CardContent className="flex flex-col flex-1 gap-4">
+                    <p className="text-sm text-muted-foreground line-clamp-3">
+                      {project.description}
+                    </p>
+
+                    <div className="flex flex-wrap gap-1.5">
+                      {project.tags.slice(0, 4).map((tag) => (
+                        <Badge key={tag} variant="secondary" className="text-xs font-normal">
                           {tag}
                         </Badge>
                       ))}
                     </div>
 
-                    <div className="space-y-4">
-                      {project.results.slice(0, 3).map((result) => (
-                        <div key={result.metric} className="flex items-center justify-between">
-                          <div className="flex items-center gap-3">
-                            <div className="text-primary">
-                              {metricIcons[result.metric.split(' ')[0]] || <TrendingUp className="w-5 h-5" />}
-                            </div>
-                            <p className="text-sm text-muted-foreground">{result.metric}</p>
-                          </div>
-                          <p className="font-bold text-lg text-primary">{result.improvement}</p>
-                        </div>
-                      ))}
+                    {/* Access button  live link to the application */}
+                    <div className="mt-auto pt-2">
+                      {project.demo ? (
+                        <Button size="sm" className="w-full" asChild>
+                          <a href={project.demo} target="_blank" rel="noopener noreferrer">
+                            Open App
+                            <ArrowUpRight className="ml-1 h-4 w-4" />
+                          </a>
+                        </Button>
+                      ) : (
+                        <Button size="sm" variant="outline" className="w-full" disabled>
+                          Link coming soon
+                        </Button>
+                      )}
                     </div>
-
-                    <Button
-                      variant="outline"
-                      size="lg"
-                      className="w-full border-2 group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-accent group-hover:text-primary-foreground group-hover:border-transparent transition-all duration-500"
-                    >
-                      View Full Case Study
-                      <ExternalLink className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" />
-                    </Button>
                   </CardContent>
                 </Card>
               </motion.div>
             ))}
           </div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-center mt-32"
-          >
-            <p className="text-xl text-muted-foreground mb-8">
-              Want to build something impactful together?
-            </p>
-            <Button
-              size="lg"
-              className="px-10 py-7 text-lg shadow-xl bg-primary hover:bg-primary/90"
-              onClick={() => setLocation('/contact')}
-            >
-              Let's Discuss Your Project
-            </Button>
-          </motion.div>
         </div>
       </section>
     </div>

@@ -1,15 +1,13 @@
 import { motion } from 'framer-motion';
 import { useLocation } from 'wouter';
 import {
-  ChevronDown, Code2, Sparkles, Zap, Shield, Users, Terminal as TerminalIcon,
-  FileText, ArrowRight, Github, Linkedin, Twitter, Mail, Phone, MapPin,
+  ArrowRight, ArrowUpRight, Download, Sparkles,
+  Terminal as TerminalIcon, Github, Linkedin, Twitter,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
 import Terminal from '@/components/Terminal';
-import { navItems } from '@/data/nav';
 import { caseStudiesData } from '@/data/caseStudies';
 import { useDocumentMeta } from '@/hooks/useDocumentMeta';
 
@@ -22,6 +20,21 @@ const socialLinks = [
   { icon: Twitter, href: 'https://x.com/BTripatakah', label: 'X' },
 ];
 
+const stats = [
+  { value: '5+', label: 'Years experience' },
+  { value: '5+', label: 'Products shipped' },
+  { value: '95+', label: 'Lighthouse score' },
+];
+
+const stack = [
+  'React', 'TypeScript', 'Node.js', 'Python', 'FastAPI',
+  'PostgreSQL', 'Docker', 'Networking', 'Security', 'AI / LLMs',
+];
+
+// Small helpers to keep the code-card readable
+const str = 'text-emerald-600 dark:text-emerald-400';
+const bool = 'text-amber-600 dark:text-amber-400';
+
 const Portfolio = () => {
   const [, setLocation] = useLocation();
   const navigateTo = (path: string) => setLocation(path);
@@ -31,193 +44,214 @@ const Portfolio = () => {
     title: 'Home',
     isHome: true,
     description:
-      'Kweyu Delron Muyale — Software Engineer, Network Engineer & IT Solutions specialist building secure, scalable, AI-powered systems.',
+      'Kweyu Delron Muyale - Software Engineer, Network Engineer and IT Solutions specialist building secure, scalable, AI-powered systems.',
   });
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <style>{`
-        @keyframes gradient-x {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-        }
-        .animate-gradient-x {
-          background-size: 200% 200%;
-          animation: gradient-x 8s ease infinite;
-        }
-      `}</style>
-
-      {/* Hero Section */}
-      <section className="relative min-h-[calc(100vh-3.5rem)] md:min-h-[calc(100vh-4rem)] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-purple-500/5 to-pink-500/10 dark:from-primary/20 dark:via-purple-600/10 dark:to-pink-600/10" />
-        <div className="absolute inset-0 opacity-40">
-          <div className="absolute top-10 left-10 w-96 h-96 bg-gradient-to-br from-cyan-400/30 to-blue-600/30 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-20 right-10 w-80 h-80 bg-gradient-to-tr from-purple-500/40 to-pink-500/40 rounded-full blur-3xl animate-pulse delay-700" />
-          <div className="absolute top-1/3 right-1/3 w-64 h-64 bg-gradient-to-bl from-accent/30 to-primary/30 rounded-full blur-3xl animate-pulse delay-1000" />
+      {/* ── Hero ─────────────────────────────────────────────── */}
+      <section className="relative overflow-hidden border-b border-border/50">
+        {/* Faded grid backdrop */}
+        <div
+          aria-hidden
+          className="absolute inset-0 -z-10"
+          style={{
+            backgroundImage:
+              'linear-gradient(to right, color-mix(in oklch, var(--foreground) 6%, transparent) 1px, transparent 1px), linear-gradient(to bottom, color-mix(in oklch, var(--foreground) 6%, transparent) 1px, transparent 1px)',
+            backgroundSize: '56px 56px',
+            maskImage: 'radial-gradient(ellipse 90% 70% at 30% 0%, black 25%, transparent 80%)',
+            WebkitMaskImage: 'radial-gradient(ellipse 90% 70% at 30% 0%, black 25%, transparent 80%)',
+          }}
+        />
+        <div aria-hidden className="absolute inset-0 -z-10 overflow-hidden">
+          <div className="absolute -top-32 -left-20 w-[36rem] h-[36rem] bg-primary/10 rounded-full blur-3xl" />
+          <div className="absolute top-20 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-20">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, ease: 'easeOut' }}
-          >
-            <Badge variant="secondary" className="mb-8 px-6 py-3 text-sm font-medium backdrop-blur-md">
-              <Sparkles className="w-4 h-4 mr-2" />
-              Available for Freelance & Full-time Opportunities
-            </Badge>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 md:pt-28 md:pb-24">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Left column */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: 'easeOut' }}
+            >
+              <div className="inline-flex items-center gap-2 mb-6 rounded-full border border-border/70 bg-card/60 backdrop-blur px-3 py-1.5">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
+                </span>
+                <span className="text-xs font-mono tracking-wide text-muted-foreground">
+                  AVAILABLE FOR WORK
+                </span>
+              </div>
 
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-8 leading-tight">
-              <span className="inline-block bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-gradient-x">
+              <p className="font-mono text-sm text-primary mb-4">Software &amp; Network Engineer</p>
+
+              <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-5">
                 Kweyu Delron Muyale
-              </span>
-            </h1>
+              </h1>
 
-            <p className="text-2xl md:text-3xl text-muted-foreground mb-6 font-light tracking-wide">
-              Software Engineering Student • IT Solutions & Network Engineer
-            </p>
+              <p className="text-lg text-muted-foreground max-w-xl mb-8 leading-relaxed">
+                I design and build secure, scalable systems: backend services, network
+                infrastructure, and AI-powered products, shipped to production and built to last.
+              </p>
 
-            <p className="text-xl text-muted-foreground mb-10 font-medium">
-              Cybersecurity • Blockchain • AI Enthusiast
-            </p>
-
-            <p className="text-lg md:text-xl text-muted-foreground max-w-4xl mx-auto mb-12 leading-relaxed">
-              Transforming complex ideas into scalable, secure, and AI-powered solutions that drive innovation and growth.
-            </p>
-
-            <div className="flex flex-wrap justify-center gap-6 mb-12">
-              <div className="flex items-center gap-3 bg-background/60 backdrop-blur-md px-6 py-4 rounded-full border border-border/60 shadow-lg">
-                <Zap className="w-6 h-6 text-yellow-500" />
-                <span className="font-bold">95+ Lighthouse Score</span>
+              <div className="flex flex-wrap gap-3 mb-10">
+                <Button size="lg" className="px-6 group" onClick={() => navigateTo('/projects')}>
+                  View Projects
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
+                <Button size="lg" variant="outline" className="px-6" onClick={() => navigateTo('/contact')}>
+                  Contact me
+                </Button>
+                <Button size="lg" variant="ghost" className="px-6 group" asChild>
+                  <a href={CV_URL} download>
+                    Resume
+                    <Download className="ml-2 h-4 w-4 group-hover:translate-y-0.5 transition-transform" />
+                  </a>
+                </Button>
               </div>
-              <div className="flex items-center gap-3 bg-background/60 backdrop-blur-md px-6 py-4 rounded-full border border-border/60 shadow-lg">
-                <Shield className="w-6 h-6 text-green-500" />
-                <span className="font-bold">Security-First Mindset</span>
-              </div>
-              <div className="flex items-center gap-3 bg-background/60 backdrop-blur-md px-6 py-4 rounded-full border border-border/60 shadow-lg">
-                <Users className="w-6 h-6 text-accent" />
-                <span className="font-bold">7+ Successful Projects</span>
-              </div>
-            </div>
 
-            <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center">
-              <Button
-                size="lg"
-                className="text-lg px-10 py-7 shadow-xl bg-primary hover:bg-primary/90 group"
-                onClick={() => navigateTo('/case-studies')}
-              >
-                Explore Case Studies
-                <Code2 className="ml-3 h-6 w-6 group-hover:rotate-12 transition-transform" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="text-lg px-10 py-7 border-2 group backdrop-blur-md"
-                onClick={() => navigateTo('/contact')}
-              >
-                Get in Touch
-                <ChevronDown className="ml-3 h-6 w-6 rotate-[-90deg] group-hover:translate-x-2 transition-transform" />
-              </Button>
-              <Button
-                size="lg"
-                variant="ghost"
-                className="text-lg px-10 py-7 group"
-                asChild
-              >
-                <a href={CV_URL} download>
-                  Download CV
-                  <FileText className="ml-3 h-6 w-6 group-hover:-translate-y-0.5 transition-transform" />
-                </a>
-              </Button>
-            </div>
+              <div className="flex flex-wrap gap-x-8 gap-y-4">
+                {stats.map((s) => (
+                  <div key={s.label}>
+                    <div className="text-2xl font-bold text-foreground">{s.value}</div>
+                    <div className="text-xs text-muted-foreground mt-0.5">{s.label}</div>
+                  </div>
+                ))}
+              </div>
 
-            <div className="flex items-center justify-center gap-4 mt-10">
-              {socialLinks.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={s.label}
-                  className="p-3 rounded-full border border-border/60 bg-background/60 backdrop-blur-md text-muted-foreground hover:text-primary hover:border-primary/50 hover:scale-110 transition-all"
-                >
-                  <s.icon className="w-5 h-5" />
-                </a>
+              <div className="flex items-center gap-3 mt-8">
+                {socialLinks.map((s) => (
+                  <a
+                    key={s.label}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={s.label}
+                    className="p-2.5 rounded-full border border-border/70 bg-background/60 backdrop-blur text-muted-foreground hover:text-primary hover:border-primary/50 transition-colors"
+                  >
+                    <s.icon className="w-4 h-4" />
+                  </a>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Right column — code card */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.15, ease: 'easeOut' }}
+              className="w-full lg:justify-self-end lg:max-w-md"
+            >
+              <div className="rounded-xl border border-border/70 bg-card/80 backdrop-blur shadow-xl overflow-hidden">
+                <div className="flex items-center gap-2 px-4 py-3 border-b border-border/60 bg-muted/40">
+                  <span className="h-3 w-3 rounded-full bg-red-400/80" />
+                  <span className="h-3 w-3 rounded-full bg-yellow-400/80" />
+                  <span className="h-3 w-3 rounded-full bg-green-400/80" />
+                  <span className="ml-2 text-xs font-mono text-muted-foreground">engineer.ts</span>
+                </div>
+                <pre className="p-5 text-[13px] leading-relaxed font-mono overflow-x-auto text-muted-foreground">
+                  <code>
+                    <div>
+                      <span className="text-fuchsia-500 dark:text-fuchsia-400">const</span>{' '}
+                      <span className="text-foreground">engineer</span> = {'{'}
+                    </div>
+                    <div>{'  '}name: <span className={str}>{"'Kweyu Delron Muyale'"}</span>,</div>
+                    <div>{'  '}title: <span className={str}>{"'Software & Network Engineer'"}</span>,</div>
+                    <div>{'  '}location: <span className={str}>{"'Nairobi, Kenya'"}</span>,</div>
+                    <div>{'  '}experience: <span className={str}>{"'5+ years'"}</span>,</div>
+                    <div>
+                      {'  '}focus: [<span className={str}>{"'Backend'"}</span>,{' '}
+                      <span className={str}>{"'Security'"}</span>, <span className={str}>{"'AI'"}</span>],
+                    </div>
+                    <div>{'  '}available: <span className={bool}>true</span>,</div>
+                    <div>{'}'};</div>
+                  </code>
+                </pre>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Tech strip */}
+          <div className="mt-16 pt-8 border-t border-border/50">
+            <p className="text-xs font-mono uppercase tracking-widest text-muted-foreground mb-4">
+              Tools I work with
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {stack.map((t) => (
+                <Badge key={t} variant="outline" className="rounded-full font-normal text-muted-foreground">
+                  {t}
+                </Badge>
               ))}
             </div>
-
-            <motion.div
-              animate={{ y: [0, 15, 0] }}
-              transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-              className="mt-16 cursor-pointer"
-              onClick={() => navigateTo('/about')}
-            >
-              <ChevronDown className="w-10 h-10 mx-auto text-muted-foreground/60" />
-            </motion.div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Featured Projects */}
-      <section className="py-24 lg:py-32">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14"
-          >
+      {/* ── Featured Projects ─────────────────────────────────── */}
+      <section className="py-20 lg:py-28">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-3">Featured Work</p>
-              <h2 className="text-4xl md:text-5xl font-bold">Selected Projects</h2>
+              <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-2">
+                Featured work
+              </p>
+              <h2 className="text-3xl md:text-4xl font-bold">Selected projects</h2>
             </div>
-            <Button
-              variant="outline"
-              onClick={() => navigateTo('/case-studies')}
-              className="group self-start md:self-auto"
-            >
-              View all case studies
+            <Button variant="outline" onClick={() => navigateTo('/projects')} className="group self-start md:self-auto">
+              View all projects
               <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Button>
-          </motion.div>
+          </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {featured.map((project, index) => (
               <motion.div
                 key={project.id}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.12, duration: 0.6 }}
-                whileHover={{ y: -8 }}
-                className="group"
+                transition={{ delay: index * 0.08, duration: 0.4 }}
               >
-                <Card
-                  onClick={() => navigateTo(`/case-studies/${project.id}`)}
-                  className="h-full overflow-hidden cursor-pointer border-border/50 bg-background/60 backdrop-blur shadow-lg hover:shadow-2xl hover:border-primary/30 transition-all duration-500"
-                >
-                  <div className="relative h-52 overflow-hidden">
+                <Card className="h-full flex flex-col overflow-hidden border-border/60 hover:border-primary/40 hover:shadow-lg transition-colors">
+                  <div className="relative h-44 overflow-hidden">
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      loading="lazy"
+                      className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
                   </div>
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
-                      {project.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
-                      {project.description}
-                    </p>
-                    <div className="flex flex-wrap gap-2">
+                  <CardContent className="flex flex-col flex-1 gap-4 p-5">
+                    <h3 className="text-lg font-bold leading-snug">{project.title}</h3>
+                    <p className="text-sm text-muted-foreground line-clamp-3">{project.description}</p>
+                    <div className="flex flex-wrap gap-1.5">
                       {project.tags.slice(0, 3).map((tag) => (
-                        <Badge key={tag} variant="outline" className="text-xs border-primary/30 text-foreground/70">
+                        <Badge key={tag} variant="secondary" className="text-xs font-normal">
                           {tag}
                         </Badge>
                       ))}
+                    </div>
+                    <div className="mt-auto pt-1">
+                      {project.demo ? (
+                        <Button size="sm" className="w-full" asChild>
+                          <a href={project.demo} target="_blank" rel="noopener noreferrer">
+                            Open App
+                            <ArrowUpRight className="ml-1 h-4 w-4" />
+                          </a>
+                        </Button>
+                      ) : (
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          className="w-full"
+                          onClick={() => navigateTo('/projects')}
+                        >
+                          View project
+                        </Button>
+                      )}
                     </div>
                   </CardContent>
                 </Card>
@@ -227,155 +261,47 @@ const Portfolio = () => {
         </div>
       </section>
 
-      {/* Interactive Terminal Section */}
-      <section className="py-24 lg:py-32 bg-muted/50">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9 }}
-          >
-            <div className="flex items-center gap-5 mb-10">
-              <TerminalIcon className="w-10 h-10 text-primary" />
-              <h2 className="text-4xl md:text-5xl font-bold">Interactive Terminal</h2>
-            </div>
-            <p className="text-lg text-muted-foreground mb-10 max-w-3xl">
-              Dive into my skills and experience through an interactive command-line interface. Type{' '}
-              <code className="bg-background/80 px-3 py-1.5 rounded-lg font-mono">help</code> to begin.
+      {/* ── Interactive Terminal ──────────────────────────────── */}
+      <section className="py-20 lg:py-28 bg-muted/40 border-t border-border/50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center gap-3 mb-5">
+            <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <TerminalIcon className="w-5 h-5" />
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold">Interactive terminal</h2>
+          </div>
+          <p className="text-muted-foreground mb-8 max-w-2xl">
+            Explore my skills and experience through a command line. Type{' '}
+            <code className="bg-background/80 px-2 py-1 rounded font-mono text-sm">help</code> to begin.
+          </p>
+          <Terminal />
+        </div>
+      </section>
+
+      {/* ── CTA ───────────────────────────────────────────────── */}
+      <section className="py-20 lg:py-28">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative overflow-hidden rounded-3xl border border-border/60 bg-gradient-to-br from-primary/10 via-card to-accent/10 p-10 md:p-14 text-center">
+            <Sparkles className="w-8 h-8 mx-auto mb-5 text-primary" />
+            <h2 className="text-2xl md:text-4xl font-bold mb-4">Have a project in mind?</h2>
+            <p className="text-muted-foreground max-w-xl mx-auto mb-8">
+              Let&apos;s build something secure, scalable, and genuinely useful together.
             </p>
-            <Terminal />
-          </motion.div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-24">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.97 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary to-accent p-12 md:p-16 text-center shadow-2xl"
-          >
-            <div className="absolute inset-0 opacity-20">
-              <div className="absolute -top-10 -left-10 w-72 h-72 bg-white/30 rounded-full blur-3xl" />
-              <div className="absolute -bottom-10 -right-10 w-72 h-72 bg-white/20 rounded-full blur-3xl" />
-            </div>
-            <div className="relative z-10">
-              <h2 className="text-3xl md:text-5xl font-bold text-primary-foreground mb-5">
-                Have a project in mind?
-              </h2>
-              <p className="text-lg text-primary-foreground/90 max-w-2xl mx-auto mb-8">
-                Let's build something secure, scalable, and impactful together.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" variant="secondary" className="text-lg px-10 py-7" onClick={() => navigateTo('/contact')}>
-                  Get in Touch
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="text-lg px-10 py-7 border-2 border-primary-foreground/40 bg-transparent text-primary-foreground hover:bg-primary-foreground/10"
-                  asChild
-                >
-                  <a href={CV_URL} download>
-                    Download CV
-                    <FileText className="ml-3 h-5 w-5" />
-                  </a>
-                </Button>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-card border-t border-border py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-12 mb-12">
-            {/* Brand + socials */}
-            <div>
-              <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-500 to-pink-500 bg-clip-text text-transparent">
-                Kweyu Delron
-              </h3>
-              <p className="text-muted-foreground mb-6 max-w-xs">
-                Building the future, one secure line of code at a time.
-              </p>
-              <div className="flex gap-3">
-                {socialLinks.map((s) => (
-                  <a
-                    key={s.label}
-                    href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={s.label}
-                    className="p-2.5 rounded-full border border-border text-muted-foreground hover:text-primary hover:border-primary/50 transition-colors"
-                  >
-                    <s.icon className="w-5 h-5" />
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            {/* Navigation */}
-            <div>
-              <h4 className="font-semibold mb-5 text-lg">Navigation</h4>
-              <ul className="space-y-3">
-                {navItems.map((item) => (
-                  <li key={item.label}>
-                    <button
-                      onClick={() => navigateTo(item.path)}
-                      className="text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      {item.label}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Contact */}
-            <div>
-              <h4 className="font-semibold mb-5 text-lg">Get in Touch</h4>
-              <ul className="space-y-4">
-                <li className="flex items-center gap-3">
-                  <Mail className="w-5 h-5 text-primary flex-shrink-0" />
-                  <a href="mailto:kweyudelron37@gmail.com" className="text-muted-foreground hover:text-primary transition-colors break-all">
-                    kweyudelron37@gmail.com
-                  </a>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Phone className="w-5 h-5 text-primary flex-shrink-0" />
-                  <a href="tel:+254708821843" className="text-muted-foreground hover:text-primary transition-colors">
-                    +254 (708) 821-843
-                  </a>
-                </li>
-                <li className="flex items-center gap-3">
-                  <MapPin className="w-5 h-5 text-primary flex-shrink-0" />
-                  <span className="text-muted-foreground">Nairobi, Kenya</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <Separator className="mb-8" />
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <p className="text-muted-foreground text-sm">© 2025 Kweyu Delron Muyale. All rights reserved.</p>
-            <div className="flex items-center gap-6">
-              <Badge variant="outline" className="text-sm">
-                <Zap className="w-4 h-4 mr-2 text-yellow-500" />
-                95+ Performance
-              </Badge>
-              <Badge variant="outline" className="text-sm">
-                <Shield className="w-4 h-4 mr-2 text-green-500" />
-                WCAG AA Compliant
-              </Badge>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Button size="lg" className="px-7" onClick={() => navigateTo('/contact')}>
+                Get in touch
+              </Button>
+              <Button size="lg" variant="outline" className="px-7 group" asChild>
+                <a href={CV_URL} download>
+                  Download CV
+                  <Download className="ml-2 h-4 w-4 group-hover:translate-y-0.5 transition-transform" />
+                </a>
+              </Button>
             </div>
           </div>
         </div>
-      </footer>
+      </section>
+
     </div>
   );
 };

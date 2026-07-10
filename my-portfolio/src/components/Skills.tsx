@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Code2, Database, Network, Shield, Blocks, Wrench } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
+import PageHeader from '@/components/PageHeader';
 import { useDocumentMeta } from '@/hooks/useDocumentMeta';
 
 const Skills = () => {
@@ -88,68 +89,50 @@ const Skills = () => {
   const tier = (level: number) => (level >= 90 ? 'Expert' : level >= 80 ? 'Advanced' : 'Proficient');
 
   return (
-    <div className="min-h-screen bg-background relative overflow-hidden">
-      {/* Background Glows */}
-      <div className="absolute inset-0 opacity-25 pointer-events-none">
-        <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-cyan-400/30 to-blue-600/30 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-32 right-20 w-80 h-80 bg-gradient-to-tr from-purple-500/40 to-pink-500/40 rounded-full blur-3xl animate-pulse delay-700" />
-      </div>
+    <div className="min-h-screen bg-background">
+      <PageHeader
+        eyebrow="// skills"
+        title="Skills & expertise"
+        subtitle="A practical, hands-on skill set built through real projects, IT support, and continuous learning."
+      />
 
-      <section className="py-20 lg:py-28 relative z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Heading */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h1 className="text-4xl md:text-5xl font-bold mb-5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-              Skills & Expertise
-            </h1>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              A practical, hands-on skill set built through real projects, IT support, and continuous learning.
-            </p>
-          </motion.div>
-
-          {/* Category Cards */}
-          <div className="grid md:grid-cols-2 gap-8">
+      <section className="py-20 lg:py-28">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-6">
             {Object.entries(skills).map(([category, data], index) => {
               const Icon = categoryIcons[category as keyof typeof categoryIcons];
               return (
                 <motion.div
                   key={category}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: (index % 2) * 0.1, duration: 0.5 }}
+                  transition={{ delay: (index % 2) * 0.08, duration: 0.4 }}
                 >
-                  <Card className="h-full border-border/50 bg-background/60 backdrop-blur hover:shadow-xl hover:border-primary/30 transition-all duration-300">
+                  <Card className="h-full border-border/60 hover:border-primary/40 hover:shadow-lg transition-colors">
                     <CardContent className="p-6 sm:p-7">
-                      {/* Category header */}
                       <div className="flex items-center gap-4 mb-6">
-                        <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                          <Icon className="w-6 h-6 text-primary" />
-                        </div>
+                        <span className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 text-primary">
+                          <Icon className="w-5 h-5" />
+                        </span>
                         <div>
                           <h3 className="text-lg font-bold leading-tight">{category}</h3>
                           <p className="text-sm text-muted-foreground">{data.description}</p>
                         </div>
                       </div>
 
-                      {/* Skills */}
                       <div className="space-y-4">
                         {data.list.map((skill) => (
                           <div key={skill.name}>
                             <div className="flex items-center justify-between mb-1.5">
                               <span className="text-sm font-medium">{skill.name}</span>
-                              <span className="text-xs font-semibold text-muted-foreground">
+                              <span className="text-xs font-mono text-muted-foreground">
                                 {tier(skill.level)} · {skill.level}%
                               </span>
                             </div>
                             <Progress
                               value={skill.level}
-                              className="h-2 bg-muted [&>div]:bg-gradient-to-r [&>div]:from-primary [&>div]:to-accent"
+                              className="h-1.5 bg-muted [&>div]:bg-gradient-to-r [&>div]:from-primary [&>div]:to-accent"
                             />
                           </div>
                         ))}
@@ -161,19 +144,13 @@ const Skills = () => {
             })}
           </div>
 
-          {/* Summary */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="mt-16 text-center"
-          >
-            <div className="inline-flex flex-wrap justify-center items-center gap-3 bg-background/60 backdrop-blur border border-border/50 rounded-full px-8 py-4 shadow-lg">
-              <span className="text-base lg:text-lg font-semibold">
+          <div className="mt-12 flex justify-center">
+            <div className="inline-flex flex-wrap justify-center items-center gap-3 rounded-full border border-border/60 bg-card/60 px-6 py-3">
+              <span className="text-sm font-medium text-muted-foreground">
                 Full-Stack Capable • Network Expert • Security-Minded • Hands-On Problem Solver
               </span>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </div>

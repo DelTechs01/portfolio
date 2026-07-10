@@ -3,13 +3,14 @@ import { Route, Router, Switch, useLocation } from 'wouter';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Loader2 } from 'lucide-react';
 import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 import BackToTop from '@/components/BackToTop';
 import AccessibilityControls from '@/components/AccessibilityControls';
 import AIAssistant from '@/components/AIAssistant';
 import PersonalizationEngine from '@/components/PersonalizationEngine';
 import { caseStudiesData } from '@/data/caseStudies';
 
-// Route-level code splitting — each page ships as its own chunk.
+// Route-level code splitting  each page ships as its own chunk.
 const Portfolio = lazy(() => import('@/components/Portfolio'));
 const CaseStudy = lazy(() => import('@/components/CaseStudy'));
 const Education = lazy(() => import('@/components/Education'));
@@ -49,12 +50,11 @@ function App() {
     window.scrollTo(0, 0);
   }, [location]);
 
-  const handleSelectProject = (id: string) => setLocation(`/case-studies/${id}`);
   const goHome = () => setLocation('/');
 
   return (
     <Router base="/">
-      {/* Persistent chrome — rendered outside the transition so it never unmounts */}
+      {/* Persistent chrome  rendered outside the transition so it never unmounts */}
       <Navbar />
       <AccessibilityControls />
       <AIAssistant />
@@ -77,14 +77,14 @@ function App() {
               <Route path="/skills">
                 <Skills />
               </Route>
-              <Route path="/case-studies">
-                <CaseStudies onSelectProject={handleSelectProject} />
+              <Route path="/projects">
+                <CaseStudies />
               </Route>
-              <Route path="/case-studies/:id">
+              <Route path="/projects/:id">
                 {(params) => {
                   const project = caseStudiesData.find((p) => p.id === params.id);
                   return project ? (
-                    <CaseStudy project={project} onBack={() => setLocation('/case-studies')} />
+                    <CaseStudy project={project} onBack={() => setLocation('/projects')} />
                   ) : (
                     <NotFound onHome={goHome} />
                   );
@@ -109,6 +109,8 @@ function App() {
           </motion.div>
         </AnimatePresence>
       </Suspense>
+
+      <Footer />
     </Router>
   );
 }
