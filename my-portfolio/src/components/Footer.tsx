@@ -1,12 +1,16 @@
-import { useLocation } from 'wouter';
-import { Github, Linkedin, Twitter, Mail, Phone, MapPin } from 'lucide-react';
-import { Separator } from '@/components/ui/separator';
-import { navItems } from '@/data/nav';
+import { useLocation } from "wouter";
+import { Github, Linkedin, Twitter, Mail, Phone, MapPin } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
+import { navItems } from "@/data/nav";
 
 const socialLinks = [
-  { icon: Github, href: 'https://github.com/DelTechs01', label: 'GitHub' },
-  { icon: Linkedin, href: 'https://www.linkedin.com/in/delron-zynthos-labs-3a4060244', label: 'LinkedIn' },
-  { icon: Twitter, href: 'https://x.com/BTripatakah', label: 'X' },
+  { icon: Github, href: "https://github.com/DelTechs01", label: "GitHub" },
+  {
+    icon: Linkedin,
+    href: "https://www.linkedin.com/in/delron-zynthos-labs-3a4060244",
+    label: "LinkedIn",
+  },
+  { icon: Twitter, href: "https://x.com/BTripatakah", label: "X" },
 ];
 
 export default function Footer() {
@@ -61,13 +65,19 @@ export default function Footer() {
             <ul className="space-y-3 text-sm">
               <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-primary flex-shrink-0" />
-                <a href="mailto:kweyudelron37@gmail.com" className="text-muted-foreground hover:text-primary transition-colors break-all">
+                <a
+                  href="mailto:kweyudelron37@gmail.com"
+                  className="text-muted-foreground hover:text-primary transition-colors break-all"
+                >
                   kweyudelron37@gmail.com
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-primary flex-shrink-0" />
-                <a href="tel:+254708821843" className="text-muted-foreground hover:text-primary transition-colors">
+                <a
+                  href="tel:+254708821843"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
                   +254 (708) 821-843
                 </a>
               </li>
@@ -81,9 +91,11 @@ export default function Footer() {
 
         <Separator className="mb-6" />
         <div className="flex flex-col-reverse md:flex-row md:justify-between md:items-center gap-4">
-          <p className="text-muted-foreground text-sm">&copy; 2025 Kweyu Delron Muyale. All rights reserved.</p>
+          <p className="text-muted-foreground text-sm">
+            &copy; 2025 Kweyu Delron . All rights reserved.
+          </p>
           <button
-            onClick={() => navigateTo('/projects')}
+            onClick={() => navigateTo("/projects")}
             className="self-start text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
           >
             See the work &rarr;

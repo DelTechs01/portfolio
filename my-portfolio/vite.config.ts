@@ -14,7 +14,7 @@ export default defineConfig({
       // public/Profile.jpg by pwa-assets.config.ts and injected automatically.
       pwaAssets: { config: true },
       manifest: {
-        name: "Kweyu Delron Muyale - Portfolio",
+        name: "Kweyu Delron  - Portfolio",
         short_name: "KD Portfolio",
         description:
           "Software Engineer, Network Engineer & IT Solutions specialist building secure, scalable, AI-powered systems.",
