@@ -9,7 +9,8 @@ const Terminal = () => {
     { type: 'output', content: 'Type "help" for available commands' },
     { type: 'output', content: '' },
   ]);
-  const terminalEndRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const commands: Record<string, () => string> = {
     help: () => `Available commands:
@@ -121,8 +122,10 @@ Type "help" to explore more, or visit the Case Studies page.`,
     if (e.key === 'Enter') handleCommand(input);
   };
 
+  // Keep the terminal scrolled to the newest line WITHOUT moving the page.
   useEffect(() => {
-    terminalEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    const el = scrollRef.current;
+    if (el) el.scrollTop = el.scrollHeight;
   }, [history]);
 
   return (
@@ -136,7 +139,11 @@ Type "help" to explore more, or visit the Case Studies page.`,
         <span className="text-xs text-muted-foreground ml-4">portfolio-terminal</span>
       </div>
 
-      <div className="p-4 font-mono text-sm h-96 overflow-y-auto">
+      <div
+        ref={scrollRef}
+        onClick={() => inputRef.current?.focus({ preventScroll: true })}
+        className="p-4 font-mono text-sm h-96 overflow-y-auto"
+      >
         {history.map((item, index) => (
           <motion.div
             key={index}
@@ -152,17 +159,15 @@ Type "help" to explore more, or visit the Case Studies page.`,
         <div className="flex items-center gap-2 text-green-400">
           <span>$</span>
           <input
+            ref={inputRef}
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
             className="flex-1 bg-transparent outline-none text-green-400"
-            autoFocus
             spellCheck={false}
           />
         </div>
-
-        <div ref={terminalEndRef} />
       </div>
     </Card>
   );

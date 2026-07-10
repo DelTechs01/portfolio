@@ -14,7 +14,7 @@ export default function Footer() {
   const navigateTo = (path: string) => setLocation(path);
 
   return (
-    <footer className="bg-card border-t border-border py-14">
+    <footer className="bg-card border-t border-border pt-14 pb-28 md:pb-14">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-3 gap-10 mb-10">
           <div>
@@ -80,11 +80,11 @@ export default function Footer() {
         </div>
 
         <Separator className="mb-6" />
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="flex flex-col-reverse md:flex-row md:justify-between md:items-center gap-4">
           <p className="text-muted-foreground text-sm">&copy; 2025 Kweyu Delron Muyale. All rights reserved.</p>
           <button
             onClick={() => navigateTo('/projects')}
-            className="text-sm text-muted-foreground hover:text-primary transition-colors"
+            className="self-start text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
           >
             See the work &rarr;
           </button>

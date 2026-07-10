@@ -116,7 +116,7 @@ const Education = () => {
   const stats = [
     { label: 'Degrees', value: degrees.length, icon: GraduationCap },
     { label: 'Certifications', value: certifications.length, icon: Award },
-    { label: 'Years Learning', value: '3+', icon: BookOpen },
+    { label: 'Years learning (ongoing)', value: '4+', icon: BookOpen },
     { label: 'Specializations', value: categories.length - 1, icon: Star },
   ];
 
