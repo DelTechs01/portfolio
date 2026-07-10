@@ -138,7 +138,7 @@ const Portfolio = () => {
               </div>
             </motion.div>
 
-            {/* Right column — code card */}
+            {/* Right column  code card */}
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
