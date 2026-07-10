@@ -33,6 +33,9 @@ export interface CaseStudy {
   role: string;
   github?: string;
   demo?: string;
+  // When set, the card's button opens a "coming soon" drawer instead of the
+  // live link (link is retained in `demo` for when it's ready).
+  comingSoon?: string;
   testimonial?: {
     content: string;
     author: string;
@@ -292,13 +295,14 @@ export const caseStudiesData: CaseStudy[] = [
     timeline: 'Ongoing',
     teamSize: 'Solo / small team',
     role: 'Full-Stack Developer',
-    demo: 'https://billing-system-livid-pi.vercel.app/'
+    demo: 'https://billing-system-livid-pi.vercel.app/',
+    comingSoon: 'ISP Billing coming soon'
   },
   {
     id: 'mua-odel',
     title: 'MUA ODEL - University E-Learning Portal',
     description: 'The Open, Distance & E-Learning (ODEL) portal for Management University of Africa, giving students online access to their courses, learning materials, and activities.',
-    image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?w=800&q=80',
     tags: ['E-Learning', 'ODEL', 'LMS', 'Education', 'Web'],
     problem: 'Distance-learning students needed one online place to reach their courses, study materials, and activities without having to be on campus.',
     solution: 'An ODEL portal where students log in to access enrolled courses, download materials, and take part in online learning for Management University of Africa.',
@@ -349,5 +353,72 @@ export const caseStudiesData: CaseStudy[] = [
     teamSize: 'Solo / small team',
     role: 'Developer',
     demo: 'https://odel.mua.ac.ke/'
+  },
+  {
+    id: 'campustribe-social',
+    title: 'CampusTribe Social - Campus Community Platform',
+    description: 'A social platform for campus communities, with verified student groups ("tribes"), event feeds, and real-time discussions.',
+    image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80',
+    tags: ['React', 'Flask', 'PostgreSQL', 'WebSocket', 'REST API'],
+    problem: 'Students lacked a dedicated, trusted space to find campus groups, discover events, and discuss topics without the noise of general social media.',
+    solution: 'Built a campus-focused social platform with verified communities, event feeds, real-time group chat, and moderation tools that keep discussions relevant and safe.',
+    architecture: {
+      description: 'React frontend with a Flask REST API, PostgreSQL storage, and WebSocket connections powering real-time chat and notifications.',
+      diagram: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80',
+      components: [
+        'React frontend with feed, groups, and events',
+        'Flask REST API for content and membership',
+        'PostgreSQL for users, tribes, posts, and events',
+        'WebSocket server for real-time chat and notifications',
+        'Student verification and community moderation',
+        'Event creation, RSVPs, and reminders'
+      ]
+    },
+    techDecisions: [
+      {
+        decision: 'Community-first ("tribe") data model',
+        rationale: 'Campus life revolves around groups, so communities are the core entity.',
+        impact: 'Natural organisation of content and easier discovery.'
+      },
+      {
+        decision: 'WebSockets for real-time interaction',
+        rationale: 'Discussions and notifications feel alive without page reloads.',
+        impact: 'Higher engagement and responsiveness.'
+      },
+      {
+        decision: 'Flask for a lightweight, fast-iterating backend',
+        rationale: 'Kept the API simple and quick to evolve.',
+        impact: 'Rapid feature delivery.'
+      }
+    ],
+    results: [
+      { metric: 'Community Building', before: 'Fragmented', after: 'Centralised', improvement: 'Verified tribes in one place' },
+      { metric: 'Event Discovery', before: 'Word of mouth', after: 'In-app feed', improvement: 'Higher event turnout' },
+      { metric: 'Engagement', before: 'Low', after: 'Real-time', improvement: 'Active group discussions' }
+    ],
+    challenges: [
+      {
+        challenge: 'Keeping communities authentic and safe',
+        solution: 'Added student verification plus reporting and moderation tools.'
+      },
+      {
+        challenge: 'Real-time messaging at scale',
+        solution: 'Optimised WebSocket broadcasting and connection handling.'
+      }
+    ],
+    improvements: [
+      'Native mobile apps for iOS and Android',
+      'AI-assisted content moderation',
+      'Cross-campus community discovery'
+    ],
+    screenshots: [
+      'https://images.unsplash.com/photo-1496469888073-80de7e952517?w=800&q=80',
+      'https://images.unsplash.com/photo-1543269865-cbf427effbad?w=800&q=80'
+    ],
+    timeline: 'Ongoing',
+    teamSize: 'Solo / small team',
+    role: 'Full-Stack Developer',
+    demo: 'https://www.campustribe.tech/',
+    comingSoon: 'CampusTribe is being rehosted - back online soon'
   }
 ];

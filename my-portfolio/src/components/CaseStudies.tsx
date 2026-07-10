@@ -1,16 +1,22 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import {
+  Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetFooter, SheetClose,
+} from '@/components/ui/sheet';
 import { caseStudiesData } from '@/data/caseStudies';
 import { useDocumentMeta } from '@/hooks/useDocumentMeta';
 
 const CaseStudies = () => {
+  const [comingSoon, setComingSoon] = useState<string | null>(null);
+
   useDocumentMeta({
     title: 'Projects',
     description:
-      'A selection of projects I have designed and built  with links to live demos and source code.',
+      'A selection of projects I have designed and built, with links to the live applications.',
   });
 
   return (
@@ -29,8 +35,7 @@ const CaseStudies = () => {
             </p>
             <h1 className="text-4xl md:text-5xl font-bold mb-4">Things I've built</h1>
             <p className="text-lg text-muted-foreground">
-              A selection of projects, each with a live demo or source code so you can explore them
-              yourself.
+              A selection of projects, each with a live app so you can explore them yourself.
             </p>
           </motion.div>
 
@@ -71,9 +76,18 @@ const CaseStudies = () => {
                       ))}
                     </div>
 
-                    {/* Access button  live link to the application */}
+                    {/* Access button: opens the live app, or a "coming soon" drawer */}
                     <div className="mt-auto pt-2">
-                      {project.demo ? (
+                      {project.comingSoon ? (
+                        <Button
+                          size="sm"
+                          className="w-full"
+                          onClick={() => setComingSoon(project.comingSoon!)}
+                        >
+                          Open App
+                          <ArrowUpRight className="ml-1 h-4 w-4" />
+                        </Button>
+                      ) : project.demo ? (
                         <Button size="sm" className="w-full" asChild>
                           <a href={project.demo} target="_blank" rel="noopener noreferrer">
                             Open App
@@ -93,6 +107,26 @@ const CaseStudies = () => {
           </div>
         </div>
       </section>
+
+      {/* Coming-soon drawer */}
+      <Sheet open={!!comingSoon} onOpenChange={(open) => !open && setComingSoon(null)}>
+        <SheetContent side="bottom" className="mx-auto max-w-md rounded-t-2xl">
+          <SheetHeader className="items-center text-center pt-8">
+            <span className="mx-auto mb-2 inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+              <Clock className="h-6 w-6" />
+            </span>
+            <SheetTitle className="text-xl">{comingSoon}</SheetTitle>
+            <SheetDescription>
+              This app isn't quite ready for visitors yet. Please check back soon.
+            </SheetDescription>
+          </SheetHeader>
+          <SheetFooter className="items-center pb-8">
+            <SheetClose asChild>
+              <Button variant="outline" className="px-8">Got it</Button>
+            </SheetClose>
+          </SheetFooter>
+        </SheetContent>
+      </Sheet>
     </div>
   );
 };

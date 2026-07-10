@@ -76,14 +76,26 @@ X:        https://x.com/BTripatakah`,
    Tech: React, TypeScript, Node.js, PostgreSQL
    Live: https://eastmedic-hms.vercel.app
 
-2. CampusTribe Social - Campus Community Platform
+2. Zynthos Orchestrator - AI Agent Platform
+   Tech: AI Agents, LLM, React
+   Live: https://zynthos-lab.vercel.app
+
+3. Cloud SMS Engine - Bulk SMS Platform
+   Tech: Bulk SMS, SMS API, Cloud
+   Live: https://cloudsmsengine.co.ke
+
+4. MUA ODEL - University E-Learning Portal
+   Tech: E-Learning, ODEL, LMS
+   Live: https://odel.mua.ac.ke
+
+5. Cloud ISP Engine - ISP Billing & Management
+   Status: ISP Billing coming soon
+
+6. CampusTribe Social - Campus Community Platform
    Tech: React, Flask, PostgreSQL, WebSocket
-   Live: https://www.campustribe.tech
+   Status: being rehosted
 
-3. Zynthos Orchestrator - Workflow Automation Platform
-   Tech: Python, FastAPI, Docker, Redis, React
-
-Type "help" to explore more, or visit the Case Studies page.`,
+Type "help" to explore more, or visit the Projects page.`,
 
     whoami: () => 'visitor@portfolio ~ guest user',
 
