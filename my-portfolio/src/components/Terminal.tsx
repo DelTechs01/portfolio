@@ -67,7 +67,7 @@ B.Sc. Software Engineering - Kirinyaga University
 Email:    kweyudelron37@gmail.com
 Phone:    +254 (708) 821-843
 GitHub:   https://github.com/DelTechs01
-LinkedIn: linkedin.com/in/kweyu-delron-3a4060244
+LinkedIn: https://www.linkedin.com/in/delron-zynthos-labs-3a4060244
 X:        https://x.com/BTripatakah`,
 
     projects: () => `Featured Projects:

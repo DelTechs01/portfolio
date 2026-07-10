@@ -8,6 +8,7 @@ import BackToTop from '@/components/BackToTop';
 import AccessibilityControls from '@/components/AccessibilityControls';
 import AIAssistant from '@/components/AIAssistant';
 import PersonalizationEngine from '@/components/PersonalizationEngine';
+import { Toaster } from '@/components/ui/sonner';
 import { caseStudiesData } from '@/data/caseStudies';
 
 // Route-level code splitting  each page ships as its own chunk.
@@ -60,6 +61,7 @@ function App() {
       <AIAssistant />
       <PersonalizationEngine />
       <BackToTop />
+      <Toaster position="top-center" />
 
       <Suspense fallback={<PageLoader />}>
         <AnimatePresence mode="wait">

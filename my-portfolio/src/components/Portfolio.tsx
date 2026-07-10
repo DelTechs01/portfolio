@@ -16,7 +16,7 @@ const CV_URL = '/Kweyu_Delron_Muyale_CV.pdf';
 
 const socialLinks = [
   { icon: Github, href: 'https://github.com/DelTechs01', label: 'GitHub' },
-  { icon: Linkedin, href: 'https://www.linkedin.com/in/kweyu-delron-3a4060244/', label: 'LinkedIn' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/delron-zynthos-labs-3a4060244', label: 'LinkedIn' },
   { icon: Twitter, href: 'https://x.com/BTripatakah', label: 'X' },
 ];
 

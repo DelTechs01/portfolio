@@ -1,129 +1,144 @@
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { X, Target } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { X, Sparkles, Code2, Briefcase, UserSearch, ArrowRight } from 'lucide-react';
+import { useLocation } from 'wouter';
+import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 
+type VisitorType = 'developer' | 'client' | 'recruiter';
 
-type VisitorType = 'developer' | 'client' | 'recruiter' | null;
+const options: {
+  type: VisitorType;
+  icon: typeof Code2;
+  label: string;
+  description: string;
+  path: string;
+  toast: string;
+}[] = [
+  {
+    type: 'developer',
+    icon: Code2,
+    label: 'Developer',
+    description: 'Exploring the tech stack & projects',
+    path: '/projects',
+    toast: "Here are the projects and the stack behind them.",
+  },
+  {
+    type: 'client',
+    icon: Briefcase,
+    label: 'Client',
+    description: 'Looking for development services',
+    path: '/services',
+    toast: "Here's how I can help  services and what to expect.",
+  },
+  {
+    type: 'recruiter',
+    icon: UserSearch,
+    label: 'Recruiter',
+    description: 'Reviewing experience & credentials',
+    path: '/education',
+    toast: "Here's my education, certifications, and background.",
+  },
+];
 
-interface PersonalizationEngineProps {
-  onPersonalize?: (type: VisitorType) => void;
-}
-
-const PersonalizationEngine = ({ onPersonalize }: PersonalizationEngineProps) => {
-  const [, setVisitorType] = useState<VisitorType>(null);
-  const [showPrompt, setShowPrompt] = useState(false);
-  const [dismissed, setDismissed] = useState(false);
+const PersonalizationEngine = () => {
+  const [, setLocation] = useLocation();
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const stored = localStorage.getItem('visitorType') as VisitorType;
-    const isDismissed = localStorage.getItem('personalizationDismissed') === 'true';
-    
-    if (stored) {
-      setVisitorType(stored);
-      onPersonalize?.(stored);
-    } else if (!isDismissed) {
-      // Show prompt after 3 seconds
-      const timer = setTimeout(() => {
-        setShowPrompt(true);
-      }, 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [onPersonalize]);
+    const stored = localStorage.getItem('visitorType');
+    const dismissed = localStorage.getItem('personalizationDismissed') === 'true';
+    if (stored || dismissed) return;
 
-  const handleSelection = (type: VisitorType) => {
-    setVisitorType(type);
-    setShowPrompt(false);
-    if (type) {
-      localStorage.setItem('visitorType', type);
-      onPersonalize?.(type);
-    }
+    const timer = setTimeout(() => setOpen(true), 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const choose = (opt: (typeof options)[number]) => {
+    localStorage.setItem('visitorType', opt.type);
+    setOpen(false);
+    setLocation(opt.path);
+    toast.success(opt.toast);
   };
 
-  const handleDismiss = () => {
-    setShowPrompt(false);
-    setDismissed(true);
+  const dismiss = () => {
     localStorage.setItem('personalizationDismissed', 'true');
+    setOpen(false);
   };
-
-  if (!showPrompt || dismissed) return null;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 50 }}
-      className="fixed bottom-24 left-1/2 -translate-x-1/2 z-50 w-full max-w-2xl px-4"
-    >
-      <Card className="shadow-2xl border-2 border-primary/20">
-        <CardContent className="p-6">
-          <div className="flex items-start justify-between mb-4">
-            <div className="flex items-center gap-2">
-              <Target className="w-5 h-5 text-primary" />
-              <h3 className="font-semibold">Personalize Your Experience</h3>
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          initial={{ opacity: 0, y: 80 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 80 }}
+          transition={{ type: 'spring', stiffness: 260, damping: 28 }}
+          className="fixed inset-x-0 bottom-0 z-50 px-3 pb-3 sm:pb-5"
+          role="dialog"
+          aria-label="Personalize your experience"
+        >
+          <div className="mx-auto max-w-lg overflow-hidden rounded-2xl border border-border bg-card/95 shadow-2xl backdrop-blur-xl">
+            {/* Drawer grabber */}
+            <div className="flex justify-center pt-3">
+              <span className="h-1.5 w-10 rounded-full bg-border" />
             </div>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={handleDismiss}
-              className="h-8 w-8"
-            >
-              <X className="w-4 h-4" />
-            </Button>
+
+            <div className="p-5 sm:p-6">
+              <div className="mb-1 flex items-start justify-between">
+                <div className="flex items-center gap-2.5">
+                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <Sparkles className="h-4 w-4" />
+                  </span>
+                  <h3 className="font-bold">Personalize your experience</h3>
+                </div>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={dismiss}
+                  className="-mt-1 -mr-1 h-8 w-8"
+                  aria-label="Dismiss"
+                >
+                  <X className="h-4 w-4" />
+                </Button>
+              </div>
+
+              <p className="mb-5 text-sm text-muted-foreground">
+                What brings you here today? I'll take you to the most relevant page.
+              </p>
+
+              <div className="space-y-2.5">
+                {options.map((opt) => (
+                  <button
+                    key={opt.type}
+                    onClick={() => choose(opt)}
+                    className="group flex w-full items-center gap-4 rounded-xl border border-border/70 bg-background/40 px-4 py-3 text-left transition-colors hover:border-primary/50 hover:bg-primary/5"
+                  >
+                    <span className="inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                      <opt.icon className="h-5 w-5" />
+                    </span>
+                    <span className="flex-1">
+                      <span className="block text-sm font-semibold">{opt.label}</span>
+                      <span className="block text-xs text-muted-foreground">{opt.description}</span>
+                    </span>
+                    <ArrowRight className="h-4 w-4 flex-shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-primary" />
+                  </button>
+                ))}
+              </div>
+
+              <Button
+                variant="ghost"
+                size="sm"
+                className="mt-4 w-full text-xs text-muted-foreground"
+                onClick={dismiss}
+              >
+                Skip for now
+              </Button>
+            </div>
           </div>
-          
-          <p className="text-sm text-muted-foreground mb-4">
-            I'm here to help! What brings you to my portfolio today?
-          </p>
-          
-          <div className="grid md:grid-cols-3 gap-3">
-            <Button
-              variant="outline"
-              className="h-auto py-4 flex flex-col items-start gap-2 hover:border-primary"
-              onClick={() => handleSelection('developer')}
-            >
-              <Badge variant="secondary" className="mb-1">Developer</Badge>
-              <span className="text-sm text-left">
-                Exploring tech stack & architecture
-              </span>
-            </Button>
-            
-            <Button
-              variant="outline"
-              className="h-auto py-4 flex flex-col items-start gap-2 hover:border-primary"
-              onClick={() => handleSelection('client')}
-            >
-              <Badge variant="secondary" className="mb-1">Client</Badge>
-              <span className="text-sm text-left">
-                Looking for development services
-              </span>
-            </Button>
-            
-            <Button
-              variant="outline"
-              className="h-auto py-4 flex flex-col items-start gap-2 hover:border-primary"
-              onClick={() => handleSelection('recruiter')}
-            >
-              <Badge variant="secondary" className="mb-1">Recruiter</Badge>
-              <span className="text-sm text-left">
-                Reviewing experience & skills
-              </span>
-            </Button>
-          </div>
-          
-          <Button
-            variant="ghost"
-            size="sm"
-            className="w-full mt-3 text-xs"
-            onClick={handleDismiss}
-          >
-            Skip personalization
-          </Button>
-        </CardContent>
-      </Card>
-    </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 
