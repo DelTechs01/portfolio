@@ -32,17 +32,13 @@ const socialLinks = [
   { icon: Twitter, href: "https://x.com/BTripatakah", label: "X" },
 ];
 
+// Every figure is backed by something on the site. The 224 Mbps result lives
+// in the featured card beside the headline, so it is not repeated here.
 const stats = [
   { value: "4+", label: "Years experience" },
-  { value: "224 Mbps", label: "Capacity, up from 190" },
+  { value: String(networkWork.length), label: "Network case studies" },
   { value: String(caseStudiesData.length), label: "Software projects" },
-];
-
-// Formerly the "engineer.ts" code card: same facts, now plain scannable text.
-const facts = [
-  { label: "Based in", value: "Nairobi, Kenya" },
-  { label: "Focus", value: "Networking, ISP operations, Automation" },
-  { label: "Platform", value: "MikroTik RouterOS 7" },
+  { value: "RouterOS 7", label: "Primary platform" },
 ];
 
 const stack = [
@@ -158,31 +154,30 @@ const Portfolio = () => {
       <section className="relative isolate overflow-hidden">
         <div aria-hidden className="hero-glow" />
 
-        <div className="mx-auto max-w-6xl px-4 pt-20 pb-20 sm:px-6 md:pt-32 md:pb-28 lg:px-8">
+        <div className="mx-auto max-w-6xl px-4 pt-16 pb-20 sm:px-6 md:pt-28 md:pb-24 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease }}
+            className="grid gap-12 lg:grid-cols-[1fr_21rem] lg:items-end lg:gap-16"
           >
-            <p className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-border bg-card/50 px-3 py-1.5 backdrop-blur">
-              <span className="relative flex size-2">
-                <span className="absolute inline-flex size-full animate-ping rounded-full bg-primary opacity-60 [animation-duration:2.5s]" />
-                <span className="relative inline-flex size-2 rounded-full bg-primary" />
-              </span>
-              <span className="font-mono text-xs tracking-wider text-muted-foreground">
-                AVAILABLE FOR WORK
-              </span>
+            <div className="min-w-0">
+            <p className="label-mono mb-6 flex flex-wrap items-center gap-x-3 gap-y-1">
+              <span className="text-primary">Network &amp; Software Engineer</span>
+              <span aria-hidden className="hidden h-px w-6 bg-border sm:block" />
+              Nairobi, Kenya
             </p>
 
-            <h1 className="max-w-5xl text-[clamp(2.5rem,7.2vw,5.25rem)] font-medium leading-[1.02] tracking-[-0.04em]">
-              Kweyu Delron.{" "}
-              <span className="text-muted-foreground">
-                Network engineer who designs resilient ISP networks and builds
-                the software around them.
-              </span>
+            <h1 className="text-[clamp(2.75rem,6.5vw,4.75rem)] font-medium leading-[1.02] tracking-[-0.04em]">
+              Kweyu Delron
             </h1>
 
-            <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
+            <p className="mt-6 max-w-2xl text-2xl font-medium leading-snug tracking-[-0.02em] text-muted-foreground md:text-3xl">
+              I design resilient ISP networks and build the software around
+              them.
+            </p>
+
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
               I run internet service provider operations, design load balancing
               and failover on MikroTik RouterOS 7, diagnose faults from optics
               to packet capture, and build web platforms for billing, messaging
@@ -192,7 +187,7 @@ const Portfolio = () => {
             <div className="mt-10 flex flex-wrap items-center gap-3">
               <Button size="lg" className="group h-11 rounded-full px-6" asChild>
                 <Link href="/projects">
-                  View Projects
+                  View work
                   <ArrowRight className="transition-transform group-hover:translate-x-0.5" />
                 </Link>
               </Button>
@@ -202,7 +197,7 @@ const Portfolio = () => {
                 className="h-11 rounded-full px-6"
                 asChild
               >
-                <Link href="/contact">Contact me</Link>
+                <Link href="/contact">Get in touch</Link>
               </Button>
               {CV_URL ? (
                 <Button
@@ -235,29 +230,47 @@ const Portfolio = () => {
                 ))}
               </div>
             </div>
+            </div>
+
+            {/* Featured result: the strongest piece of evidence, above the fold */}
+            <Link
+              href="/work/dual-link-failover"
+              className="group block rounded-2xl border border-border bg-card/60 p-6 backdrop-blur transition-colors hover:border-primary/40"
+            >
+              <p className="label-mono">Featured result</p>
+              <p className="mt-5 flex items-baseline gap-2">
+                <span className="text-5xl font-medium tracking-[-0.04em]">
+                  224
+                </span>
+                <span className="text-lg text-muted-foreground">Mbps</span>
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                Usable capacity, up from 190 Mbps, with no customer downtime.
+              </p>
+              <p className="mt-5 border-t border-border pt-5 text-sm leading-relaxed">
+                Dual link load balancing and automatic failover on MikroTik
+                RouterOS 7.
+              </p>
+              <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium transition-colors group-hover:text-primary">
+                Read the case study
+                <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+              </span>
+            </Link>
           </motion.div>
 
-          {/* Facts + stats: one quiet, scannable row */}
+          {/* Stats: one quiet, scannable row */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.25 }}
-            className="mt-20 md:mt-28"
+            className="mt-16 md:mt-24"
           >
-            <dl className="grid grid-cols-2 gap-x-6 gap-y-8 border-t border-border pt-8 md:grid-cols-3 lg:grid-cols-6">
+            <dl className="grid grid-cols-2 gap-x-6 gap-y-8 border-t border-border pt-8 lg:grid-cols-4">
               {stats.map((s) => (
                 <div key={s.label}>
                   <dt className="label-mono">{s.label}</dt>
                   <dd className="mt-2 text-3xl font-medium tracking-tight">
                     {s.value}
-                  </dd>
-                </div>
-              ))}
-              {facts.map((f) => (
-                <div key={f.label}>
-                  <dt className="label-mono">{f.label}</dt>
-                  <dd className="mt-2 text-base leading-snug md:mt-3">
-                    {f.value}
                   </dd>
                 </div>
               ))}
