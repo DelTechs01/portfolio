@@ -68,7 +68,7 @@ const socials = [
   { icon: Github, href: "https://github.com/DelTechs01", label: "GitHub" },
   {
     icon: Linkedin,
-    href: "https://www.linkedin.com/in/delron-zynthos-labs-3a4060244",
+    href: "https://www.linkedin.com/in/delron-kweyu-3a4060244",
     label: "LinkedIn",
   },
   { icon: Twitter, href: "https://x.com/BTripatakah", label: "X" },
