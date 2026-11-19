@@ -14,10 +14,10 @@ export default defineConfig({
       // public/Profile.jpg by pwa-assets.config.ts and injected automatically.
       pwaAssets: { config: true },
       manifest: {
-        name: "Kweyu Delron  - Portfolio",
+        name: "Kweyu Delron - Portfolio",
         short_name: "KD Portfolio",
         description:
-          "Software Engineer, Network Engineer & IT Solutions specialist building secure, scalable, AI-powered systems.",
+          "Network engineer and software engineer: MikroTik RouterOS 7, ISP operations, and web platforms.",
         theme_color: "#0a0b0d",
         background_color: "#0a0b0d",
         display: "standalone",

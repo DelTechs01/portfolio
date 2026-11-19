@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { CheckCircle2, Server, HeadphonesIcon, Network, Shield, Blocks, Tv, ArrowRight } from 'lucide-react';
+import { CheckCircle2, Server, HeadphonesIcon, Network, Shield, Blocks, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { useLocation } from 'wouter';
@@ -7,36 +7,6 @@ import PageHeader from '@/components/PageHeader';
 import { useDocumentMeta } from '@/hooks/useDocumentMeta';
 
 const services = [
-  {
-    title: 'Backend Development & Web Applications',
-    description: 'Building secure, scalable, and high-performance server-side solutions.',
-    icon: Server,
-    features: [
-      'RESTful API Design & Development',
-      'Database Design & Optimization (SQL/NoSQL)',
-      'Server-Side Logic & Authentication',
-      'Scalable Backend Architecture',
-      'Integration with Frontend Frameworks',
-      'Performance & Security Best Practices',
-    ],
-    price: 'From $3,000',
-    metrics: 'Efficient, maintainable systems with 99.9% uptime',
-  },
-  {
-    title: 'IT Support & Technical Assistance',
-    description: 'Reliable troubleshooting and setup for hardware, software, and systems.',
-    icon: HeadphonesIcon,
-    features: [
-      'Hardware & Software Troubleshooting',
-      'Computer & Server Setup/Maintenance',
-      'Operating System Installation & Configuration',
-      'Data Backup & Recovery Solutions',
-      'Printer, Peripheral & Device Support',
-      'Remote & On-Site Technical Assistance',
-    ],
-    price: 'From $500',
-    metrics: 'Fast resolution with minimal downtime',
-  },
   {
     title: 'Network Engineering & Management',
     description: 'Designing and maintaining robust, secure wired and wireless networks.',
@@ -51,6 +21,35 @@ const services = [
     ],
     price: 'From $1,500',
     metrics: 'Stable, high-speed connectivity for homes & offices',
+  },
+  {
+    title: 'Backend Development & Web Applications',
+    description: 'Building secure, scalable, and high-performance server-side solutions.',
+    icon: Server,
+    features: [
+      'RESTful API Design & Development',
+      'Database Design & Optimization (SQL/NoSQL)',
+      'Server-Side Logic & Authentication',
+      'Scalable Backend Architecture',
+      'Integration with Frontend Frameworks',
+      'Performance & Security Best Practices',
+    ],
+    price: 'From $3,000',
+    metrics: 'Efficient, maintainable systems',
+  },
+  {
+    title: 'IT Support & Technical Assistance',
+    description: 'Reliable troubleshooting and setup for hardware, software, and systems.',
+    icon: HeadphonesIcon,
+    features: [
+      'Hardware & Software Troubleshooting',
+      'Computer & Server Setup/Maintenance',
+      'Operating System Installation & Configuration',
+      'Data Backup & Recovery Solutions',
+      'Remote & On-Site Technical Assistance',
+    ],
+    price: 'From $500',
+    metrics: 'Fast resolution with minimal downtime',
   },
   {
     title: 'Cybersecurity Services',
@@ -82,21 +81,6 @@ const services = [
     price: 'From $4,000',
     metrics: 'Future-ready solutions with transparency & security',
   },
-  {
-    title: 'Home Entertainment & Streaming Setup',
-    description: 'Professional setup for seamless movie and live sports streaming.',
-    icon: Tv,
-    features: [
-      'High-Speed WiFi Optimization for Streaming',
-      'Smart TV & Streaming Device Configuration',
-      'IPTV / Football Streaming Setup (Legal Platforms)',
-      'Multi-Device Streaming Solutions',
-      '4K/HDR Optimization',
-      'Parental Controls & Safe Streaming',
-    ],
-    price: 'From $800',
-    metrics: 'Buffer-free, high-quality entertainment experience',
-  },
 ];
 
 const Services = () => {
@@ -104,7 +88,7 @@ const Services = () => {
   useDocumentMeta({
     title: 'Services',
     description:
-      'Services: backend & web development, IT support, network engineering, cybersecurity, blockchain, and home streaming setup.',
+      'Services: network engineering, backend and web development, IT support, cybersecurity, and blockchain.',
   });
 
   const goToContact = () => setLocation('/contact');
@@ -114,7 +98,7 @@ const Services = () => {
       <PageHeader
         eyebrow="// services"
         title="Services"
-        subtitle="From secure backend systems and robust networks to home entertainment setups, I deliver reliable, practical, and professional technical solutions."
+        subtitle="From resilient networks and internet service provider operations to secure backend systems, I deliver reliable, practical, and professional technical solutions."
       />
 
       <section className="py-20 lg:py-28">

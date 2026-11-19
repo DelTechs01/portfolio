@@ -4,11 +4,10 @@
   <url><loc>https://YOUR-DOMAIN.vercel.app/</loc><priority>1.0</priority></url>
   <url><loc>https://YOUR-DOMAIN.vercel.app/about</loc><priority>0.8</priority></url>
   <url><loc>https://YOUR-DOMAIN.vercel.app/skills</loc><priority>0.8</priority></url>
-  <url><loc>https://YOUR-DOMAIN.vercel.app/case-studies</loc><priority>0.9</priority></url>
+  <url><loc>https://YOUR-DOMAIN.vercel.app/projects</loc><priority>0.9</priority></url>
+  <url><loc>https://YOUR-DOMAIN.vercel.app/work/dual-link-failover</loc><priority>0.9</priority></url>
+  <url><loc>https://YOUR-DOMAIN.vercel.app/work/multi-provider-outage</loc><priority>0.9</priority></url>
   <url><loc>https://YOUR-DOMAIN.vercel.app/services</loc><priority>0.8</priority></url>
   <url><loc>https://YOUR-DOMAIN.vercel.app/education</loc><priority>0.7</priority></url>
   <url><loc>https://YOUR-DOMAIN.vercel.app/contact</loc><priority>0.8</priority></url>
-  <url><loc>https://YOUR-DOMAIN.vercel.app/case-studies/eastmedic-hms</loc><priority>0.6</priority></url>
-  <url><loc>https://YOUR-DOMAIN.vercel.app/case-studies/zynthos-orchestrator</loc><priority>0.6</priority></url>
-  <url><loc>https://YOUR-DOMAIN.vercel.app/case-studies/campustribe-social</loc><priority>0.6</priority></url>
 </urlset>

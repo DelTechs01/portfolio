@@ -194,7 +194,7 @@ const AccessibilityControls = () => {
                 {/* Info */}
                 <div className="bg-muted/50 rounded-lg p-3">
                   <p className="text-xs text-muted-foreground">
-                    This site is designed to meet WCAG 2.1 AA standards. For additional assistance, please contact us.
+                    This site aims to follow WCAG 2.1 AA. If something is hard to use, please get in touch.
                   </p>
                 </div>
               </CardContent>

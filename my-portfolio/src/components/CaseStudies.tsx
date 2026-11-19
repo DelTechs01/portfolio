@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Clock } from 'lucide-react';
+import { Link } from 'wouter';
+import { ArrowRight, ArrowUpRight, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -9,6 +10,7 @@ import {
 } from '@/components/ui/sheet';
 import PageHeader from '@/components/PageHeader';
 import { caseStudiesData } from '@/data/caseStudies';
+import { networkWork } from '@/data/networkWork';
 import { useDocumentMeta } from '@/hooks/useDocumentMeta';
 
 const CaseStudies = () => {
@@ -17,7 +19,7 @@ const CaseStudies = () => {
   useDocumentMeta({
     title: 'Projects',
     description:
-      'A selection of projects I have designed and built, with links to the live applications.',
+      'Network engineering case studies and software projects by Kweyu Delron, with links to the live applications.',
   });
 
   return (
@@ -25,13 +27,42 @@ const CaseStudies = () => {
       <PageHeader
         eyebrow="// projects"
         title="Things I've built"
-        subtitle="A selection of projects, each with a live app so you can explore them yourself."
+        subtitle="Network engineering work first, then the software I have built. Live apps open in a new tab."
       />
 
       <section className="py-20 lg:py-28">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Network engineering */}
+          <h2 className="label-mono mb-6">Network engineering</h2>
+          <ul className="mb-20 border-b border-border">
+            {networkWork.map((work) => (
+              <li key={work.id}>
+                <Link
+                  href={`/work/${work.id}`}
+                  className="group grid grid-cols-[1fr_auto] items-start gap-x-6 border-t border-border py-8"
+                >
+                  <span className="min-w-0">
+                    <span className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                      <span className="text-2xl font-medium tracking-tight transition-colors group-hover:text-primary md:text-3xl">
+                        {work.title}
+                      </span>
+                      <span className="text-sm text-muted-foreground">{work.kind}</span>
+                    </span>
+                    <span className="mt-3 block max-w-2xl leading-relaxed text-muted-foreground">
+                      {work.summary}
+                    </span>
+                  </span>
+                  <span className="flex items-center gap-1.5 pt-2 text-sm text-muted-foreground transition-colors group-hover:text-foreground">
+                    <span className="hidden sm:inline">Read case</span>
+                    <ArrowRight className="size-5 transition-transform duration-300 group-hover:translate-x-0.5" />
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
 
-          {/* Cards */}
+          {/* Software */}
+          <h2 className="label-mono mb-6">Software</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {caseStudiesData.map((project, index) => (
               <motion.div
@@ -47,7 +78,7 @@ const CaseStudies = () => {
                       src={project.image}
                       alt={project.title}
                       loading="lazy"
-                      className="w-full h-full object-cover opacity-90 transition-transform duration-500 group-hover:scale-[1.03]"
+                      className="w-full h-full object-cover object-top opacity-90 transition-transform duration-500 group-hover:scale-[1.03]"
                     />
                   </div>
 

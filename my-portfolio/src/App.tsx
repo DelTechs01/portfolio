@@ -6,14 +6,14 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BackToTop from '@/components/BackToTop';
 import AccessibilityControls from '@/components/AccessibilityControls';
-import AIAssistant from '@/components/AIAssistant';
-import PersonalizationEngine from '@/components/PersonalizationEngine';
 import { Toaster } from '@/components/ui/sonner';
 import { caseStudiesData } from '@/data/caseStudies';
+import { networkWork } from '@/data/networkWork';
 
 // Route-level code splitting  each page ships as its own chunk.
 const Portfolio = lazy(() => import('@/components/Portfolio'));
 const CaseStudy = lazy(() => import('@/components/CaseStudy'));
+const NetworkCase = lazy(() => import('@/components/NetworkCase'));
 const Education = lazy(() => import('@/components/Education'));
 const About = lazy(() => import('@/components/About'));
 const Skills = lazy(() => import('@/components/Skills'));
@@ -60,8 +60,6 @@ function App() {
       {/* Persistent chrome  rendered outside the transition so it never unmounts */}
       <Navbar />
       <AccessibilityControls />
-      <AIAssistant />
-      <PersonalizationEngine />
       <BackToTop />
       <Toaster position="top-center" />
 
@@ -93,6 +91,12 @@ function App() {
                   ) : (
                     <NotFound onHome={goHome} />
                   );
+                }}
+              </Route>
+              <Route path="/work/:id">
+                {(params) => {
+                  const work = networkWork.find((w) => w.id === params.id);
+                  return work ? <NetworkCase work={work} /> : <NotFound onHome={goHome} />;
                 }}
               </Route>
               <Route path="/services">

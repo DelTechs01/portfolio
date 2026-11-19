@@ -68,7 +68,7 @@ const CaseStudy = ({ project, onBack }: CaseStudyProps) => {
             </div>
 
             {/* Action Buttons */}
-            {(project.github || project.demo) && (
+            {(project.github || (project.demo && !project.comingSoon)) && (
               <div className="flex flex-wrap gap-4 mt-8">
                 {project.github && (
                   <Button variant="outline" asChild>
@@ -78,7 +78,7 @@ const CaseStudy = ({ project, onBack }: CaseStudyProps) => {
                     </a>
                   </Button>
                 )}
-                {project.demo && (
+                {project.demo && !project.comingSoon && (
                   <Button asChild className="bg-primary hover:bg-primary/90">
                     <a href={project.demo} target="_blank" rel="noopener noreferrer">
                       <ExternalLink className="w-5 h-5 mr-2" />
@@ -95,7 +95,7 @@ const CaseStudy = ({ project, onBack }: CaseStudyProps) => {
             <img
               src={project.image}
               alt={project.title}
-              className="w-full h-72 md:h-96 object-cover"
+              className="w-full h-72 md:h-96 object-cover object-top"
             />
           </div>
 

@@ -13,10 +13,13 @@ import { Button } from "@/components/ui/button";
 import Terminal from "@/components/Terminal";
 import Reveal from "@/components/Reveal";
 import { caseStudiesData } from "@/data/caseStudies";
+import { networkWork } from "@/data/networkWork";
 import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 
-// Drop your CV at public/Kweyu_Delron__CV.pdf to enable the download.
-const CV_URL = "/Kweyu_Delron__CV.pdf";
+// The Resume / Download CV buttons stay hidden until a CV exists.
+// To enable: put the PDF at public/Kweyu_Delron__CV.pdf, then set
+//   const CV_URL: string | null = "/Kweyu_Delron__CV.pdf";
+const CV_URL: string | null = null;
 const EMAIL = "kweyudelron37@gmail.com";
 
 const socialLinks = [
@@ -30,16 +33,16 @@ const socialLinks = [
 ];
 
 const stats = [
-  { value: "5+", label: "Years experience" },
-  { value: "5+", label: "Products shipped" },
-  { value: "95+", label: "Lighthouse score" },
+  { value: "4+", label: "Years experience" },
+  { value: "224 Mbps", label: "Capacity, up from 190" },
+  { value: String(caseStudiesData.length), label: "Software projects" },
 ];
 
 // Formerly the "engineer.ts" code card: same facts, now plain scannable text.
 const facts = [
   { label: "Based in", value: "Nairobi, Kenya" },
   { label: "Focus", value: "Networking, ISP operations, Automation" },
-  { label: "Experience", value: "5+ years" },
+  { label: "Platform", value: "MikroTik RouterOS 7" },
 ];
 
 const stack = [
@@ -114,13 +117,39 @@ function Section({
 }
 
 const Portfolio = () => {
-  const featured = caseStudiesData.slice(0, 3);
+  // Network work leads; software projects follow.
+  const rows = [
+    ...networkWork.map((w) => ({
+      key: w.id,
+      name: w.title,
+      descriptor: w.kind,
+      description: w.summary,
+      tags: w.platform.slice(0, 3),
+      href: `/work/${w.id}`,
+      external: false,
+      cta: "Read case",
+    })),
+    ...caseStudiesData.slice(0, 3).map((p) => {
+      const [name, descriptor] = p.title.split(" - ");
+      const live = Boolean(p.demo) && !p.comingSoon;
+      return {
+        key: p.id,
+        name,
+        descriptor,
+        description: p.description,
+        tags: p.tags.slice(0, 3),
+        href: live ? (p.demo as string) : "/projects",
+        external: live,
+        cta: live ? "Open App" : "View project",
+      };
+    }),
+  ];
 
   useDocumentMeta({
     title: "Home",
     isHome: true,
     description:
-      "Kweyu Delron  - Software Engineer, Network Engineer and IT Solutions specialist building secure, scalable, AI-powered systems.",
+      "Kweyu Delron - Network engineer and software engineer in Nairobi. MikroTik RouterOS 7, ISP operations, and web platforms for billing, messaging and AI agents.",
   });
 
   return (
@@ -148,15 +177,15 @@ const Portfolio = () => {
             <h1 className="max-w-5xl text-[clamp(2.5rem,7.2vw,5.25rem)] font-medium leading-[1.02] tracking-[-0.04em]">
               Kweyu Delron.{" "}
               <span className="text-muted-foreground">
-                Software &amp; network engineer building secure, scalable
-                systems.
+                Network engineer who designs resilient ISP networks and builds
+                the software around them.
               </span>
             </h1>
 
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-              I design and build secure, scalable systems: backend services,
-              network infrastructure, and AI-powered products, shipped to
-              production and built to last.
+              I run internet service provider operations on MikroTik RouterOS
+              7, diagnose faults from optics to packet capture, and build web
+              platforms for billing, messaging and AI agents.
             </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-3">
@@ -174,17 +203,19 @@ const Portfolio = () => {
               >
                 <Link href="/contact">Contact me</Link>
               </Button>
-              <Button
-                size="lg"
-                variant="ghost"
-                className="group h-11 rounded-full px-5 text-muted-foreground"
-                asChild
-              >
-                <a href={CV_URL} download>
-                  Resume
-                  <Download className="transition-transform group-hover:translate-y-0.5" />
-                </a>
-              </Button>
+              {CV_URL ? (
+                <Button
+                  size="lg"
+                  variant="ghost"
+                  className="group h-11 rounded-full px-5 text-muted-foreground"
+                  asChild
+                >
+                  <a href={CV_URL} download>
+                    Resume
+                    <Download className="transition-transform group-hover:translate-y-0.5" />
+                  </a>
+                </Button>
+              ) : null}
 
               <span aria-hidden className="mx-1 hidden h-5 w-px bg-border sm:block" />
 
@@ -249,14 +280,12 @@ const Portfolio = () => {
       <Section index="01" label="Selected work" id="work">
         <Reveal>
           <h2 className="max-w-2xl text-3xl font-medium leading-tight tracking-[-0.03em] md:text-5xl">
-            Selected projects
+            Selected work
           </h2>
         </Reveal>
 
         <ol className="mt-12 border-b border-border">
-          {featured.map((project, i) => {
-            const [name, descriptor] = project.title.split(" - ");
-            const live = project.demo && !project.comingSoon;
+          {rows.map((row, i) => {
             const body = (
               <>
                 <span className="font-mono text-xs text-muted-foreground pt-2">
@@ -265,28 +294,30 @@ const Portfolio = () => {
                 <span className="min-w-0">
                   <span className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                     <span className="text-2xl font-medium tracking-tight transition-colors group-hover:text-primary md:text-3xl">
-                      {name}
+                      {row.name}
                     </span>
-                    {descriptor ? (
+                    {row.descriptor ? (
                       <span className="text-sm text-muted-foreground">
-                        {descriptor}
+                        {row.descriptor}
                       </span>
                     ) : null}
                   </span>
                   <span className="mt-3 block max-w-2xl leading-relaxed text-muted-foreground">
-                    {project.description}
+                    {row.description}
                   </span>
                   <span className="mt-4 flex flex-wrap gap-x-4 gap-y-1 font-mono text-xs text-muted-foreground">
-                    {project.tags.slice(0, 3).map((tag) => (
+                    {row.tags.map((tag) => (
                       <span key={tag}>{tag}</span>
                     ))}
                   </span>
                 </span>
                 <span className="flex items-center gap-1.5 pt-1.5 text-sm text-muted-foreground transition-colors group-hover:text-foreground">
-                  <span className="hidden sm:inline">
-                    {live ? "Open App" : "View project"}
-                  </span>
-                  <ArrowUpRight className="size-5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  <span className="hidden sm:inline">{row.cta}</span>
+                  {row.external ? (
+                    <ArrowUpRight className="size-5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  ) : (
+                    <ArrowRight className="size-5 transition-transform duration-300 group-hover:translate-x-0.5" />
+                  )}
                 </span>
               </>
             );
@@ -294,11 +325,11 @@ const Portfolio = () => {
               "group grid grid-cols-[2rem_1fr_auto] gap-x-3 border-t border-border py-8 transition-colors sm:gap-x-6 md:py-10";
 
             return (
-              <li key={project.id}>
-                <Reveal delay={i * 0.06}>
-                  {live ? (
+              <li key={row.key}>
+                <Reveal delay={Math.min(i * 0.05, 0.2)}>
+                  {row.external ? (
                     <a
-                      href={project.demo}
+                      href={row.href}
                       target="_blank"
                       rel="noopener noreferrer"
                       className={rowClass}
@@ -306,7 +337,7 @@ const Portfolio = () => {
                       {body}
                     </a>
                   ) : (
-                    <Link href="/projects" className={rowClass}>
+                    <Link href={row.href} className={rowClass}>
                       {body}
                     </Link>
                   )}
@@ -321,7 +352,7 @@ const Portfolio = () => {
             href="/projects"
             className="group inline-flex items-center gap-2 text-sm font-medium text-foreground transition-colors hover:text-primary"
           >
-            View all projects
+            View all work
             <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
           </Link>
         </Reveal>
@@ -332,24 +363,25 @@ const Portfolio = () => {
         <div className="grid gap-10 md:grid-cols-[1fr_15rem] md:gap-14">
           <Reveal>
             <h2 className="text-2xl font-medium leading-snug tracking-[-0.025em] md:text-4xl md:leading-[1.15]">
-              I&apos;m a Software Engineer, IT Support professional, and Network
-              Engineer{" "}
+              I&apos;m a network engineer and software engineer working at an
+              internet service provider,{" "}
               <span className="text-muted-foreground">
-                with a passion for building secure, efficient, and scalable
-                systems.
+                building reliable networks and the software that runs alongside
+                them.
               </span>
             </h2>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-              I specialize in backend development, network management,
-              cybersecurity, and blockchain technologies, creating practical,
-              real-world solutions that prioritize performance and reliability.
+              On MikroTik RouterOS 7 I designed dual link load balancing and
+              automatic failover that raised usable capacity from 190 to 224
+              Mbps with no customer downtime. I also build web platforms: AI
+              agents, bulk SMS and ISP billing.
             </p>
           </Reveal>
 
           <Reveal delay={0.08} className="order-first md:order-none">
             <img
               src="/Profile.jpg"
-              alt="Kweyu Delron  - Software Engineer & Network Specialist"
+              alt="Kweyu Delron - Network & Software Engineer"
               width={480}
               height={480}
               loading="lazy"
@@ -421,17 +453,19 @@ const Portfolio = () => {
             <Button size="lg" className="h-11 rounded-full px-6" asChild>
               <Link href="/contact">Get in touch</Link>
             </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="group h-11 rounded-full px-6"
-              asChild
-            >
-              <a href={CV_URL} download>
-                Download CV
-                <Download className="transition-transform group-hover:translate-y-0.5" />
-              </a>
-            </Button>
+            {CV_URL ? (
+              <Button
+                size="lg"
+                variant="outline"
+                className="group h-11 rounded-full px-6"
+                asChild
+              >
+                <a href={CV_URL} download>
+                  Download CV
+                  <Download className="transition-transform group-hover:translate-y-0.5" />
+                </a>
+              </Button>
+            ) : null}
           </div>
         </Reveal>
       </Section>

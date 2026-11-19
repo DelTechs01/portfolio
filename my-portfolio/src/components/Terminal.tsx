@@ -19,16 +19,17 @@ const Terminal = () => {
   education   - Display education history
   certs       - Show certifications
   contact     - Get contact information
-  projects    - List featured projects
+  projects    - List network work and projects
   clear       - Clear terminal screen
   whoami      - Display current user`,
 
-    about: () => `Kweyu Delron - Software Engineering Student & Backend Developer
+    about: () => `Kweyu Delron - Network Engineer & Software Engineer
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Specializations: Backend Development, Networking, Cybersecurity, Blockchain
-Location: Kenya
-Experience: IT Support & Network Engineering
-Passion: Building secure, scalable, and efficient systems`,
+Focus: Network engineering, ISP operations, software and automation
+Role: Engineer at an internet service provider
+Platform: MikroTik RouterOS 7
+Location: Nairobi, Kenya
+Experience: 4+ years`,
 
     skills: () => `Skills (each backed by real work):
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -57,7 +58,8 @@ B.Sc. Software Engineering - Kirinyaga University
 ✓ Full-Stack Development (MERN) - Power Learn Project
 ✓ Injective: Layer 1 Blockchain - Binance Academy
 ✓ Crypto & Blockchain Fundamentals - Binance Academy
-✓ Python & Flask Framework - Udemy`,
+✓ Python & Flask Framework - Udemy
+✓ Getting Started with Cisco Packet Tracer - Cisco Networking Academy`,
 
     contact: () => `Contact Information:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -67,29 +69,32 @@ GitHub:   https://github.com/DelTechs01
 LinkedIn: https://www.linkedin.com/in/delron-zynthos-labs-3a4060244
 X:        https://x.com/BTripatakah`,
 
-    projects: () => `Featured Projects:
+    projects: () => `Network engineering:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-1. EastMedic HMS - Hospital Management System
-   Tech: React, TypeScript, Node.js, PostgreSQL
+1. Dual link load balancing and automatic failover
+   MikroTik RouterOS 7. Usable capacity 190 -> 224 Mbps, no customer downtime.
+
+2. Multi provider outage diagnosis
+   Optics, VLAN, ARP, routing, packet capture. Fault proven upstream.
+
+Software:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+3. EastMedic HMS - Hospital Management System
    Live: https://eastmedic-hms.vercel.app
 
-2. Zynthos Orchestrator - AI Agent Platform
-   Tech: AI Agents, LLM, React
+4. Zynthos Orchestrator - AI Agent Platform
    Live: https://zynthos-lab.vercel.app
 
-3. Cloud SMS Engine - Bulk SMS Platform
-   Tech: Bulk SMS, SMS API, Cloud
+5. Cloud SMS Engine - Bulk SMS Platform
    Live: https://cloudsmsengine.co.ke
 
-4. MUA ODEL - University E-Learning Portal
-   Tech: E-Learning, ODEL, LMS
+6. MUA ODEL - University E-Learning Portal
    Live: https://odel.mua.ac.ke
 
-5. Cloud ISP Engine - ISP Billing & Management
+7. Cloud ISP Engine - ISP Billing & Management
    Status: ISP Billing coming soon
 
-6. CampusTribe Social - Campus Community Platform
-   Tech: React, Flask, PostgreSQL, WebSocket
+8. CampusTribe Social - Campus Community Platform
    Status: being rehosted
 
 Type "help" to explore more, or visit the Projects page.`,

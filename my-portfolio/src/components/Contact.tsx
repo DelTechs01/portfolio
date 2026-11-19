@@ -185,7 +185,7 @@ export default function Contact() {
                     <div>
                       <p className="font-bold">Kweyu Delron </p>
                       <p className="text-sm text-muted-foreground">
-                        Software &amp; Network Engineer
+                        Network &amp; Software Engineer
                       </p>
                     </div>
                   </div>

@@ -22,8 +22,8 @@ const Education = () => {
   const degrees = [
     {
       degree: 'Bachelor of Science in Software Engineering',
-      institution: 'Kirinyaga University {KyU}',
-      location: 'Kirinyaga, Kutus',
+      institution: 'Kirinyaga University (KyU)',
+      location: 'Kutus, Kirinyaga',
       period: '2022 - 2026',
       gpa: '3.8/4.0',
       specialization: 'Software Engineering - Current',
@@ -122,7 +122,7 @@ const Education = () => {
 
   const timelineItems = [
     ...degrees.map((d) => ({ ...d, type: 'degree' as const, sortYear: parseInt(d.period.split(' - ')[1], 10) })),
-    ...certifications.map((c) => ({ ...c, type: 'cert' as const, sortYear: parseInt(c.issueDate.split(' ')[1], 10) })),
+    ...certifications.map((c) => ({ ...c, type: 'cert' as const, sortYear: parseInt((c.issueDate.match(/\d{4}/) ?? ['0'])[0], 10) })),
   ].sort((a, b) => b.sortYear - a.sortYear);
 
   return (
