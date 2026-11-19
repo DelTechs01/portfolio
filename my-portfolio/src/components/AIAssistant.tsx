@@ -51,7 +51,7 @@ export default function AIAssistant() {
     }
 
     if (lowerMessage.includes('skill') || lowerMessage.includes('tech')) {
-      return 'Kweyu excels in Full-Stack Development using React, TypeScript, Node.js, Python (Django/Flask), AI/ML integration, and cybersecurity. He has 4+ years building secure, scalable apps with modern tools like AWS, Docker, TensorFlow, and M-Pesa integrations.';
+      return 'Kweyu\'s core skills are network engineering on MikroTik RouterOS 7 (dual link load balancing, automatic failover, policy routing), fault diagnosis, and internet service provider operations (PPPoE, hotspot, DHCP, NAT, provider escalation), alongside software work in React, TypeScript, Node.js and Python. The Skills page shows the work behind each one.';
     }
 
     if (lowerMessage.includes('project') || lowerMessage.includes('portfolio')) {
@@ -67,7 +67,7 @@ export default function AIAssistant() {
     }
 
     if (lowerMessage.includes('ai') || lowerMessage.includes('machine learning')) {
-      return 'Kweyu has deep AI/ML expertise with TensorFlow, PyTorch, LangChain, OpenAI APIs, and Hugging Face. He builds recommendation systems, NLP tools, chatbots, and predictive analytics.';
+      return 'Kweyu built Zynthos Orchestrator, a platform for building, deploying, and running AI agents, with a built-in copilot that helps connect tools and manage agents. You can open it from the Projects page.';
     }
 
     if (lowerMessage.includes('experience') || lowerMessage.includes('background')) {

@@ -38,21 +38,22 @@ const stats = [
 // Formerly the "engineer.ts" code card: same facts, now plain scannable text.
 const facts = [
   { label: "Based in", value: "Nairobi, Kenya" },
-  { label: "Focus", value: "Backend, Security, AI" },
+  { label: "Focus", value: "Networking, ISP operations, Automation" },
   { label: "Experience", value: "5+ years" },
 ];
 
 const stack = [
+  "MikroTik RouterOS 7",
+  "Policy routing",
+  "PPPoE",
+  "Hotspot",
+  "DHCP & NAT",
+  "Packet capture",
   "React",
   "TypeScript",
   "Node.js",
   "Python",
-  "FastAPI",
   "PostgreSQL",
-  "Docker",
-  "Networking",
-  "Security",
-  "AI / LLMs",
 ];
 
 // The rest of the site, as a fast index from the About section.

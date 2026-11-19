@@ -30,25 +30,22 @@ Location: Kenya
 Experience: IT Support & Network Engineering
 Passion: Building secure, scalable, and efficient systems`,
 
-    skills: () => `Technical Skills:
+    skills: () => `Skills (each backed by real work):
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Programming & Development:
-  Python (Flask, Django), PHP, JavaScript (React, Node.js), Java, SQL, HTML, CSS
+Network Engineering:
+  MikroTik RouterOS 7, dual link load balancing, automatic failover,
+  policy routing (routing tables, mangle rules, connection marks, health check scripts)
+  > Raised usable capacity from 190 to 224 Mbps with no customer downtime.
 
-Backend & Database:
-  RESTful API Development, Database Management (MySQL, PostgreSQL), Authentication & User Management
+Fault Diagnosis:
+  Optics, VLAN, ARP, routing, packet capture
+  > Diagnosed a multi provider outage and proved the fault was upstream.
 
-Networking & IT Support:
-  Network Setup & Configuration, Troubleshooting, Server Maintenance, IT Support
+Internet Service Provider Operations:
+  PPPoE, hotspot, DHCP, NAT, provider escalation
 
-Cybersecurity:
-  System & Network Security, Vulnerability Assessment, Secure Coding Practices
-
-Emerging Technologies:
-  Blockchain Fundamentals & Applications, AI Integration, Automation
-
-Tools & Platforms:
-  Git/GitHub, NetBeans, VS Code, Kali Linux, Windows & Linux Administration, Figma (UI/UX Design)`,
+Software, Automation and AI:
+  React, TypeScript, Node.js, Python (Flask), PostgreSQL, REST APIs, AI agents`,
 
     education: () => `Education:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
