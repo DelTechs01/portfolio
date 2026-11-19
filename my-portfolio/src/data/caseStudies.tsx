@@ -44,7 +44,7 @@ export interface CaseStudy {
 }
 
 // Real projects. The card (Projects page) uses: title, description, image, tags, demo.
-// The longer fields feed the detail page  copy is drafted from what each project does;
+// The longer fields feed the detail page; copy is drafted from what each project does;
 // tweak the wording and swap `tags` for your real stack any time.
 export const caseStudiesData: CaseStudy[] = [
   {
@@ -120,8 +120,8 @@ export const caseStudiesData: CaseStudy[] = [
     description: 'A platform for building, deploying, and running AI agents, with a built-in copilot that helps you connect tools and manage your agents from a single dashboard.',
     image: '/projects/zynthos.webp',
     tags: ['AI Agents', 'LLM', 'Automation', 'React', 'Dashboard'],
-    problem: 'Building and running AI agents usually means stitching together SDKs, prompts, tools, and hosting by hand  with no single place to deploy, monitor, and manage them.',
-    solution: 'Zynthos lets users build agents, connect tools, deploy, and run them from one dashboard. An in-app copilot guides setup and troubleshooting  e.g. spinning up agents like Tech Post Pro and WhatsApp Support and connecting new tools to them.',
+    problem: 'Building and running AI agents usually means stitching together SDKs, prompts, tools, and hosting by hand, with no single place to deploy, monitor, and manage them.',
+    solution: 'Zynthos lets users build agents, connect tools, deploy, and run them from one dashboard. An in-app copilot guides setup and troubleshooting, e.g. spinning up agents like Tech Post Pro and WhatsApp Support and connecting new tools to them.',
     architecture: {
       description: 'Web platform with an agent runtime, pluggable tool connectors, a conversational copilot, and a dashboard for deploying and monitoring agents.',
       diagram: 'https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=800&q=80',
@@ -181,7 +181,7 @@ export const caseStudiesData: CaseStudy[] = [
     description: 'A cloud SMS platform for sending, scheduling, and tracking bulk and transactional messages through a simple dashboard and API.',
     image: '/projects/cloudsms.webp',
     tags: ['Bulk SMS', 'SMS API', 'Scheduling', 'Dashboard', 'Cloud'],
-    problem: 'Businesses needed a reliable way to send bulk and transactional SMS at scale, schedule campaigns, and track delivery  without building messaging infrastructure themselves.',
+    problem: 'Businesses needed a reliable way to send bulk and transactional SMS at scale, schedule campaigns, and track delivery, without building messaging infrastructure themselves.',
     solution: 'Built a cloud SMS engine with a dashboard for composing and scheduling campaigns, contact management, delivery tracking, and an API so other apps can send messages programmatically.',
     architecture: {
       description: 'Web dashboard and API backed by a message queue that dispatches SMS to gateway providers and records delivery status.',
@@ -259,7 +259,7 @@ export const caseStudiesData: CaseStudy[] = [
     techDecisions: [
       {
         decision: 'Automated recurring invoicing',
-        rationale: 'Subscriptions bill on cycles  doing this manually is slow and error-prone.',
+        rationale: 'Subscriptions bill on cycles. Doing this manually is slow and error-prone.',
         impact: 'Invoices are generated consistently without manual work.'
       },
       {
@@ -284,7 +284,6 @@ export const caseStudiesData: CaseStudy[] = [
       }
     ],
     improvements: [
-      'Integrated online payment collection (e.g. M-Pesa)',
       'Automated reminders for overdue invoices',
       'Self-service customer portal'
     ],

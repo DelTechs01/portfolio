@@ -26,7 +26,7 @@ const Terminal = () => {
     about: () => `Kweyu Delron - Network Engineer & Software Engineer
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Focus: Network engineering, ISP operations, software and automation
-Role: Engineer at an internet service provider
+Work: Internet service provider operations
 Platform: MikroTik RouterOS 7
 Location: Nairobi, Kenya
 Experience: 4+ years`,
@@ -50,8 +50,8 @@ Software, Automation and AI:
 
     education: () => `Education:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-B.Sc. Software Engineering - Kirinyaga University
-  GPA: 3.8/4.0 | Specialization: Backend Development & Networking`,
+BSc Software Engineering - Kirinyaga University
+  2022 - 2026 (in progress)`,
 
     certs: () => `Certifications:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

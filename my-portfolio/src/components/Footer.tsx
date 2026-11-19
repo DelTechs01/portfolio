@@ -23,7 +23,7 @@ export default function Footer() {
           <div>
             <p className="text-lg font-medium tracking-tight">Kweyu Delron</p>
             <p className="mt-2 max-w-xs text-sm text-muted-foreground">
-              Building the future, one secure line of code at a time.
+              Network engineer and software engineer in Nairobi. Resilient ISP networks and the software around them.
             </p>
             <div className="mt-6 flex gap-2">
               {socialLinks.map((s) => (

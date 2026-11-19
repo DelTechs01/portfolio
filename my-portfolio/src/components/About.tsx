@@ -44,7 +44,7 @@ const About = () => {
   useDocumentMeta({
     title: "About",
     description:
-      "About Kweyu Delron - network engineer at an internet service provider and software engineer, based in Nairobi, Kenya.",
+      "About Kweyu Delron - network engineer and software engineer working at an internet service provider, based in Nairobi, Kenya.",
   });
 
   return (

@@ -115,7 +115,7 @@ const Navbar = () => {
                 </nav>
 
                 <p className="mt-auto text-sm text-muted-foreground">
-                  Secure • Scalable • Innovative
+                  Network &amp; Software Engineer
                 </p>
               </div>
             </SheetContent>

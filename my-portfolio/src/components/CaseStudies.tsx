@@ -105,10 +105,11 @@ const CaseStudies = () => {
                         <Button
                           size="sm"
                           className="w-full"
+                          variant="outline"
                           onClick={() => setComingSoon(project.comingSoon!)}
                         >
-                          Open App
-                          <ArrowUpRight className="ml-1 h-4 w-4" />
+                          Coming soon
+                          <Clock className="ml-1 h-4 w-4" />
                         </Button>
                       ) : project.demo ? (
                         <Button size="sm" className="w-full" asChild>

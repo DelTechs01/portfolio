@@ -178,8 +178,11 @@ const CaseStudy = ({ project, onBack }: CaseStudyProps) => {
             </CardHeader>
             <CardContent>
               <Tabs defaultValue="0">
-                <TabsList className="grid w-full grid-cols-3 mb-6">
-                  {project.techDecisions.slice(0, 3).map((_, i) => (
+                <TabsList
+                  className="grid w-full mb-6"
+                  style={{ gridTemplateColumns: `repeat(${project.techDecisions.length}, minmax(0, 1fr))` }}
+                >
+                  {project.techDecisions.map((_, i) => (
                     <TabsTrigger key={i} value={i.toString()}>
                       Decision {i + 1}
                     </TabsTrigger>

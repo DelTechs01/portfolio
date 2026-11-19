@@ -155,6 +155,7 @@ const AccessibilityControls = () => {
                     <Button
                       variant="outline"
                       size="icon"
+                      aria-label="Decrease text size"
                       onClick={() => handleFontSizeChange([Math.max(80, fontSize - 10)])}
                       disabled={fontSize <= 80}
                     >
@@ -172,6 +173,7 @@ const AccessibilityControls = () => {
                     <Button
                       variant="outline"
                       size="icon"
+                      aria-label="Increase text size"
                       onClick={() => handleFontSizeChange([Math.min(150, fontSize + 10)])}
                       disabled={fontSize >= 150}
                     >

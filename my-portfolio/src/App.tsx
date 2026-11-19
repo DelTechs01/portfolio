@@ -1,4 +1,4 @@
-import { Suspense, lazy, useEffect } from 'react';
+import { Suspense, lazy, useEffect, useState } from 'react';
 import { Route, Router, Switch, useLocation } from 'wouter';
 import { AnimatePresence, MotionConfig, motion } from 'framer-motion';
 import { Loader2 } from 'lucide-react';
@@ -49,14 +49,26 @@ function App() {
 
   // Always start a new page at the top.
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   }, [location]);
+
+  // The accessibility panel toggles `reduce-motion` on <html>; mirror it so
+  // framer-motion animations stop too, not only CSS transitions.
+  const [reduceMotion, setReduceMotion] = useState(false);
+  useEffect(() => {
+    const root = document.documentElement;
+    const sync = () => setReduceMotion(root.classList.contains('reduce-motion'));
+    sync();
+    const observer = new MutationObserver(sync);
+    observer.observe(root, { attributes: true, attributeFilter: ['class'] });
+    return () => observer.disconnect();
+  }, []);
 
   const goHome = () => setLocation('/');
 
   return (
-    <MotionConfig reducedMotion="user">
-    <Router base="/">
+    <MotionConfig reducedMotion={reduceMotion ? 'always' : 'user'}>
+    <Router>
       {/* Persistent chrome  rendered outside the transition so it never unmounts */}
       <Navbar />
       <AccessibilityControls />

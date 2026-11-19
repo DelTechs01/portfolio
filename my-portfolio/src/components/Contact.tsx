@@ -88,7 +88,7 @@ export default function Contact() {
 
   useDocumentMeta({
     title: "Contact",
-    description: "Get in touch with Kweyu Delron . Let's discuss your project.",
+    description: "Get in touch with Kweyu Delron. Let's discuss your project.",
   });
 
   const handleContactSubmit = async (e: React.FormEvent) => {
@@ -171,19 +171,19 @@ export default function Contact() {
               transition={{ duration: 0.5 }}
               className="lg:col-span-2 space-y-6"
             >
-              <Card className="border-border">
+              <Card className="shadow-none">
                 <CardContent className="p-6 sm:p-8">
                   <div className="mb-8 flex items-center gap-4">
                     <div className="h-16 w-16 overflow-hidden rounded-full border border-border flex-shrink-0">
                       <img
                         src="/Profile.jpg"
-                        alt="Kweyu Delron "
+                        alt="Kweyu Delron"
                         className="h-full w-full object-cover"
                         loading="lazy"
                       />
                     </div>
                     <div>
-                      <p className="font-bold">Kweyu Delron </p>
+                      <p className="font-medium">Kweyu Delron</p>
                       <p className="text-sm text-muted-foreground">
                         Network &amp; Software Engineer
                       </p>
@@ -253,9 +253,9 @@ export default function Contact() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="lg:col-span-3"
             >
-              <Card className="border-border">
+              <Card className="shadow-none">
                 <CardHeader>
-                  <CardTitle className="text-xl">Send a message</CardTitle>
+                  <CardTitle className="text-xl font-medium tracking-tight"><h2>Send a message</h2></CardTitle>
                   <CardDescription>
                     Share details about your project and I&apos;ll get back to
                     you promptly.

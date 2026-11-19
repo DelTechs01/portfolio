@@ -12,54 +12,54 @@ const sub = 'fill-[var(--muted-foreground)] font-mono';
 const wire = 'stroke-[var(--muted-foreground)]';
 const hot = 'stroke-[var(--primary)]';
 
-/** Simplified view: two upstream links into one RouterOS 7 router, then customers. */
+/** Simplified view: two upstream links into RouterOS 7, then customers. */
 function FailoverDiagram() {
   return (
     <svg
       viewBox="0 0 720 300"
       role="img"
-      aria-label="Simplified diagram: two upstream links feed one MikroTik RouterOS 7 router, which serves customers. Policy routing balances traffic across both links and fails over automatically."
+      aria-label="Simplified diagram: two upstream links into MikroTik RouterOS 7, which serves customers, with load balancing and automatic failover across the two links."
       className="w-full h-auto"
     >
       <rect x="20" y="40" width="170" height="70" rx="10" strokeWidth="1" className={box} />
       <text x="105" y="72" textAnchor="middle" fontSize="15" className={text}>Upstream link A</text>
-      <text x="105" y="93" textAnchor="middle" fontSize="11" className={sub}>PROVIDER</text>
+      <text x="105" y="93" textAnchor="middle" fontSize="13" className={sub}>PROVIDER</text>
 
       <rect x="20" y="190" width="170" height="70" rx="10" strokeWidth="1" className={box} />
       <text x="105" y="222" textAnchor="middle" fontSize="15" className={text}>Upstream link B</text>
-      <text x="105" y="243" textAnchor="middle" fontSize="11" className={sub}>PROVIDER</text>
+      <text x="105" y="243" textAnchor="middle" fontSize="13" className={sub}>PROVIDER</text>
 
       <path d="M190 75 C 240 75, 240 135, 285 135" fill="none" strokeWidth="1.5" className={hot} />
       <path d="M190 225 C 240 225, 240 165, 285 165" fill="none" strokeWidth="1.5" className={hot} />
 
       <rect x="285" y="85" width="200" height="130" rx="12" strokeWidth="1.5" className="fill-[var(--card)] stroke-[var(--primary)]" />
       <text x="385" y="118" textAnchor="middle" fontSize="15" className={text}>MikroTik RouterOS 7</text>
-      <text x="385" y="143" textAnchor="middle" fontSize="11" className={sub}>MANGLE RULES</text>
-      <text x="385" y="161" textAnchor="middle" fontSize="11" className={sub}>CONNECTION MARKS</text>
-      <text x="385" y="179" textAnchor="middle" fontSize="11" className={sub}>ROUTING TABLES</text>
-      <text x="385" y="197" textAnchor="middle" fontSize="11" className={sub}>HEALTH CHECK SCRIPTS</text>
+      <text x="385" y="143" textAnchor="middle" fontSize="13" className={sub}>MANGLE RULES</text>
+      <text x="385" y="161" textAnchor="middle" fontSize="13" className={sub}>CONNECTION MARKS</text>
+      <text x="385" y="179" textAnchor="middle" fontSize="13" className={sub}>ROUTING TABLES</text>
+      <text x="385" y="197" textAnchor="middle" fontSize="13" className={sub}>HEALTH CHECK SCRIPTS</text>
 
       <path d="M485 150 L 540 150" fill="none" strokeWidth="1.5" className={wire} />
 
       <rect x="540" y="115" width="160" height="70" rx="10" strokeWidth="1" className={box} />
       <text x="620" y="147" textAnchor="middle" fontSize="15" className={text}>Customers</text>
-      <text x="620" y="168" textAnchor="middle" fontSize="11" className={sub}>NO DOWNTIME</text>
+      <text x="620" y="168" textAnchor="middle" fontSize="13" className={sub}>NO DOWNTIME</text>
     </svg>
   );
 }
 
-/** The layers checked, in order, ending at the finding. */
+/** The areas checked, then the finding. Order is not implied. */
 function LayersDiagram({ layers }: { layers: string[] }) {
   return (
-    <ol className="max-w-md">
-      {layers.map((layer, i) => (
+    <ul className="max-w-md">
+      {layers.map((layer) => (
         <li key={layer} className="relative flex items-center gap-4 pb-6">
           <span
             aria-hidden
             className="absolute left-[15px] top-8 h-full w-px bg-border"
           />
-          <span className="relative z-10 inline-flex size-8 shrink-0 items-center justify-center rounded-full border border-border bg-card font-mono text-xs text-muted-foreground">
-            {i + 1}
+          <span className="relative z-10 inline-flex size-8 shrink-0 items-center justify-center rounded-full border border-border bg-card">
+            <span className="size-1.5 rounded-full bg-muted-foreground" />
           </span>
           <span className="text-lg">{layer}</span>
         </li>
@@ -72,7 +72,7 @@ function LayersDiagram({ layers }: { layers: string[] }) {
           Fault proven on the upstream provider&apos;s side
         </span>
       </li>
-    </ol>
+    </ul>
   );
 }
 
@@ -103,7 +103,7 @@ export default function NetworkCase({ work }: { work: NetworkCaseType }) {
 
           <Reveal>
             <div className="grid gap-12 border-t border-border pt-10 lg:grid-cols-[1fr_1.6fr]">
-              <div>
+              <div className="min-w-0">
                 <h2 className="label-mono mb-6">{work.involved.heading}</h2>
                 <ul className="flex flex-wrap gap-2">
                   {work.involved.items.map((item) => (
@@ -117,9 +117,9 @@ export default function NetworkCase({ work }: { work: NetworkCaseType }) {
                 </ul>
               </div>
 
-              <div>
+              <div className="min-w-0">
                 <h2 className="label-mono mb-6">
-                  {work.diagram === 'failover' ? 'Simplified view' : 'Path to the finding'}
+                  {work.diagram === 'failover' ? 'Simplified view' : 'What was checked'}
                 </h2>
                 {work.diagram === 'failover' ? (
                   <div

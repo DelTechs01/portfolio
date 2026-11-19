@@ -69,12 +69,12 @@ const more = [
   {
     href: "/skills",
     label: "Skills",
-    note: "Programming, backend, networking, security, and tools",
+    note: "Network engineering, fault diagnosis, ISP operations, and software",
   },
   {
     href: "/services",
     label: "Services",
-    note: "What I can build, set up, or secure for you",
+    note: "What I can design, set up, or build for you",
   },
   {
     href: "/education",
@@ -183,9 +183,10 @@ const Portfolio = () => {
             </h1>
 
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-              I run internet service provider operations on MikroTik RouterOS
-              7, diagnose faults from optics to packet capture, and build web
-              platforms for billing, messaging and AI agents.
+              I run internet service provider operations, design load balancing
+              and failover on MikroTik RouterOS 7, diagnose faults from optics
+              to packet capture, and build web platforms for billing, messaging
+              and AI agents.
             </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-3">

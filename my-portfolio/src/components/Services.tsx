@@ -1,123 +1,94 @@
-import { motion } from 'framer-motion';
-import { CheckCircle2, Server, HeadphonesIcon, Network, Shield, Blocks, ArrowRight } from 'lucide-react';
+import { Link } from 'wouter';
+import { CheckCircle2, Server, Network, RadioTower, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { useLocation } from 'wouter';
 import PageHeader from '@/components/PageHeader';
+import Reveal from '@/components/Reveal';
 import { useDocumentMeta } from '@/hooks/useDocumentMeta';
 
+// Each service points at the work that backs it. If a service has no work
+// behind it on this site, it does not belong here. Network work leads.
 const services = [
   {
-    title: 'Network Engineering & Management',
-    description: 'Designing and maintaining robust, secure wired and wireless networks.',
+    title: 'Network Engineering',
+    description: 'Designing resilient networks on MikroTik RouterOS 7.',
     icon: Network,
     features: [
-      'Network Design & Implementation',
-      'Router, Switch & Firewall Configuration',
-      'Internet & WiFi Installation/Optimization',
-      'Network Performance Monitoring',
-      'VPN Setup & Remote Access',
-      'Bandwidth Management & QoS',
+      'Dual link load balancing and automatic failover',
+      'Policy routing: routing tables, mangle rules, connection marks',
+      'Health check scripts',
+      'Fault diagnosis from optics to packet capture',
     ],
-    price: 'From $1,500',
-    metrics: 'Stable, high-speed connectivity for homes & offices',
+    proof: {
+      label: 'Failover case study: 190 to 224 Mbps, no customer downtime',
+      href: '/work/dual-link-failover',
+    },
+  },
+  {
+    title: 'Internet Service Provider Operations',
+    description: 'Running the services an internet service provider depends on every day.',
+    icon: RadioTower,
+    features: [
+      'PPPoE and hotspot services',
+      'DHCP and NAT',
+      'Outage diagnosis and provider escalation',
+      'Billing with M-Pesa payments and MikroTik control (Cloud ISP Engine)',
+    ],
+    proof: {
+      label: 'Outage case study: fault proven on the upstream side',
+      href: '/work/multi-provider-outage',
+    },
   },
   {
     title: 'Backend Development & Web Applications',
-    description: 'Building secure, scalable, and high-performance server-side solutions.',
+    description: 'Building web platforms with dashboards and APIs.',
     icon: Server,
     features: [
-      'RESTful API Design & Development',
-      'Database Design & Optimization (SQL/NoSQL)',
-      'Server-Side Logic & Authentication',
-      'Scalable Backend Architecture',
-      'Integration with Frontend Frameworks',
-      'Performance & Security Best Practices',
+      'RESTful API design and development',
+      'Database design',
+      'Server-side logic and authentication',
+      'Dashboards and integration with frontend frameworks',
     ],
-    price: 'From $3,000',
-    metrics: 'Efficient, maintainable systems',
-  },
-  {
-    title: 'IT Support & Technical Assistance',
-    description: 'Reliable troubleshooting and setup for hardware, software, and systems.',
-    icon: HeadphonesIcon,
-    features: [
-      'Hardware & Software Troubleshooting',
-      'Computer & Server Setup/Maintenance',
-      'Operating System Installation & Configuration',
-      'Data Backup & Recovery Solutions',
-      'Remote & On-Site Technical Assistance',
-    ],
-    price: 'From $500',
-    metrics: 'Fast resolution with minimal downtime',
-  },
-  {
-    title: 'Cybersecurity Services',
-    description: 'Protecting systems and data with proactive security measures.',
-    icon: Shield,
-    features: [
-      'Vulnerability Assessments & Scans',
-      'Firewall & Intrusion Detection Setup',
-      'Endpoint Protection & Antivirus Management',
-      'Secure Network Configuration',
-      'Data Encryption & Access Control',
-      'Security Awareness Guidance',
-    ],
-    price: 'From $2,000',
-    metrics: 'Significant reduction in security risks',
-  },
-  {
-    title: 'Blockchain & Emerging Tech Solutions',
-    description: 'Exploring and implementing decentralized and innovative technologies.',
-    icon: Blocks,
-    features: [
-      'Blockchain Application Consulting',
-      'Smart Contract Development Basics',
-      'Decentralized System Design',
-      'Cryptocurrency Wallet Setup',
-      'Proof-of-Concept Prototypes',
-      'Integration with Existing Systems',
-    ],
-    price: 'From $4,000',
-    metrics: 'Future-ready solutions with transparency & security',
+    proof: {
+      label: 'Live projects: AI agents, bulk SMS, hospital management',
+      href: '/projects',
+    },
   },
 ];
 
 const Services = () => {
-  const [, setLocation] = useLocation();
   useDocumentMeta({
     title: 'Services',
     description:
-      'Services: network engineering, backend and web development, IT support, cybersecurity, and blockchain.',
+      'Services: network engineering on MikroTik RouterOS 7, internet service provider operations, and backend and web development.',
   });
-
-  const goToContact = () => setLocation('/contact');
 
   return (
     <div className="min-h-screen bg-background">
       <PageHeader
         eyebrow="// services"
         title="Services"
-        subtitle="From resilient networks and internet service provider operations to secure backend systems, I deliver reliable, practical, and professional technical solutions."
+        subtitle="Three things I do, each backed by work you can read or open: resilient networks, internet service provider operations, and the software around them."
       />
 
       <section className="py-20 lg:py-28">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, index) => (
-              <motion.div
-                key={service.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: (index % 3) * 0.08, duration: 0.4 }}
-              >
-                <Card className="h-full flex flex-col border-border hover:border-primary/40 transition-colors">
+              <Reveal key={service.title} delay={index * 0.06} className="h-full">
+                <Card className="h-full flex flex-col shadow-none hover:border-primary/40 transition-colors">
                   <CardContent className="flex flex-col flex-1 p-6">
-                    <span className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 text-primary">
-                      <service.icon className="w-6 h-6" />
-                    </span>
-                    <h3 className="text-lg font-bold leading-snug mb-2">{service.title}</h3>
+                    <div className="flex items-center justify-between mb-5">
+                      <span className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                        <service.icon className="w-6 h-6" />
+                      </span>
+                      <span className="font-mono text-xs text-muted-foreground">
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+                    </div>
+                    <h2 className="text-xl font-medium tracking-tight leading-snug mb-2">
+                      {service.title}
+                    </h2>
                     <p className="text-sm text-muted-foreground leading-relaxed mb-5">
                       {service.description}
                     </p>
@@ -132,21 +103,18 @@ const Services = () => {
                     </ul>
 
                     <div className="mt-auto pt-5 border-t border-border">
-                      <div className="rounded-lg bg-muted/50 px-3 py-2.5 mb-4">
-                        <p className="text-xs text-muted-foreground mb-0.5">Expected outcome</p>
-                        <p className="text-sm font-medium text-foreground">{service.metrics}</p>
-                      </div>
-                      <div className="flex items-center justify-between gap-3">
-                        <p className="text-lg font-bold text-primary">{service.price}</p>
-                        <Button size="sm" variant="outline" onClick={goToContact} className="group">
-                          Inquire
-                          <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
-                        </Button>
-                      </div>
+                      <p className="label-mono mb-2">Backed by</p>
+                      <Link
+                        href={service.proof.href}
+                        className="group flex items-start justify-between gap-3 text-sm font-medium leading-relaxed transition-colors hover:text-primary"
+                      >
+                        {service.proof.label}
+                        <ArrowRight className="mt-1 size-4 shrink-0 text-muted-foreground transition-all group-hover:translate-x-0.5 group-hover:text-primary" />
+                      </Link>
                     </div>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </Reveal>
             ))}
           </div>
 
@@ -159,8 +127,8 @@ const Services = () => {
             <p className="text-muted-foreground max-w-xl mx-auto mb-7">
               Tell me about your project or setup and I&apos;ll help you get it done right.
             </p>
-            <Button size="lg" className="h-11 rounded-full px-8" onClick={goToContact}>
-              Get in touch
+            <Button size="lg" className="h-11 rounded-full px-8" asChild>
+              <Link href="/contact">Get in touch</Link>
             </Button>
           </div>
         </div>

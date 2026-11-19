@@ -26,7 +26,7 @@ export const networkWork: NetworkCase[] = [
     kind: 'Network design',
     summary:
       'Designed dual link load balancing and automatic failover on MikroTik RouterOS 7, raising usable capacity from 190 to 224 Mbps with no customer downtime.',
-    context: 'Designed and built as an engineer at an internet service provider.',
+    context: 'Designed while working at an internet service provider.',
     platform: ['MikroTik RouterOS 7'],
     outcomes: [
       { label: 'Usable capacity before', value: '190 Mbps' },
@@ -50,7 +50,7 @@ export const networkWork: NetworkCase[] = [
     kind: 'Fault diagnosis',
     summary:
       "Diagnosed a multi provider outage across optics, VLAN, ARP, routing and packet capture, and proved the fault was on the upstream provider's side.",
-    context: 'Diagnosed as an engineer at an internet service provider.',
+    context: 'Diagnosed while working at an internet service provider.',
     platform: ['Optics', 'VLAN', 'ARP', 'Routing', 'Packet capture'],
     outcomes: [
       { label: 'Areas checked', value: '5' },
