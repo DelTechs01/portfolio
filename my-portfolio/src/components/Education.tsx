@@ -140,7 +140,7 @@ const Education = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.08 }}
             >
-              <Card className="border-border/60 bg-card/60">
+              <Card className="border-border bg-card/60">
                 <CardContent className="p-5">
                   <stat.icon className="w-5 h-5 text-primary mb-3" />
                   <p className="text-2xl font-bold leading-none">{stat.value}</p>
@@ -169,7 +169,7 @@ const Education = () => {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Card className="border-border/60 hover:shadow-lg transition-shadow">
+                <Card className="border-border transition-colors">
                   <CardContent className="p-6 md:p-8">
                     <div className="flex flex-col md:flex-row gap-6 md:gap-8">
                       <div className="flex-shrink-0">
@@ -245,9 +245,9 @@ const Education = () => {
       </section>
 
       {/* Certifications */}
-      <section className="py-20 lg:py-24 bg-muted/40 border-t border-border/50">
+      <section className="py-20 lg:py-24 bg-card/40 border-t border-border">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-8">
+          <div className="flex flex-wrap items-center justify-between gap-3 mb-8">
             <div className="flex items-center gap-3">
               <Award className="w-6 h-6 text-primary" />
               <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Professional certifications</h2>
@@ -285,7 +285,7 @@ const Education = () => {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.08 }}
               >
-                <Card className="h-full flex flex-col border-border/60 bg-background hover:border-primary/40 hover:shadow-lg transition-colors">
+                <Card className="h-full flex flex-col border-border bg-background hover:border-primary/40 transition-colors">
                   <CardHeader>
                     <div className="flex justify-between items-start mb-3">
                       <Badge variant="secondary">{cert.category}</Badge>
@@ -369,52 +369,38 @@ const Education = () => {
 
       {/* Educational Timeline */}
       <section className="py-20 lg:py-24">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl md:text-3xl font-bold mb-12 text-center tracking-tight">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl md:text-3xl font-bold mb-12 tracking-tight">
             Educational timeline
           </h2>
 
-          <div className="relative">
-            <div className="absolute left-1/2 -translate-x-1/2 h-full w-px bg-border" />
-
-            <div className="space-y-12">
-              {timelineItems.map((item, index) => {
-                const isLeft = index % 2 === 0;
-                return (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: isLeft ? -40 : 40 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    className={`flex items-center gap-8 ${isLeft ? 'flex-row' : 'flex-row-reverse'}`}
-                  >
-                    <div className={`flex-1 ${isLeft ? 'text-right' : 'text-left'}`}>
-                      <Card className="inline-block max-w-md border-border/60 hover:shadow-md transition-shadow">
-                        <CardContent className="p-4">
-                          <Badge variant="secondary" className="mb-2 px-3 py-1 text-xs">
-                            {item.type === 'degree' ? <GraduationCap className="w-3 h-3 mr-1" /> : <Award className="w-3 h-3 mr-1" />}
-                            {item.type === 'degree' ? item.period : item.issueDate}
-                          </Badge>
-                          <h4 className="font-bold text-base mb-1">
-                            {item.type === 'degree' ? item.degree : item.name}
-                          </h4>
-                          <p className="text-sm text-muted-foreground">
-                            {item.type === 'degree' ? item.institution : item.issuer}
-                          </p>
-                        </CardContent>
-                      </Card>
-                    </div>
-
-                    <div className="relative z-10">
-                      <div className="w-4 h-4 rounded-full bg-primary border-4 border-background shadow-md" />
-                    </div>
-
-                    <div className="flex-1" />
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
+          <ol className="relative ml-2 border-l border-border">
+            {timelineItems.map((item, index) => (
+              <motion.li
+                key={index}
+                initial={{ opacity: 0, y: 14 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: Math.min(index * 0.05, 0.25) }}
+                className="relative pb-10 pl-8 last:pb-0"
+              >
+                <span
+                  aria-hidden
+                  className="absolute -left-[5px] top-1.5 size-[9px] rounded-full bg-primary ring-4 ring-background"
+                />
+                <p className="label-mono mb-2 flex items-center gap-2">
+                  {item.type === 'degree' ? <GraduationCap className="w-3.5 h-3.5" /> : <Award className="w-3.5 h-3.5" />}
+                  {item.type === 'degree' ? item.period : item.issueDate}
+                </p>
+                <h3 className="text-lg font-medium tracking-tight">
+                  {item.type === 'degree' ? item.degree : item.name}
+                </h3>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  {item.type === 'degree' ? item.institution : item.issuer}
+                </p>
+              </motion.li>
+            ))}
+          </ol>
         </div>
       </section>
     </div>

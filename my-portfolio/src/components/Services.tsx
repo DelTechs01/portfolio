@@ -128,7 +128,7 @@ const Services = () => {
                 viewport={{ once: true }}
                 transition={{ delay: (index % 3) * 0.08, duration: 0.4 }}
               >
-                <Card className="h-full flex flex-col border-border/60 hover:border-primary/40 hover:shadow-lg transition-colors">
+                <Card className="h-full flex flex-col border-border hover:border-primary/40 transition-colors">
                   <CardContent className="flex flex-col flex-1 p-6">
                     <span className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 text-primary">
                       <service.icon className="w-6 h-6" />
@@ -147,7 +147,7 @@ const Services = () => {
                       ))}
                     </ul>
 
-                    <div className="mt-auto pt-5 border-t border-border/60">
+                    <div className="mt-auto pt-5 border-t border-border">
                       <div className="rounded-lg bg-muted/50 px-3 py-2.5 mb-4">
                         <p className="text-xs text-muted-foreground mb-0.5">Expected outcome</p>
                         <p className="text-sm font-medium text-foreground">{service.metrics}</p>
@@ -167,14 +167,15 @@ const Services = () => {
           </div>
 
           {/* Bottom CTA */}
-          <div className="mt-16 rounded-3xl border border-border/60 bg-gradient-to-br from-primary/10 via-card to-accent/10 p-10 md:p-12 text-center">
-            <h2 className="text-2xl md:text-3xl font-bold mb-3">
+          <div className="mt-16 relative isolate overflow-hidden rounded-2xl border border-border bg-card p-10 md:p-14 text-center">
+            <div aria-hidden className="hero-glow" />
+            <h2 className="text-2xl md:text-4xl font-medium tracking-[-0.03em] mb-3">
               Need a reliable technical partner?
             </h2>
             <p className="text-muted-foreground max-w-xl mx-auto mb-7">
               Tell me about your project or setup and I&apos;ll help you get it done right.
             </p>
-            <Button size="lg" className="px-8" onClick={goToContact}>
+            <Button size="lg" className="h-11 rounded-full px-8" onClick={goToContact}>
               Get in touch
             </Button>
           </div>

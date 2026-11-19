@@ -3,70 +3,111 @@
    The colour system / theme tokens live in index.css.
    ============================================================ */
 
-/* Custom scrollbar */
+/* Quiet scrollbar */
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--input) transparent;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--background);
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--primary);
-  border-radius: 5px;
+  background: var(--input);
+  border-radius: 999px;
+  border: 2px solid var(--background);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent);
+  background: var(--muted-foreground);
 }
 
-/* Smooth scroll */
-html {
-  scroll-behavior: smooth;
+/* The one glow: a soft accent wash behind page heroes. Used sparingly. */
+.hero-glow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(60rem 28rem at 15% -10%, var(--glow), transparent 70%),
+    linear-gradient(to bottom, transparent 60%, var(--background));
 }
 
-/* Gradient text utility */
+/* Hairline that fades at both ends - used as a section divider accent. */
+.hairline {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border) 15%, var(--border) 85%, transparent);
+}
+
+/* Mono micro-label used for eyebrows and section indices. */
+.label-mono {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+/* Kept for backwards compatibility: now a solid accent, not a gradient. */
 .gradient-text {
-  background: linear-gradient(135deg, var(--primary), var(--accent));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--primary);
 }
 
-/* Glass morphism utility */
 .glass {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: color-mix(in oklch, var(--background) 75%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
 }
 
-.dark .glass {
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Accessibility: Reduced Motion */
+/* Accessibility: Reduced Motion (user toggle + OS preference) */
 .reduce-motion * {
   animation-duration: 0.01ms !important;
   animation-iteration-count: 1 !important;
   transition-duration: 0.01ms !important;
 }
 
+.reduce-motion {
+  scroll-behavior: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 /* Accessibility: High Contrast Mode */
 .high-contrast {
   --background: oklch(1 0 0);
   --foreground: oklch(0 0 0);
-  --primary: oklch(0.3 0 264);
+  --card: oklch(1 0 0);
+  --muted-foreground: oklch(0.25 0 0);
+  --primary: oklch(0.36 0.1 165);
   --border: oklch(0 0 0);
+  --input: oklch(0 0 0);
 }
 
 .dark.high-contrast {
   --background: oklch(0 0 0);
   --foreground: oklch(1 0 0);
-  --primary: oklch(0.7 0 264);
+  --card: oklch(0 0 0);
+  --muted-foreground: oklch(0.88 0 0);
+  --primary: oklch(0.9 0.16 165);
   --border: oklch(1 0 0);
+  --input: oklch(1 0 0);
 }
 
 /* Screen reader only content */
@@ -84,7 +125,7 @@ html {
 
 /* Focus visible styles for keyboard navigation */
 *:focus-visible {
-  outline: 2px solid var(--primary);
+  outline: 2px solid var(--ring);
   outline-offset: 2px;
 }
 

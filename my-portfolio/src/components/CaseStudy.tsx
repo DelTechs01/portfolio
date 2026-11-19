@@ -31,7 +31,7 @@ const CaseStudy = ({ project, onBack }: CaseStudyProps) => {
             className="mb-8 hover:text-primary transition-colors group"
           >
             <ArrowLeft className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" />
-            Back to Case Studies
+            Back to projects
           </Button>
 
           {/* Hero */}
@@ -44,7 +44,7 @@ const CaseStudy = ({ project, onBack }: CaseStudyProps) => {
               ))}
             </div>
 
-            <h1 className="text-4xl md:text-6xl font-extrabold mb-5 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+            <h1 className="text-4xl md:text-6xl font-medium leading-[1.04] tracking-[-0.035em] mb-6">
               {project.title}
             </h1>
 
@@ -91,7 +91,7 @@ const CaseStudy = ({ project, onBack }: CaseStudyProps) => {
           </div>
 
           {/* Hero Image */}
-          <div className="mb-14 rounded-2xl overflow-hidden shadow-xl border border-border/50">
+          <div className="mb-14 rounded-2xl overflow-hidden shadow-xl border border-border">
             <img
               src={project.image}
               alt={project.title}
@@ -141,9 +141,9 @@ const CaseStudy = ({ project, onBack }: CaseStudyProps) => {
                     <p className="text-sm uppercase tracking-wider text-muted-foreground">{result.metric}</p>
                     <div className="flex items-baseline gap-2">
                       <span className="text-sm line-through text-muted-foreground">{result.before}</span>
-                      <span className="text-2xl font-extrabold text-primary">{result.after}</span>
+                      <span className="text-2xl font-semibold text-primary">{result.after}</span>
                     </div>
-                    <div className="flex items-center gap-2 text-green-500">
+                    <div className="flex items-center gap-2 text-primary">
                       <TrendingUp className="w-5 h-5" />
                       <span className="text-sm font-semibold">{result.improvement}</span>
                     </div>
@@ -239,10 +239,10 @@ const CaseStudy = ({ project, onBack }: CaseStudyProps) => {
           </Card>
 
           {/* Future Improvements */}
-          <Card className="mb-14 border-accent/20 bg-accent/5">
+          <Card className="mb-14 border-primary/20 bg-primary/5">
             <CardHeader>
               <CardTitle className="text-2xl flex items-center gap-3">
-                <Lightbulb className="w-7 h-7 text-accent" />
+                <Lightbulb className="w-7 h-7 text-primary" />
                 What's Next
               </CardTitle>
             </CardHeader>
@@ -250,7 +250,7 @@ const CaseStudy = ({ project, onBack }: CaseStudyProps) => {
               <ul className="grid sm:grid-cols-2 gap-4">
                 {project.improvements.map((imp, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <span className="w-7 h-7 rounded-full bg-accent/20 flex items-center justify-center text-sm font-bold text-accent flex-shrink-0">
+                    <span className="w-7 h-7 rounded-full bg-primary/15 flex items-center justify-center text-sm font-bold text-primary flex-shrink-0">
                       {i + 1}
                     </span>
                     <span className="text-muted-foreground pt-0.5">{imp}</span>
@@ -262,7 +262,7 @@ const CaseStudy = ({ project, onBack }: CaseStudyProps) => {
 
           {/* Testimonial */}
           {project.testimonial && (
-            <Card className="border-primary/30 bg-gradient-to-r from-primary/5 to-accent/5">
+            <Card className="border-primary/30 bg-primary/5">
               <CardContent className="p-8 md:p-10 text-center">
                 <p className="text-xl md:text-2xl italic text-foreground mb-6 leading-relaxed">
                   "{project.testimonial.content}"

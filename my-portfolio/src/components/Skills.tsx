@@ -144,7 +144,7 @@ const Skills = () => {
                 viewport={{ once: true }}
                 transition={{ delay: (index % 3) * 0.08, duration: 0.4 }}
               >
-                <Card className="h-full border-border/60 hover:border-primary/40 hover:shadow-lg transition-colors">
+                <Card className="h-full border-border hover:border-primary/40 transition-colors">
                   <CardContent className="p-6">
                     <div className="flex items-start gap-3 mb-5">
                       <span className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 text-primary">
@@ -160,7 +160,7 @@ const Skills = () => {
                       {category.skills.map((skill) => (
                         <li
                           key={skill.name}
-                          className="flex items-center justify-between gap-3 py-2 border-b border-border/40 last:border-0"
+                          className="flex items-center justify-between gap-3 py-2 border-b border-border last:border-0"
                         >
                           <span className="text-sm">{skill.name}</span>
                           <DotRating level={skill.level} />
@@ -174,7 +174,7 @@ const Skills = () => {
           </div>
 
           {/* Legend + summary */}
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 rounded-2xl border border-border/60 bg-card/60 px-6 py-4">
+          <div className="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 rounded-2xl border border-border bg-card/60 px-6 py-4">
             <span className="text-sm font-medium text-muted-foreground text-center sm:text-left">
               Full-Stack Capable • Network Expert • Security-Minded • Hands-On Problem Solver
             </span>

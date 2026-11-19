@@ -59,15 +59,15 @@ const About = () => {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Portrait */}
             <div className="relative order-2 lg:order-1 max-w-md mx-auto lg:mx-0">
-              <div className="aspect-square rounded-2xl overflow-hidden border border-border/60 shadow-xl">
+              <div className="aspect-square rounded-2xl overflow-hidden border border-border shadow-xl">
                 <img
                   src="/Profile.jpg"
                   alt="Kweyu Delron  - Software Engineer & Network Specialist"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="absolute -bottom-5 -right-4 rounded-2xl border border-border/60 bg-card px-5 py-4 shadow-lg">
-                <p className="text-3xl font-extrabold text-primary leading-none">
+              <div className="absolute -bottom-5 -right-4 rounded-2xl border border-border bg-card px-5 py-4 shadow-lg">
+                <p className="text-3xl font-semibold text-primary leading-none">
                   5+
                 </p>
                 <p className="text-xs text-muted-foreground mt-1">
@@ -114,7 +114,7 @@ const About = () => {
               {/* Highlight stats */}
               <div className="grid grid-cols-2 gap-4 pt-4">
                 {highlights.map((stat) => (
-                  <Card key={stat.label} className="border-border/60">
+                  <Card key={stat.label} className="border-border">
                     <CardContent className="p-5">
                       <stat.icon className="w-6 h-6 text-primary mb-3" />
                       <p className="text-2xl font-bold text-foreground leading-none">
@@ -133,9 +133,9 @@ const About = () => {
       </section>
 
       {/* Values */}
-      <section className="py-20 lg:py-28 bg-muted/40 border-t border-border/50">
+      <section className="py-20 lg:py-28 bg-card/40 border-t border-border">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-2">
+          <p className="label-mono mb-3">
             How I work
           </p>
           <h2 className="text-3xl md:text-4xl font-bold mb-12">
@@ -151,7 +151,7 @@ const About = () => {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.08, duration: 0.4 }}
               >
-                <Card className="h-full border-border/60 hover:border-primary/40 hover:shadow-lg transition-colors">
+                <Card className="h-full border-border hover:border-primary/40 transition-colors">
                   <CardContent className="p-6">
                     <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary mb-5">
                       <value.icon className="w-5 h-5" />

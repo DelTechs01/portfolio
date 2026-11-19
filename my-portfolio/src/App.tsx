@@ -1,6 +1,6 @@
 import { Suspense, lazy, useEffect } from 'react';
 import { Route, Router, Switch, useLocation } from 'wouter';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, MotionConfig, motion } from 'framer-motion';
 import { Loader2 } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -24,7 +24,7 @@ const Contact = lazy(() => import('@/components/Contact'));
 function PageLoader() {
   return (
     <div className="min-h-[60vh] flex items-center justify-center">
-      <Loader2 className="w-8 h-8 animate-spin text-primary" />
+      <Loader2 className="size-6 animate-spin text-muted-foreground" aria-label="Loading" />
     </div>
   );
 }
@@ -33,8 +33,9 @@ function NotFound({ onHome }: { onHome: () => void }) {
   return (
     <div className="min-h-[70vh] flex items-center justify-center">
       <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">404</h1>
-        <p className="text-muted-foreground mb-6">Page not found</p>
+        <p className="font-mono text-sm text-primary mb-4">// 404</p>
+        <h1 className="text-5xl font-medium tracking-[-0.035em] mb-4">Page not found</h1>
+        <p className="text-muted-foreground mb-6">That page does not exist or has moved.</p>
         <button onClick={onHome} className="text-primary hover:underline">
           Go back home
         </button>
@@ -54,6 +55,7 @@ function App() {
   const goHome = () => setLocation('/');
 
   return (
+    <MotionConfig reducedMotion="user">
     <Router base="/">
       {/* Persistent chrome  rendered outside the transition so it never unmounts */}
       <Navbar />
@@ -63,13 +65,14 @@ function App() {
       <BackToTop />
       <Toaster position="top-center" />
 
+      <main id="main">
       <Suspense fallback={<PageLoader />}>
         <AnimatePresence mode="wait">
           <motion.div
             key={location}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
           >
             <Switch location={location}>
@@ -111,9 +114,11 @@ function App() {
           </motion.div>
         </AnimatePresence>
       </Suspense>
+      </main>
 
       <Footer />
     </Router>
+    </MotionConfig>
   );
 }
 

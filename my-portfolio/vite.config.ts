@@ -18,8 +18,8 @@ export default defineConfig({
         short_name: "KD Portfolio",
         description:
           "Software Engineer, Network Engineer & IT Solutions specialist building secure, scalable, AI-powered systems.",
-        theme_color: "#4f46e5",
-        background_color: "#ffffff",
+        theme_color: "#0a0b0d",
+        background_color: "#0a0b0d",
         display: "standalone",
         start_url: "/",
         scope: "/",

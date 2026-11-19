@@ -17,18 +17,20 @@ const BackToTop = () => {
     <AnimatePresence>
       {visible && (
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.8 }}
-          className="fixed bottom-8 left-8 z-40"
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 8 }}
+          transition={{ duration: 0.2 }}
+          className="fixed bottom-6 left-6 z-40"
         >
           <Button
-            className="rounded-full shadow-2xl bg-gradient-to-br from-primary to-accent hover:opacity-90 text-primary-foreground"
+            variant="outline"
             size="icon"
+            className="rounded-full size-11 bg-background/80 backdrop-blur text-muted-foreground hover:text-foreground"
             aria-label="Back to top"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
-            <ArrowUp className="w-6 h-6" />
+            <ArrowUp className="size-4" />
           </Button>
         </motion.div>
       )}

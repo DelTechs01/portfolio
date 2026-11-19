@@ -12,12 +12,12 @@ const AccessibilityControls = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [highContrast, setHighContrast] = useState(false);
-  const [fontSize, setFontSize] = useState(90);
+  const [fontSize, setFontSize] = useState(100);
 
   useEffect(() => {
     const storedReducedMotion = localStorage.getItem('reducedMotion') === 'true';
     const storedHighContrast = localStorage.getItem('highContrast') === 'true';
-    const storedFontSize = parseInt(localStorage.getItem('fontSize') || '90');
+    const storedFontSize = parseInt(localStorage.getItem('fontSize') || '100');
 
     setReducedMotion(storedReducedMotion);
     setHighContrast(storedHighContrast);
@@ -66,14 +66,14 @@ const AccessibilityControls = () => {
   const resetSettings = () => {
     setReducedMotion(false);
     setHighContrast(false);
-    setFontSize(90);
+    setFontSize(100);
 
     localStorage.removeItem('reducedMotion');
     localStorage.removeItem('highContrast');
     localStorage.removeItem('fontSize');
 
     document.documentElement.classList.remove('reduce-motion', 'high-contrast');
-    document.documentElement.style.fontSize = '90%';
+    document.documentElement.style.fontSize = '100%';
   };
 
   return (
@@ -84,10 +84,10 @@ const AccessibilityControls = () => {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 20 }}
-            className="fixed top-24 right-8 z-50 w-80 max-w-[calc(100vw-2rem)]"
+            className="fixed bottom-36 right-6 z-50 w-80 max-w-[calc(100vw-3rem)] max-h-[calc(100vh-10rem)] overflow-y-auto rounded-xl"
           >
-            <Card className="shadow-2xl border-2">
-              <CardHeader className="bg-accent text-accent-foreground">
+            <Card className="shadow-2xl pt-0 overflow-hidden">
+              <CardHeader className="border-b border-border py-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <Eye className="w-5 h-5" />
@@ -97,7 +97,7 @@ const AccessibilityControls = () => {
                     variant="ghost"
                     size="icon"
                     onClick={() => setIsOpen(false)}
-                    className="text-accent-foreground hover:bg-accent-foreground/20"
+                    aria-label="Close accessibility settings"
                   >
                     <X className="w-5 h-5" />
                   </Button>
@@ -206,13 +206,13 @@ const AccessibilityControls = () => {
       <motion.div
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
-        className="fixed top-20 right-8 z-40"
+        className="fixed bottom-[5.5rem] right-6 z-40"
       >
         <Button
           variant="outline"
           size="icon"
           onClick={() => setIsOpen(!isOpen)}
-          className="rounded-full shadow-lg"
+          className="rounded-full size-11 bg-background/80 backdrop-blur text-muted-foreground hover:text-foreground"
           aria-label="Accessibility Settings"
         >
           <Settings className="w-5 h-5" />

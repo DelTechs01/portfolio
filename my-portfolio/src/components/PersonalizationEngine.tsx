@@ -112,7 +112,7 @@ const PersonalizationEngine = () => {
                   <button
                     key={opt.type}
                     onClick={() => choose(opt)}
-                    className="group flex w-full items-center gap-4 rounded-xl border border-border/70 bg-background/40 px-4 py-3 text-left transition-colors hover:border-primary/50 hover:bg-primary/5"
+                    className="group flex w-full items-center gap-4 rounded-xl border border-border bg-background/40 px-4 py-3 text-left transition-colors hover:border-primary/50 hover:bg-primary/5"
                   >
                     <span className="inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                       <opt.icon className="h-5 w-5" />

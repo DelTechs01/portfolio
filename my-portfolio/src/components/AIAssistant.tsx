@@ -112,25 +112,25 @@ export default function AIAssistant() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="fixed bottom-24 right-8 z-50 w-96 max-w-[calc(100vw-4rem)] rounded-2xl shadow-2xl"
+            className="fixed bottom-24 right-6 z-50 w-96 max-w-[calc(100vw-3rem)] rounded-2xl shadow-2xl"
           >
-            <Card className="overflow-hidden border-none shadow-2xl">
-              <CardHeader className="bg-gradient-to-r from-primary to-accent text-primary-foreground">
+            <Card className="gap-0 overflow-hidden py-0 shadow-2xl">
+              <CardHeader className="border-b border-border py-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <Sparkles className="h-6 w-6" />
-                    <CardTitle className="text-xl">AI Assistant</CardTitle>
+                    <Sparkles className="h-5 w-5 text-primary" />
+                    <CardTitle className="text-base">AI Assistant</CardTitle>
                   </div>
                   <Button
                     variant="ghost"
                     size="icon"
                     onClick={() => setIsOpen(false)}
-                    className="hover:bg-white/20"
+                    aria-label="Close assistant"
                   >
                     <X className="h-5 w-5" />
                   </Button>
                 </div>
-                <Badge variant="secondary" className="mt-2 w-fit">
+                <Badge variant="secondary" className="w-fit font-normal text-muted-foreground">
                   Powered by Intelligence
                 </Badge>
               </CardHeader>
@@ -162,8 +162,8 @@ export default function AIAssistant() {
                       </div>
 
                       {message.role === 'user' && (
-                        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent/10">
-                          <User className="h-5 w-5 text-accent-foreground" />
+                        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-muted">
+                          <User className="h-5 w-5 text-muted-foreground" />
                         </div>
                       )}
                     </motion.div>
@@ -228,13 +228,14 @@ export default function AIAssistant() {
 
       {/* Floating Toggle Button */}
       <motion.button
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
+        whileHover={{ scale: 1.04 }}
+        whileTap={{ scale: 0.97 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-8 right-8 z-40 rounded-full bg-primary p-4 text-primary-foreground shadow-2xl transition-shadow hover:shadow-primary/50"
-        aria-label="Open AI Assistant"
+        className="fixed bottom-6 right-6 z-40 rounded-full bg-primary p-3 text-primary-foreground shadow-lg"
+        aria-label={isOpen ? 'Close AI Assistant' : 'Open AI Assistant'}
+        aria-expanded={isOpen}
       >
-        {isOpen ? <X className="h-7 w-7" /> : <MessageSquare className="h-7 w-7" />}
+        {isOpen ? <X className="h-5 w-5" /> : <MessageSquare className="h-5 w-5" />}
       </motion.button>
     </>
   );

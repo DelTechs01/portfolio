@@ -141,20 +141,20 @@ Type "help" to explore more, or visit the Projects page.`,
   }, [history]);
 
   return (
-    <Card className="bg-black/95 border-primary/20 overflow-hidden">
-      <div className="bg-gradient-to-r from-primary/20 to-accent/20 px-4 py-2 flex items-center gap-2">
+    <Card className="gap-0 overflow-hidden border-border bg-[oklch(0.12_0.004_240)] py-0 shadow-none">
+      <div className="flex items-center gap-2 border-b border-white/10 px-4 py-3">
         <div className="flex gap-2">
-          <div className="w-3 h-3 rounded-full bg-red-500" />
-          <div className="w-3 h-3 rounded-full bg-yellow-500" />
-          <div className="w-3 h-3 rounded-full bg-green-500" />
+          <div className="w-2.5 h-2.5 rounded-full bg-white/20" />
+          <div className="w-2.5 h-2.5 rounded-full bg-white/20" />
+          <div className="w-2.5 h-2.5 rounded-full bg-white/20" />
         </div>
-        <span className="text-xs text-muted-foreground ml-4">portfolio-terminal</span>
+        <span className="ml-3 font-mono text-xs text-white/50">portfolio-terminal</span>
       </div>
 
       <div
         ref={scrollRef}
         onClick={() => inputRef.current?.focus({ preventScroll: true })}
-        className="p-4 font-mono text-sm h-96 overflow-y-auto"
+        className="h-96 overflow-y-auto p-5 font-mono text-sm leading-relaxed"
       >
         {history.map((item, index) => (
           <motion.div
@@ -162,13 +162,13 @@ Type "help" to explore more, or visit the Projects page.`,
             initial={{ opacity: 0, y: 5 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.1 }}
-            className={item.type === 'input' ? 'text-green-400' : 'text-gray-300 whitespace-pre-wrap'}
+            className={item.type === 'input' ? 'text-[oklch(0.84_0.15_165)]' : 'text-gray-300 whitespace-pre-wrap'}
           >
             {item.content}
           </motion.div>
         ))}
 
-        <div className="flex items-center gap-2 text-green-400">
+        <div className="flex items-center gap-2 text-[oklch(0.84_0.15_165)]">
           <span>$</span>
           <input
             ref={inputRef}
@@ -176,7 +176,10 @@ Type "help" to explore more, or visit the Projects page.`,
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            className="flex-1 bg-transparent outline-none text-green-400"
+            aria-label="Terminal command"
+            autoCapitalize="off"
+            autoComplete="off"
+            className="flex-1 min-w-0 bg-transparent outline-none text-[oklch(0.84_0.15_165)] caret-[oklch(0.84_0.15_165)]"
             spellCheck={false}
           />
         </div>

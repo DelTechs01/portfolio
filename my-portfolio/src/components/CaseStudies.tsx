@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import {
   Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetFooter, SheetClose,
 } from '@/components/ui/sheet';
+import PageHeader from '@/components/PageHeader';
 import { caseStudiesData } from '@/data/caseStudies';
 import { useDocumentMeta } from '@/hooks/useDocumentMeta';
 
@@ -21,23 +22,14 @@ const CaseStudies = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <section className="py-24 lg:py-32">
+      <PageHeader
+        eyebrow="// projects"
+        title="Things I've built"
+        subtitle="A selection of projects, each with a live app so you can explore them yourself."
+      />
+
+      <section className="py-20 lg:py-28">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mb-14 max-w-2xl"
-          >
-            <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-3">
-              Projects
-            </p>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Things I've built</h1>
-            <p className="text-lg text-muted-foreground">
-              A selection of projects, each with a live app so you can explore them yourself.
-            </p>
-          </motion.div>
 
           {/* Cards */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -49,13 +41,13 @@ const CaseStudies = () => {
                 viewport={{ once: true }}
                 transition={{ delay: Math.min(index * 0.06, 0.3), duration: 0.4 }}
               >
-                <Card className="h-full flex flex-col overflow-hidden border-border/60 hover:border-primary/40 hover:shadow-lg transition-colors">
-                  <div className="relative h-44 overflow-hidden">
+                <Card className="group h-full flex flex-col overflow-hidden pt-0 shadow-none hover:border-primary/40 transition-colors">
+                  <div className="relative h-44 overflow-hidden border-b border-border">
                     <img
                       src={project.image}
                       alt={project.title}
                       loading="lazy"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover opacity-90 transition-transform duration-500 group-hover:scale-[1.03]"
                     />
                   </div>
 

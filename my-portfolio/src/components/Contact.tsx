@@ -171,10 +171,10 @@ export default function Contact() {
               transition={{ duration: 0.5 }}
               className="lg:col-span-2 space-y-6"
             >
-              <Card className="border-border/60">
+              <Card className="border-border">
                 <CardContent className="p-6 sm:p-8">
                   <div className="mb-8 flex items-center gap-4">
-                    <div className="h-16 w-16 overflow-hidden rounded-full border border-border/60 flex-shrink-0">
+                    <div className="h-16 w-16 overflow-hidden rounded-full border border-border flex-shrink-0">
                       <img
                         src="/Profile.jpg"
                         alt="Kweyu Delron "
@@ -253,7 +253,7 @@ export default function Contact() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="lg:col-span-3"
             >
-              <Card className="border-border/60">
+              <Card className="border-border">
                 <CardHeader>
                   <CardTitle className="text-xl">Send a message</CardTitle>
                   <CardDescription>
@@ -364,7 +364,7 @@ export default function Contact() {
                         required
                       />
                     </div>
-                    <Button type="submit" disabled={sending} className="w-full">
+                    <Button type="submit" disabled={sending} className="w-full h-11">
                       {sending ? (
                         <>
                           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -382,7 +382,7 @@ export default function Contact() {
                       <motion.div
                         initial={{ opacity: 0, y: -6 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="flex items-center gap-2 rounded-lg border border-green-500/30 bg-green-500/10 px-4 py-3 text-sm font-medium text-green-600 dark:text-green-400"
+                        className="flex items-center gap-2 rounded-lg border border-primary/30 bg-primary/10 px-4 py-3 text-sm font-medium text-primary"
                         role="status"
                       >
                         <CheckCircle2 className="h-5 w-5 flex-shrink-0" />
