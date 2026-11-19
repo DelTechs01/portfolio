@@ -116,12 +116,12 @@ export const caseStudiesData: CaseStudy[] = [
   },
   {
     id: 'zynthos-orchestrator',
-    title: 'Zynthos Orchestrator - AI Agent Platform',
+    title: 'Constel AI - AI Agent Platform',
     description: 'A platform for building, deploying, and running AI agents, with a built-in copilot that helps you connect tools and manage your agents from a single dashboard.',
     image: '/projects/zynthos.webp',
     tags: ['AI Agents', 'LLM', 'Automation', 'React', 'Dashboard'],
     problem: 'Building and running AI agents usually means stitching together SDKs, prompts, tools, and hosting by hand, with no single place to deploy, monitor, and manage them.',
-    solution: 'Zynthos lets users build agents, connect tools, deploy, and run them from one dashboard. An in-app copilot guides setup and troubleshooting, e.g. spinning up agents like Tech Post Pro and WhatsApp Support and connecting new tools to them.',
+    solution: 'Constel AI lets users build agents, connect tools, deploy, and run them from one dashboard. An in-app copilot guides setup and troubleshooting, e.g. spinning up agents like Tech Post Pro and WhatsApp Support and connecting new tools to them.',
     architecture: {
       description: 'Web platform with an agent runtime, pluggable tool connectors, a conversational copilot, and a dashboard for deploying and monitoring agents.',
       diagram: 'https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=800&q=80',

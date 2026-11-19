@@ -82,7 +82,7 @@ Software:
 3. EastMedic HMS - Hospital Management System
    Live: https://eastmedic-hms.vercel.app
 
-4. Zynthos Orchestrator - AI Agent Platform
+4. Constel AI - AI Agent Platform
    Live: https://zynthos-lab.vercel.app
 
 5. Cloud SMS Engine - Bulk SMS Platform

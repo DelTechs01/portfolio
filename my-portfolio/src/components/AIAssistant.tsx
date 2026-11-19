@@ -55,7 +55,7 @@ export default function AIAssistant() {
     }
 
     if (lowerMessage.includes('project') || lowerMessage.includes('portfolio')) {
-      return `Here are some of Kweyu's standout projects:\n\n• **EastMedic HMS** – Hospital management system (patients, billing, pharmacy)\n• **CampusTribe Social** – Campus community platform with real-time chat\n• **Zynthos Orchestrator** – Workflow automation & monitoring platform\n\nYou can explore full case studies on the Case Studies page!`;
+      return `Here are some of Kweyu's standout projects:\n\n• **EastMedic HMS** – Hospital management system (patients, billing, pharmacy)\n• **CampusTribe Social** – Campus community platform with real-time chat\n• **Constel AI** – Workflow automation & monitoring platform\n\nYou can explore full case studies on the Case Studies page!`;
     }
 
     if (lowerMessage.includes('service') || lowerMessage.includes('hire') || lowerMessage.includes('offer')) {
@@ -67,7 +67,7 @@ export default function AIAssistant() {
     }
 
     if (lowerMessage.includes('ai') || lowerMessage.includes('machine learning')) {
-      return 'Kweyu built Zynthos Orchestrator, a platform for building, deploying, and running AI agents, with a built-in copilot that helps connect tools and manage agents. You can open it from the Projects page.';
+      return 'Kweyu built Constel AI, a platform for building, deploying, and running AI agents, with a built-in copilot that helps connect tools and manage agents. You can open it from the Projects page.';
     }
 
     if (lowerMessage.includes('experience') || lowerMessage.includes('background')) {

@@ -47,7 +47,7 @@ const categories = [
   {
     name: 'Software, Automation and AI',
     evidence:
-      'Built Zynthos Orchestrator, a platform for building, deploying and running AI agents, and Cloud SMS Engine, a bulk SMS platform with a dashboard and API.',
+      'Built Constel AI, a platform for building, deploying and running AI agents, and Cloud SMS Engine, a bulk SMS platform with a dashboard and API.',
     skills: [
       'React',
       'TypeScript',
